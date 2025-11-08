@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Loader2, AlertTriangle, Wifi, Signal, Users } from 'lucide-react'
-import { fetchOutageData, convertOutageDataToMapMarkers, getMarkerColor, type OutageData, type MapMarker } from '../lib/api'
+import { Button } from '@/components/ui/button'
+import { Loader2, AlertTriangle, Wifi, Signal, Users, RefreshCw } from 'lucide-react'
+import { convertOutageDataToMapMarkers, getMarkerColor } from '../lib/api'
+import { useOutageData, useForceRefetchOutageData, useCachedOutageData } from '../hooks/useOutageData'
 
 // Fix for default markers in React-Leaflet
 delete (L.Icon.Default.prototype as any)._getIconUrl
@@ -16,28 +18,29 @@ L.Icon.Default.mergeOptions({
 })
 
 export function NetworkMap() {
-  const [outageData, setOutageData] = useState<OutageData | null>(null)
-  const [mapMarkers, setMapMarkers] = useState<MapMarker[]>([])
-  const [selectedMarker, setSelectedMarker] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
+  const { data: outageData, isLoading, error, isFetching, dataUpdatedAt } = useOutageData()
+  const forceRefresh = useForceRefetchOutageData()
+  const { getCacheInfo } = useCachedOutageData()
+  const [isRefreshing, setIsRefreshing] = useState(false)
 
-  useEffect(() => {
-    const loadOutageData = async () => {
-      try {
-        setLoading(true)
-        const data = await fetchOutageData()
-        setOutageData(data)
-        const markers = convertOutageDataToMapMarkers(data)
-        setMapMarkers(markers)
-      } catch (error) {
-        console.error('Failed to fetch outage data:', error)
-      } finally {
-        setLoading(false)
-      }
+  // Memoize map markers to avoid recalculation on every render
+  const mapMarkers = useMemo(() => {
+    return outageData ? convertOutageDataToMapMarkers(outageData) : []
+  }, [outageData])
+
+  // Get cache information
+  const cacheInfo = getCacheInfo()
+
+  const handleRefresh = async () => {
+    try {
+      setIsRefreshing(true)
+      await forceRefresh()
+    } catch (error) {
+      console.error('Failed to refresh data:', error)
+    } finally {
+      setIsRefreshing(false)
     }
-
-    loadOutageData()
-  }, [])
+  }
 
   const getIssueTypeIcon = (issueType: string) => {
     switch (issueType) {
@@ -69,7 +72,7 @@ export function NetworkMap() {
     return <Badge variant={variant}>{label}</Badge>
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex-1 p-4 md:p-8 pt-6">
         <div className="flex items-center justify-center h-96">
@@ -80,12 +83,31 @@ export function NetworkMap() {
     )
   }
 
+  if (error) {
+    return (
+      <div className="flex-1 p-4 md:p-8 pt-6">
+        <div className="flex flex-col items-center justify-center h-96 space-y-4">
+          <AlertTriangle className="h-8 w-8 text-red-500" />
+          <span className="ml-2">Failed to load outage data</span>
+          <Button onClick={handleRefresh} disabled={isRefreshing}>
+            {isRefreshing ? (
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            ) : (
+              <RefreshCw className="h-4 w-4 mr-2" />
+            )}
+            Try Again
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
   if (!outageData) {
     return (
       <div className="flex-1 p-4 md:p-8 pt-6">
         <div className="flex items-center justify-center h-96">
           <AlertTriangle className="h-8 w-8 text-red-500" />
-          <span className="ml-2">Failed to load outage data</span>
+          <span className="ml-2">No outage data available</span>
         </div>
       </div>
     )
@@ -95,10 +117,30 @@ export function NetworkMap() {
     <div className="flex-1 p-4 md:p-8 pt-6">
       <div className="flex items-center justify-between space-y-2 mb-6">
         <h2 className="text-3xl font-bold tracking-tight">T-Mobile Outage Map</h2>
-        <div className="flex items-center space-x-2">
-          <span className="text-sm text-muted-foreground">
-            Last updated: {new Date(outageData.timestamp).toLocaleTimeString()}
-          </span>
+        <div className="flex items-center space-x-4">
+          <div className="flex flex-col items-end">
+            <span className="text-sm text-muted-foreground">
+              Last updated: {dataUpdatedAt ? new Date(dataUpdatedAt).toLocaleTimeString() : 'Unknown'}
+            </span>
+            {cacheInfo.isCached && (
+              <span className="text-xs text-muted-foreground">
+                {cacheInfo.isStale ? 'Cache stale' : 'Cached'} • {isFetching && 'Updating...'}
+              </span>
+            )}
+          </div>
+          <Button 
+            onClick={handleRefresh} 
+            disabled={isRefreshing || isFetching}
+            variant="outline"
+            size="sm"
+          >
+            {isRefreshing || isFetching ? (
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            ) : (
+              <RefreshCw className="h-4 w-4 mr-2" />
+            )}
+            Refresh
+          </Button>
         </div>
       </div>
 
@@ -182,7 +224,7 @@ export function NetworkMap() {
                     weight: 2
                   }}
                   eventHandlers={{
-                    click: () => setSelectedMarker(marker.id)
+                    click: () => {}
                   }}
                 >
                   <Popup>

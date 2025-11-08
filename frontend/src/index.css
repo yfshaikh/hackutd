@@ -67,11 +67,15 @@
 
   /* Apply dark theme styles to all elements by default */
   * {
-    @apply border-border;
+    border-color: var(--border);
   }
   
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Scrollbar styling */
@@ -80,15 +84,16 @@
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-muted;
+    background-color: var(--muted);
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-full;
+    background-color: var(--border);
+    border-radius: 9999px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted-foreground;
+    background-color: var(--muted-foreground);
   }
 
   /* Selection styling */
@@ -105,21 +110,31 @@
 
   /* Link styling */
   a {
-    @apply text-primary hover:text-accent transition-colors;
+    color: var(--primary);
+    transition: color 0.15s ease-in-out;
+  }
+  
+  a:hover {
+    color: var(--accent);
   }
 
   /* Improved input styling */
   input, textarea, select {
-    @apply bg-input border-border text-foreground;
+    background-color: var(--input);
+    border-color: var(--border);
+    color: var(--foreground);
   }
 
   input:focus, textarea:focus, select:focus {
-    @apply ring-2 ring-ring border-transparent;
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-color: transparent;
   }
 
   /* Button improvements */
   button:disabled {
-    @apply opacity-50 cursor-not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   /* Card enhancements */
