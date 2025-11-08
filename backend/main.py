@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import logging
 import os
-from routes.chat_routes import chat_router
+# from routes.chat_routes import chat_router
+from routes.outage_routes import outage_router
 
 
 
@@ -30,19 +31,17 @@ app.add_middleware(
     ],  # Only necessary headers
 )
 
-# Initialize Supabase client
-try:
-    supabase = get_supabase_client()
-    logger.info("✅ Supabase client initialized successfully")
-except Exception as e:
-    logger.error(f"❌ Failed to initialize Supabase client: {e}")
-    raise
+# Initialize Supabase client (commented out for outage API)
+# try:
+#     supabase = get_supabase_client()
+#     logger.info("✅ Supabase client initialized successfully")
+# except Exception as e:
+#     logger.error(f"❌ Failed to initialize Supabase client: {e}")
+#     raise
 
 # Include routes
-app.include_router(eleven_router)
-app.include_router(car_router)
-app.include_router(agent_tools_router)
-app.include_router(nessie_router)
+# app.include_router(chat_router)
+app.include_router(outage_router)
 
 
 

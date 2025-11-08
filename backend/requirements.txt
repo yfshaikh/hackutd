@@ -9,3 +9,4 @@ supabase
 crewai
 crewai-tools
 dspy
+firecrawl

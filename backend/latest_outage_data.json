@@ -1,0 +1,181 @@
+{
+  "overall_status": "no current problems",
+  "problem_breakdown": {
+    "other_percent": 0,
+    "no_signal_percent": 18,
+    "mobile_phone_percent": 31,
+    "home_internet_percent": 51
+  },
+  "recent_user_reports": [
+    {
+      "location": "Reading, PA",
+      "timestamp": "2025-11-04 16:14:47",
+      "issue_type": "No Signal",
+      "description": "No signal to download software update and gps not working"
+    },
+    {
+      "location": "",
+      "timestamp": "2025-11-03 19:16:59",
+      "issue_type": "Mobile Phone",
+      "description": "how am I supposed to play war tycoon on Roblox if t mobile is down :("
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-31 09:35:06",
+      "issue_type": "Mobile Phone",
+      "description": "Works for about 5 minutes, then it lags really bad for about 30 seconds and disconnects. Has been happening for about 6 hours"
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-30 08:06:09",
+      "issue_type": "Mobile Phone",
+      "description": "About 3:45 AM I couldn't get any web page to load for about 15 minutes. Tried data, tried Wi-Fi, nothing. So it had to be my T-Mobile service??"
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-28 22:33:16",
+      "issue_type": "5G Home Internet",
+      "description": "Speed test went from 450 to 2 mbps. Home internet unusable. Reset the gateway. Didn\u2019t help."
+    },
+    {
+      "location": "New Hampshire",
+      "timestamp": "2025-10-28 13:30:54",
+      "issue_type": "Mobile Phone",
+      "description": "messages taking forever to send and calls not going through"
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-25 21:27:21",
+      "issue_type": "Mobile Phone",
+      "description": "Can\u2019t load tmobile support"
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-24 08:57:31",
+      "issue_type": "Mobile Phone",
+      "description": "Phone is broken"
+    },
+    {
+      "location": "Minneapolis",
+      "timestamp": "2025-10-23 13:49:49",
+      "issue_type": "No Signal",
+      "description": "Today, Our Minneapolis Region Had Issues As Well So The Tower Is Down, And Me And My Other Friends Are Struggling Right Now. Gotta Fix It Now T-Mobile."
+    },
+    {
+      "location": "Putnam, CT",
+      "timestamp": "2025-10-22 22:54:47",
+      "issue_type": "No Signal",
+      "description": "Cutting in and out of reception since 2pm. 20-30 minutes of SOS and extremely slow data randomly."
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-22 18:11:28",
+      "issue_type": "5G Home Internet",
+      "description": "85209 home 5g is running very slow since last night continuing into today"
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-22 16:31:36",
+      "issue_type": "5G Home Internet",
+      "description": "T-mobile tower down in 92285. Please dispatch and repair. Thank you."
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-20 19:54:52",
+      "issue_type": "Mobile Phone",
+      "description": "trying to pay a tmobile business BILL and it keeps saying it needs to EMAIL me a code - 2 hours later - NOT ONE CODE!!!"
+    },
+    {
+      "location": "Pittsford, MI",
+      "timestamp": "2025-10-19 05:57:23",
+      "issue_type": "Mobile Phone",
+      "description": "Black Out Again Pittsford Michigan, 49271 Ahhh T-Mobile Best 5G Network ? ? ?"
+    },
+    {
+      "location": "",
+      "timestamp": "2025-10-18 00:43:35",
+      "issue_type": "Mobile Phone",
+      "description": "Currently experiencing some severe internet slow down issues. Uploads and video buffering now takes hours!"
+    }
+  ],
+  "social_media_mentions": [
+    {
+      "platform": "Twitter",
+      "timestamp": "2025-11-08 03:55:21",
+      "issue_description": "the problem is consistent across a broader region along the NC/SC border of Fort Mill and throughout the Greater Charlotte area. It\u2019s affecting calls, signal strength, and data.",
+      "location_mentioned": "Fort Mill, NC/SC"
+    },
+    {
+      "platform": "Twitter",
+      "timestamp": "2025-11-07 01:52:54",
+      "issue_description": "are your servers down? No internet in Jacksonville FL...",
+      "location_mentioned": "Jacksonville, FL"
+    },
+    {
+      "platform": "Twitter",
+      "timestamp": "2025-11-01 00:01:13",
+      "issue_description": "home internet down in Louisville Oct 31, since 2pm. No resolution @WLKY",
+      "location_mentioned": "Louisville, KY"
+    },
+    {
+      "platform": "Twitter",
+      "timestamp": "2025-10-31 23:50:06",
+      "issue_description": "Is there WiFi outage in 63376?",
+      "location_mentioned": "63376"
+    },
+    {
+      "platform": "Twitter",
+      "timestamp": "2025-10-19 05:57:23",
+      "issue_description": "Black Out Again Pittsford Michigan, 49271 Ahhh T-Mobile Best 5G Network ? ? ?",
+      "location_mentioned": "Pittsford, MI"
+    }
+  ],
+  "most_reported_locations": [
+    {
+      "city": "Houston",
+      "state": "",
+      "severity": ""
+    },
+    {
+      "city": "Chicago",
+      "state": "",
+      "severity": ""
+    },
+    {
+      "city": "Charlotte",
+      "state": "",
+      "severity": ""
+    },
+    {
+      "city": "Seattle",
+      "state": "",
+      "severity": ""
+    },
+    {
+      "city": "Denver",
+      "state": "",
+      "severity": ""
+    },
+    {
+      "city": "Atlanta",
+      "state": "",
+      "severity": ""
+    },
+    {
+      "city": "San Antonio",
+      "state": "",
+      "severity": ""
+    },
+    {
+      "city": "Los Angeles",
+      "state": "",
+      "severity": ""
+    },
+    {
+      "city": "Dallas",
+      "state": "",
+      "severity": ""
+    }
+  ],
+  "timestamp": "2025-11-08T16:49:10.986502"
+}

@@ -1,8 +1,11 @@
+import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
-import { useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Loader2, AlertTriangle, Wifi, Signal, Users } from 'lucide-react'
+import { fetchOutageData, convertOutageDataToMapMarkers, getMarkerColor, type OutageData, type MapMarker } from '../lib/api'
 
 // Fix for default markers in React-Leaflet
 delete (L.Icon.Default.prototype as any)._getIconUrl
@@ -12,90 +15,89 @@ L.Icon.Default.mergeOptions({
   shadowUrl: new URL('leaflet/dist/images/marker-shadow.png', import.meta.url).href,
 })
 
-// Sample data for T-Mobile network coverage areas
-const networkData = {
-  regions: [
-    {
-      id: 'northeast',
-      name: 'Northeast Region',
-      lat: 40.7128,
-      lng: -74.0060,
-      status: 'online',
-      coverage: 98.5,
-      issues: 2,
-      color: '#22C55E'
-    },
-    {
-      id: 'southeast',
-      name: 'Southeast Region', 
-      lat: 33.7490,
-      lng: -84.3880,
-      status: 'warning',
-      coverage: 94.2,
-      issues: 8,
-      color: '#F59E0B'
-    },
-    {
-      id: 'midwest',
-      name: 'Midwest Region',
-      lat: 41.8781,
-      lng: -87.6298,
-      status: 'online',
-      coverage: 96.8,
-      issues: 1,
-      color: '#22C55E'
-    },
-    {
-      id: 'southwest',
-      name: 'Southwest Region',
-      lat: 32.7767,
-      lng: -96.7970,
-      status: 'critical',
-      coverage: 87.3,
-      issues: 15,
-      color: '#EF4444'
-    },
-    {
-      id: 'west',
-      name: 'West Region',
-      lat: 34.0522,
-      lng: -118.2437,
-      status: 'online',
-      coverage: 99.1,
-      issues: 0,
-      color: '#22C55E'
-    }
-  ]
-}
-
 export function NetworkMap() {
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null)
+  const [outageData, setOutageData] = useState<OutageData | null>(null)
+  const [mapMarkers, setMapMarkers] = useState<MapMarker[]>([])
+  const [selectedMarker, setSelectedMarker] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'online': return '#22C55E'
-      case 'warning': return '#F59E0B'
-      case 'critical': return '#EF4444'
-      default: return '#6B7280'
+  useEffect(() => {
+    const loadOutageData = async () => {
+      try {
+        setLoading(true)
+        const data = await fetchOutageData()
+        setOutageData(data)
+        const markers = convertOutageDataToMapMarkers(data)
+        setMapMarkers(markers)
+      } catch (error) {
+        console.error('Failed to fetch outage data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadOutageData()
+  }, [])
+
+  const getIssueTypeIcon = (issueType: string) => {
+    switch (issueType) {
+      case 'home_internet': return <Wifi className="h-4 w-4" />
+      case 'mobile_phone': return <Signal className="h-4 w-4" />
+      case 'no_signal': return <AlertTriangle className="h-4 w-4" />
+      default: return <Users className="h-4 w-4" />
     }
   }
 
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'online': return 'Online'
-      case 'warning': return 'Warning'
-      case 'critical': return 'Critical'
-      default: return 'Unknown'
+  const getIssueTypeLabel = (issueType: string) => {
+    switch (issueType) {
+      case 'home_internet': return '5G Home Internet'
+      case 'mobile_phone': return 'Mobile Phone'
+      case 'no_signal': return 'No Signal'
+      default: return 'Other Issues'
     }
+  }
+
+  const getSeverityBadge = (severity: string, source: string) => {
+    const variant = severity === 'high' ? 'destructive' : 
+                   severity === 'medium' ? 'default' : 
+                   'secondary'
+    
+    const label = source === 'reported_location' ? 'High Activity' :
+                  source === 'user_report' ? 'User Report' :
+                  'Social Media'
+    
+    return <Badge variant={variant}>{label}</Badge>
+  }
+
+  if (loading) {
+    return (
+      <div className="flex-1 p-4 md:p-8 pt-6">
+        <div className="flex items-center justify-center h-96">
+          <Loader2 className="h-8 w-8 animate-spin" />
+          <span className="ml-2">Loading outage data...</span>
+        </div>
+      </div>
+    )
+  }
+
+  if (!outageData) {
+    return (
+      <div className="flex-1 p-4 md:p-8 pt-6">
+        <div className="flex items-center justify-center h-96">
+          <AlertTriangle className="h-8 w-8 text-red-500" />
+          <span className="ml-2">Failed to load outage data</span>
+        </div>
+      </div>
+    )
   }
 
   return (
     <div className="flex-1 p-4 md:p-8 pt-6">
       <div className="flex items-center justify-between space-y-2 mb-6">
-        <h2 className="text-3xl font-bold tracking-tight">Network Coverage Map</h2>
+        <h2 className="text-3xl font-bold tracking-tight">T-Mobile Outage Map</h2>
         <div className="flex items-center space-x-2">
           <span className="text-sm text-muted-foreground">
-            Real-time network status
+            Last updated: {new Date(outageData.timestamp).toLocaleTimeString()}
           </span>
         </div>
       </div>
@@ -103,50 +105,56 @@ export function NetworkMap() {
       <div className="grid gap-4 md:grid-cols-4 mb-6">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Total Coverage</CardTitle>
+            <CardTitle className="text-sm font-medium">Overall Status</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">95.2%</div>
-            <p className="text-xs text-green-600">+0.3% from last week</p>
+            <div className="text-2xl font-bold capitalize">
+              {outageData.overall_status.replace('_', ' ')}
+            </div>
+            <p className="text-xs text-green-600">System monitoring active</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Active Issues</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Reports</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">26</div>
-            <p className="text-xs text-red-600">+8 since yesterday</p>
+            <div className="text-2xl font-bold">{outageData.total_reports}</div>
+            <p className="text-xs text-blue-600">
+              {outageData.user_reports.length} user + {outageData.social_media_mentions.length} social
+            </p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Regions Online</CardTitle>
+            <CardTitle className="text-sm font-medium">Hot Spots</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">3/5</div>
-            <p className="text-xs text-yellow-600">2 regions need attention</p>
+            <div className="text-2xl font-bold">{outageData.most_reported_locations.length}</div>
+            <p className="text-xs text-orange-600">High activity areas</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Avg Response Time</CardTitle>
+            <CardTitle className="text-sm font-medium">Top Issue</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">45ms</div>
-            <p className="text-xs text-green-600">-3ms improvement</p>
+            <div className="text-2xl font-bold">
+              {Math.max(...Object.values(outageData.problem_breakdown))}%
+            </div>
+            <p className="text-xs text-purple-600">5G Home Internet</p>
           </CardContent>
         </Card>
       </div>
 
       <Card className="h-[600px]">
         <CardHeader>
-          <CardTitle>T-Mobile Network Coverage</CardTitle>
+          <CardTitle>Live Outage Reports</CardTitle>
           <CardDescription>
-            Interactive map showing real-time network status across all regions
+            Real-time data from DownDetector showing T-Mobile service issues across the US
           </CardDescription>
         </CardHeader>
         <CardContent className="p-0">
@@ -162,31 +170,45 @@ export function NetworkMap() {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               
-              {networkData.regions.map((region) => (
+              {mapMarkers.map((marker) => (
                 <CircleMarker
-                  key={region.id}
-                  center={[region.lat, region.lng]}
-                  radius={30}
+                  key={marker.id}
+                  center={marker.position}
+                  radius={marker.severity === 'high' ? 25 : marker.severity === 'medium' ? 20 : 15}
                   pathOptions={{
-                    color: getStatusColor(region.status),
-                    fillColor: getStatusColor(region.status),
-                    fillOpacity: 0.6,
-                    weight: 3
+                    color: getMarkerColor(marker.issue_type, marker.severity),
+                    fillColor: getMarkerColor(marker.issue_type, marker.severity),
+                    fillOpacity: 0.7,
+                    weight: 2
                   }}
                   eventHandlers={{
-                    click: () => setSelectedRegion(region.id)
+                    click: () => setSelectedMarker(marker.id)
                   }}
                 >
                   <Popup>
-                    <div className="p-2">
-                      <h3 className="font-semibold text-lg">{region.name}</h3>
-                      <div className="mt-2 space-y-1">
-                        <p><strong>Status:</strong> <span className={`font-medium ${
-                          region.status === 'online' ? 'text-green-600' :
-                          region.status === 'warning' ? 'text-yellow-600' : 'text-red-600'
-                        }`}>{getStatusText(region.status)}</span></p>
-                        <p><strong>Coverage:</strong> {region.coverage}%</p>
-                        <p><strong>Active Issues:</strong> {region.issues}</p>
+                    <div className="p-3 min-w-[250px]">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-lg">{marker.title}</h3>
+                        {getSeverityBadge(marker.severity, marker.source)}
+                      </div>
+                      
+                      <div className="mt-2 space-y-2">
+                        <div className="flex items-center gap-2">
+                          {getIssueTypeIcon(marker.issue_type)}
+                          <span className="text-sm font-medium">
+                            {getIssueTypeLabel(marker.issue_type)}
+                          </span>
+                        </div>
+                        
+                        <p className="text-sm text-gray-600">
+                          {marker.description}
+                        </p>
+                        
+                        {marker.timestamp && (
+                          <p className="text-xs text-gray-500">
+                            Reported: {new Date(marker.timestamp).toLocaleString()}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </Popup>
@@ -197,24 +219,80 @@ export function NetworkMap() {
         </CardContent>
       </Card>
 
-      {selectedRegion && (
-        <Card className="mt-4">
-          <CardHeader>
-            <CardTitle>Region Details</CardTitle>
-            <CardDescription>
-              Detailed information for selected region
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Selected region: {networkData.regions.find(r => r.id === selectedRegion)?.name}
-            </p>
-            <p className="text-xs mt-2">
-              Data integration pending - will show detailed metrics, customer sentiment, and issue breakdown
-            </p>
-          </CardContent>
-        </Card>
-      )}
+      {/* Problem Breakdown Card */}
+      <Card className="mt-4">
+        <CardHeader>
+          <CardTitle>Issue Breakdown</CardTitle>
+          <CardDescription>
+            Current distribution of reported problems
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-3">
+            {Object.entries(outageData.problem_breakdown).map(([type, percentage]) => (
+              <div key={type} className="flex items-center justify-between p-3 rounded-lg bg-secondary">
+                <div className="flex items-center gap-2">
+                  {getIssueTypeIcon(type)}
+                  <span className="font-medium capitalize">
+                    {type.replace('_', ' ').replace('5g', '5G')}
+                  </span>
+                </div>
+                <div className="text-2xl font-bold text-primary">
+                  {percentage}%
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Map Legend */}
+      <Card className="mt-4">
+        <CardHeader>
+          <CardTitle>Map Legend</CardTitle>
+          <CardDescription>
+            Understanding the outage markers
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <h4 className="font-medium mb-2">By Source</h4>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                  <span className="text-sm">High Activity Areas</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-orange-500"></div>
+                  <span className="text-sm">User Reports</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                  <span className="text-sm">Social Media</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-medium mb-2">By Issue Type</h4>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Wifi className="h-4 w-4 text-purple-500" />
+                  <span className="text-sm">5G Home Internet</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Signal className="h-4 w-4 text-red-500" />
+                  <span className="text-sm">Mobile Phone</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-orange-500" />
+                  <span className="text-sm">No Signal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
