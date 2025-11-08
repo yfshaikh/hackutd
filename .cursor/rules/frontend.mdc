@@ -1,0 +1,7 @@
+---
+alwaysApply: true
+---
+
+Use ShadCN + tailwind + React for frontend. When making a page, use components instead of putting all the code in one file. The file structure should be that the page is put in it's own folder in the pages directory, and it's unique components are put in a components folder in the same folder as the page, while the reusable components are put in the components folder. 
+
+Use the color vars declared on globals instead of hardcoded colors, and add colors to index.css as needed. If making a new page, add it to the sidebar. When making api endpoints, organize them in a file in lib/api

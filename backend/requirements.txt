@@ -1,0 +1,11 @@
+fastapi
+openai==1.52.0
+python-dotenv
+uvicorn
+pydantic
+asyncio
+requests
+supabase
+crewai
+crewai-tools
+dspy

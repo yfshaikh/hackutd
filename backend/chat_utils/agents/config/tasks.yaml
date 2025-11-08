@@ -1,0 +1,140 @@
+generate_question_task:
+  description: >
+    Generate a {subject} SAT question with the following specifications:
+    - Subject: {subject}
+    - Type: {question_type} ({'Multiple Choice' if question_type.lower() == 'mcq' else 'Free Response'})
+    - Topic: {topic}
+    - Subtopic: {subtopic}
+    - Difficulty: {difficulty}
+    
+    {sample_question_context}
+    
+    {user_instructions}
+    
+    GENERATION RULES:
+    - Create a structurally similar but legally distinct question
+    - CRITICAL: Preserve the EXACT same solving approach, steps, and mathematical operations as the sample
+    - Use different numbers, variables, and algebraic expressions while keeping the same solution structure
+    - If the sample uses direct algebraic manipulation, generate direct algebraic manipulation (NOT word problems)
+    - If the sample solves for an expression (like x-3), solve for a different expression (like y+2 or 2a-1)
+    - Maintain the same number of solving steps in the same sequence
+    - Ensure proper LaTeX formatting for all mathematical expressions
+    - Generate plausible distractors for MCQ that represent common student mistakes
+    - Provide clear explanations and helpful hints
+    
+    STRUCTURAL SIMILARITY EXAMPLES:
+    - Sample: Factor and solve for (x-3) → Generate: Factor and solve for (y+2)
+    - Sample: Expand and combine like terms → Generate: Expand and combine like terms
+    - Sample: System of equations word problem → Generate: System of equations word problem
+  expected_output: >
+    A complete SAT question including the question text, answer choices (for MCQ), correct answer, 
+    explanation, hints, and metadata. Format as structured text with clear sections.
+  agent: question_generator
+
+validate_question_task:
+  description: >
+    Validate the generated SAT question for:
+    
+    STRUCTURAL SIMILARITY VALIDATION:
+    1. Solving Method Analysis:
+       - MUST use identical mathematical operations and techniques as the sample
+       - MUST follow the same sequence of solving steps
+       - If sample is direct algebraic manipulation, generated question MUST be direct algebraic manipulation (NOT word problems)
+       - If sample is word problem, generated question MUST be word problem (NOT direct equations)
+       - If sample solves for an expression (like x-3), generated question MUST solve for a similar expression (like y+2)
+    
+    2. Content Quality:
+       - No direct copying of phrases or sentence structures from the sample
+       - Original context and scenario while maintaining the same problem structure
+       - Different variable names and numerical values
+       - Proper LaTeX formatting for all mathematical expressions
+       - In LaTeX expressions, no spaces between components (e.g., $3x+5=1$ not $3x + 5 = 1$)
+    
+    3. Answer Choice Quality (for MCQ):
+       - Plausible distractors that represent common mistakes
+       - Clear distinction between correct and incorrect choices
+       - Appropriate difficulty progression
+    
+    VALIDATION FAILURE CRITERIA:
+    - Generated question uses a different solving approach than the sample
+    - Generated question has different number of solving steps
+    - Generated question requires different mathematical operations or techniques
+    - Wording is too similar to the sample (potential copyright issue)
+    - LaTeX formatting errors
+  expected_output: >
+    Validation report confirming the question meets all standards including structural similarity,
+    or specific feedback on issues found with suggestions for corrections. Flag any structural 
+    similarity failures immediately.
+  agent: validation_agent
+
+verify_answer_task:
+  description: >
+    Independently solve the generated question to verify mathematical accuracy:
+    
+    1. Structural Similarity Check:
+       - Verify the generated question uses the same solving approach as the sample
+       - Confirm the same mathematical operations and step sequence are required
+       - Flag any discrepancies in problem structure or solving method
+    
+    2. Independent Solution:
+       - Work through the question step-by-step without looking at the provided answer
+       - Use the same methods a SAT student would employ
+       - Verify calculations and mathematical reasoning
+    
+    3. Answer Choice Analysis (MCQ):
+       - Confirm exactly one choice is mathematically correct
+       - Verify that distractors represent realistic student mistakes
+       - Check that wrong answers arise from common errors (sign mistakes, computational errors, etc.)
+    
+    4. Free Response Validation (FRQ):
+       - Verify the numerical answer is accurate
+       - Check that the answer format matches SAT expectations
+       - Ensure the solution method is efficient and appropriate for SAT timing
+    
+    5. Hint Effectiveness:
+       - Verify hints guide students toward the correct method
+       - Ensure hints don't reveal the answer directly
+       - Check that hints address common conceptual stumbling blocks
+    
+    6. Rationale Accuracy:
+       - Confirm the explanation correctly describes the solution process
+       - Verify that explanations for wrong choices are mathematically sound
+       - Check that the rationale highlights key insights and common pitfalls
+  expected_output: >
+    Mathematical verification confirming correctness or identifying specific errors that need correction.
+    Provide the verified correct answer and any necessary corrections to the solution process.
+    FIRST confirm structural similarity to sample question or flag discrepancies.
+  agent: answer_verifier
+
+compile_final_question_task:
+  description: >
+    Integrate feedback from validation and verification agents to produce the final polished SAT question.
+    Ensure the output is a valid JSON object with exactly these fields:
+    
+    {
+      "question": "string", // Complete question with LaTeX formatting
+      "choices": ["string"], // Array of 4 choices for MCQ, omit for FRQ
+      "correct_answer": "string", // Letter choice (MCQ) or numerical value (FRQ)
+      "explanation": "string", // One paragraph rationale
+      "hints": ["string"], // Array of 1-3 hints
+      "tags": ["string"], // Array of 1-3 topic tags
+      "difficulty": "easy|medium|hard",
+      "subject": "math|reading",
+      "type": "MCQ|FRQ",
+      "topic": "string",
+      "subtopic": "string",
+      "has_latex": true,
+      "generated": true,
+      "crew_generated": true
+    }
+    
+    Final Quality Assurance:
+    - Professional SAT-style language and formatting
+    - Appropriate difficulty level for the target audience
+    - Clear, unambiguous wording
+    - Proper mathematical notation and LaTeX formatting
+    - Complete and accurate answer explanations
+  expected_output: >
+    A valid JSON object containing the complete SAT question ready for use in the SAT preparation system.
+    Return ONLY the JSON object with no additional text or formatting.
+  agent: question_compiler 
