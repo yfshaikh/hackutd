@@ -1,0 +1,223 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+/* @import "tw-animate-css"; */
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Toyota Brand Colors */
+    --toyota-red: #EB0A1E;
+    --toyota-red-dark: #C10015;
+    --toyota-red-light: #FF2B3F;
+    --toyota-silver: #C5C5C5;
+    --toyota-gray-dark: #1A1A1A;
+    --toyota-gray-medium: #2D2D2D;
+    --toyota-gray-light: #3F3F3F;
+    --toyota-white: #FFFFFF;
+    --toyota-black: #000000;
+
+    /* Core Theme Colors - Dark Toyota Theme */
+    --background: #0A0A0A;
+    --foreground: #F5F5F5;
+    --card: #1A1A1A;
+    --card-foreground: #F5F5F5;
+    --popover: #1A1A1A;
+    --popover-foreground: #F5F5F5;
+    --primary: var(--toyota-red);
+    --primary-foreground: var(--toyota-white);
+    --secondary: #2D2D2D;
+    --secondary-foreground: #F5F5F5;
+    --muted: #2D2D2D;
+    --muted-foreground: #A0A0A0;
+    --accent: var(--toyota-red-light);
+    --accent-foreground: var(--toyota-white);
+    --destructive: #DC2626;
+    --destructive-foreground: var(--toyota-white);
+    --border: #3F3F3F;
+    --input: #2D2D2D;
+    --ring: var(--toyota-red);
+
+    /* Semantic Colors - Toyota Dark Theme */
+    --success: #22C55E;
+    --success-foreground: var(--toyota-white);
+    --warning: #F59E0B;
+    --warning-foreground: var(--toyota-black);
+    --error: var(--toyota-red);
+    --error-foreground: var(--toyota-white);
+    --info: #3B82F6;
+    --info-foreground: var(--toyota-white);
+
+    /* Chart Colors - Toyota-inspired Dark Palette */
+    --chart-1: var(--toyota-red);
+    --chart-2: var(--toyota-silver);
+    --chart-3: #F59E0B;
+    --chart-4: #3B82F6;
+    --chart-5: #22C55E;
+    --chart-6: #8B5CF6;
+    --chart-7: #F97316;
+    --chart-8: #06B6D4;
+
+    /* Coin/Gold Color - Metallic Toyota Silver */
+    --coin-gold: var(--toyota-silver);
+
+    /* Glass Effect Colors - Dark Toyota Glass Theme */
+    --glass-background: rgba(26, 26, 26, 0.4);
+    --glass-border: rgba(63, 63, 63, 0.3);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+    --glass-surface: rgba(26, 26, 26, 0.3);
+    --glass-input-bg: rgba(45, 45, 45, 0.3);
+    --glass-input-border: rgba(63, 63, 63, 0.25);
+    --glass-input-focus-bg: rgba(45, 45, 45, 0.4);
+    --glass-input-focus-border: rgba(235, 10, 30, 0.4);
+    --glass-message-user-bg: rgba(235, 10, 30, 0.1);
+    --glass-message-user-border: rgba(235, 10, 30, 0.3);
+    --glass-message-assistant-bg: rgba(45, 45, 45, 0.4);
+    --glass-message-assistant-border: rgba(63, 63, 63, 0.3);
+
+    /* Glass Effect Highlights and Shadows */
+    --glass-highlight: rgba(255, 255, 255, 0.05);
+    --glass-highlight-strong: rgba(255, 255, 255, 0.1);
+    --glass-inset-shadow: rgba(0, 0, 0, 0.2);
+    --glass-shimmer: rgba(197, 197, 197, 0.15);
+    --glass-glow-light: rgba(235, 10, 30, 0.1);
+    --glass-glow-strong: rgba(235, 10, 30, 0.2);
+    --glass-scrollbar: rgba(63, 63, 63, 0.5);
+    --glass-scrollbar-hover: rgba(197, 197, 197, 0.7);
+
+    /* Adventure Theme Colors - Dark Toyota Variants */
+    --adventure-space-primary: var(--toyota-red);
+    --adventure-space-secondary: var(--toyota-silver);
+    --adventure-space-accent: var(--toyota-red-light);
+    --adventure-pirate-primary: var(--toyota-red-dark);
+    --adventure-pirate-secondary: var(--toyota-gray-medium);
+    --adventure-pirate-accent: var(--toyota-silver);
+
+    /* Adventure UI Dark Glass Colors - Toyota Theme */
+    --adventure-glass-bg: rgba(26, 26, 26, 0.3);
+    --adventure-glass-dark-bg: rgba(10, 10, 10, 0.8);
+    --adventure-glass-hover: rgba(235, 10, 30, 0.1);
+    --adventure-glass-selected: rgba(235, 10, 30, 0.2);
+    --adventure-text-primary: var(--toyota-white);
+    --adventure-text-secondary: var(--toyota-silver);
+    --adventure-warning: #F59E0B;
+
+    /* Sidebar Colors - Dark Toyota Theme */
+    --sidebar: var(--toyota-gray-dark);
+    --sidebar-foreground: var(--toyota-white);
+    --sidebar-primary: var(--toyota-red);
+    --sidebar-primary-foreground: var(--toyota-white);
+    --sidebar-accent: var(--toyota-gray-medium);
+    --sidebar-accent-foreground: var(--toyota-white);
+    --sidebar-border: var(--toyota-gray-light);
+    --sidebar-ring: var(--toyota-red);
+
+    /* Gradient Colors for Complex UI Elements */
+    --gradient-primary-start: var(--toyota-red);
+    --gradient-primary-end: var(--toyota-red-dark);
+    --gradient-secondary-start: var(--toyota-gray-medium);
+    --gradient-secondary-end: var(--toyota-gray-light);
+    --gradient-accent-start: var(--toyota-silver);
+    --gradient-accent-end: var(--toyota-white);
+
+    /* Interactive State Colors */
+    --hover-overlay: rgba(235, 10, 30, 0.1);
+    --active-overlay: rgba(235, 10, 30, 0.15);
+    --focus-ring: rgba(235, 10, 30, 0.5);
+
+    /* Fallback Values for Legacy Support */
+    --fallback-primary: var(--toyota-red);
+    --fallback-secondary: var(--toyota-gray-medium);
+    --fallback-accent: var(--toyota-silver);
+    --fallback-background: var(--toyota-black);
+    --fallback-foreground: var(--toyota-white);
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+  --color-coin-gold: var(--coin-gold);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-adventure-glass-bg: var(--adventure-glass-bg);
+  --color-adventure-glass-dark-bg: var(--adventure-glass-dark-bg);
+  --color-adventure-glass-hover: var(--adventure-glass-hover);
+  --color-adventure-glass-selected: var(--adventure-glass-selected);
+  --color-adventure-text-primary: var(--adventure-text-primary);
+  --color-adventure-text-secondary: var(--adventure-text-secondary);
+  --color-adventure-warning: var(--adventure-warning);
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
