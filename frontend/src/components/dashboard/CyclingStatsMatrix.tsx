@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, useCallback } from 'react'
 import { Matrix, digits, type Frame } from '@/components/ui/matrix'
 import { useQuickStats } from '@/hooks/useDashboard'
 import { Card, CardContent } from '@/components/ui/card'
@@ -8,17 +8,20 @@ interface StatDisplay {
   label: string
 }
 
+const ROWS = 9
+const COLS = 14
+const TRANSITION_DURATION_MS = 2000
+const DISPLAY_DURATION_MS = 4000
+const T_MOBILE_PINK = '#E20074'
+
 export function CyclingStatsMatrix() {
   const quickStats = useQuickStats()
   const [currentStatIndex, setCurrentStatIndex] = useState(0)
-  const [animationFrame, setAnimationFrame] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
-
-  // T-Mobile pink color
-  const tmobilePink = '#E20074'
+  const [transitionProgress, setTransitionProgress] = useState(0) // 0 = fully showing current, 1 = fully showing next
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   // Define the stats to cycle through
-  const stats: StatDisplay[] = [
+  const stats: StatDisplay[] = useMemo(() => [
     {
       value: quickStats.negativePosts,
       label: 'negative posts last 30 days'
@@ -35,124 +38,118 @@ export function CyclingStatsMatrix() {
       value: quickStats.totalPosts,
       label: 'total posts monitored'
     }
-  ]
+  ], [quickStats.negativePosts, quickStats.positivePosts, quickStats.sentimentScore, quickStats.totalPosts])
 
-  // Create a combined frame for both digits with padding
-  const createCombinedFrame = (num: number): Frame => {
-    if (quickStats.isLoading) return Array(9).fill(0).map(() => Array(14).fill(0))
-    
+  // Create a frame for a two-digit number
+  const createNumberFrame = useCallback((num: number): Frame => {
     const str = Math.abs(Math.floor(num)).toString().padStart(2, '0')
     const leftDigit = parseInt(str[0])
     const rightDigit = parseInt(str[1])
     
-    const combinedFrame: Frame = Array(9).fill(0).map(() => Array(14).fill(0))
+    const frame: Frame = Array(ROWS).fill(0).map(() => Array(COLS).fill(0))
     
-    // Copy left digit (columns 1-5, rows 1-7)
+    // Place left digit (columns 1-5, rows 1-7)
     for (let row = 0; row < 7; row++) {
       for (let col = 0; col < 5; col++) {
-        combinedFrame[row + 1][col + 1] = digits[leftDigit][row][col]
+        frame[row + 1][col + 1] = digits[leftDigit][row][col]
       }
     }
     
-    // Copy right digit (columns 8-12, rows 1-7, leaving columns 6-7 for connection)
+    // Place right digit (columns 8-12, rows 1-7)
     for (let row = 0; row < 7; row++) {
       for (let col = 0; col < 5; col++) {
-        combinedFrame[row + 1][col + 8] = digits[rightDigit][row][col]
+        frame[row + 1][col + 8] = digits[rightDigit][row][col]
       }
     }
     
-    return combinedFrame
-  }
+    return frame
+  }, [])
 
-  const currentFrame = useMemo(() => createCombinedFrame(stats[currentStatIndex].value), [stats, currentStatIndex, quickStats.isLoading])
-  const nextFrame = useMemo(() => createCombinedFrame(stats[(currentStatIndex + 1) % stats.length].value), [stats, currentStatIndex, quickStats.isLoading])
+  // Get frames for current and next stats
+  const currentFrame = useMemo(() => 
+    createNumberFrame(stats[currentStatIndex].value),
+    [stats, currentStatIndex, createNumberFrame]
+  )
+  
+  const nextFrame = useMemo(() => 
+    createNumberFrame(stats[(currentStatIndex + 1) % stats.length].value),
+    [stats, currentStatIndex, createNumberFrame]
+  )
 
-  // Create animated transition frame
-  const getTransitionFrame = (): Frame => {
-    if (!isAnimating) return currentFrame
+  // Create transition frame with staggered fade
+  const displayFrame = useMemo((): Frame => {
+    if (!isTransitioning) return currentFrame
     
-    const transitionFrame: Frame = Array(9).fill(0).map(() => Array(14).fill(0))
-    const progress = animationFrame / 40 // 40 frames for slower transition
+    const frame: Frame = Array(ROWS).fill(0).map(() => Array(COLS).fill(0))
+    const progress = transitionProgress
     
-    for (let row = 0; row < 9; row++) {
-      for (let col = 0; col < 14; col++) {
-        // Create a smoother stagger pattern - diagonal from top-left to bottom-right
-        const pixelDelay = (row + col) / (9 + 14 - 2) // Normalized 0-1
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        // Stagger based on position (top-left to bottom-right)
+        const staggerDelay = (row * COLS + col) / (ROWS * COLS) * 0.5
         
-        // Create overlapping fade transitions for smoother animation
-        const fadeOutStart = pixelDelay * 0.3 // Start fade-out at different times
-        const fadeOutEnd = fadeOutStart + 0.5 // 50% of animation for fade-out
-        const fadeInStart = fadeOutStart + 0.25 // Start fade-in midway through fade-out
-        const fadeInEnd = fadeInStart + 0.5 // 50% of animation for fade-in
+        // Fade out current digit
+        const fadeOutStart = staggerDelay
+        const fadeOutEnd = fadeOutStart + 0.5
+        const fadeOutProgress = Math.min(1, Math.max(0, (progress - fadeOutStart) / (fadeOutEnd - fadeOutStart)))
+        const currentValue = currentFrame[row][col] * (1 - fadeOutProgress)
         
-        let currentPixelValue = 0
-        let nextPixelValue = 0
+        // Fade in next digit
+        const fadeInStart = 0.5 + staggerDelay
+        const fadeInEnd = fadeInStart + 0.5
+        const fadeInProgress = Math.min(1, Math.max(0, (progress - fadeInStart) / (fadeInEnd - fadeInStart)))
+        const nextValue = nextFrame[row][col] * fadeInProgress
         
-        // Calculate fade-out progress
-        if (progress >= fadeOutStart && progress <= fadeOutEnd) {
-          const fadeOutProgress = (progress - fadeOutStart) / (fadeOutEnd - fadeOutStart)
-          const easedFadeOut = 1 - Math.pow(fadeOutProgress, 2) // Ease-out curve
-          currentPixelValue = currentFrame[row][col] * easedFadeOut
-        } else if (progress < fadeOutStart) {
-          currentPixelValue = currentFrame[row][col]
-        }
-        
-        // Calculate fade-in progress
-        if (progress >= fadeInStart && progress <= fadeInEnd) {
-          const fadeInProgress = (progress - fadeInStart) / (fadeInEnd - fadeInStart)
-          const easedFadeIn = Math.pow(fadeInProgress, 2) // Ease-in curve
-          nextPixelValue = nextFrame[row][col] * easedFadeIn
-        } else if (progress > fadeInEnd) {
-          nextPixelValue = nextFrame[row][col]
-        }
-        
-        // Combine both values for smooth transition
-        transitionFrame[row][col] = Math.max(currentPixelValue, nextPixelValue)
+        frame[row][col] = currentValue + nextValue
       }
     }
     
-    return transitionFrame
-  }
+    return frame
+  }, [isTransitioning, transitionProgress, currentFrame, nextFrame])
 
-  // Single animation cycle controller
+  // Handle cycling through stats
   useEffect(() => {
-    let cycleInterval: ReturnType<typeof setInterval>
-    let animationInterval: ReturnType<typeof setInterval>
-    let displayTimeout: ReturnType<typeof setTimeout>
-    
-    const runCycle = () => {
-      // Phase 1: Start animation
-      setIsAnimating(true)
-      setAnimationFrame(0)
+    let displayTimer: number
+    let animationFrame: number | null = null
+    let startTime: number | null = null
+
+    const startTransition = () => {
+      setIsTransitioning(true)
+      setTransitionProgress(0)
+      startTime = performance.now()
       
-      // Phase 2: Run animation frames
-      let frameCount = 0
-      animationInterval = setInterval(() => {
-        frameCount++
-        setAnimationFrame(frameCount)
+      const animate = (currentTime: number) => {
+        if (!startTime) return
         
-        if (frameCount >= 40) {
-          clearInterval(animationInterval)
-          setIsAnimating(false)
+        const elapsed = currentTime - startTime
+        const progress = Math.min(1, elapsed / TRANSITION_DURATION_MS)
+        
+        setTransitionProgress(progress)
+        
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(animate)
+        } else {
+          // Transition complete
+          setIsTransitioning(false)
+          setTransitionProgress(0)
+          setCurrentStatIndex(prev => (prev + 1) % stats.length)
           
-          // Phase 3: Display completed number for 2 seconds, then move to next
-          displayTimeout = setTimeout(() => {
-            setCurrentStatIndex(curr => (curr + 1) % stats.length)
-          }, 2000)
+          // Schedule next transition
+          displayTimer = setTimeout(startTransition, DISPLAY_DURATION_MS)
         }
-      }, 50) // 50ms per frame
+      }
+      
+      animationFrame = requestAnimationFrame(animate)
     }
-    
-    // Start first cycle immediately
-    runCycle()
-    
-    // Then repeat every 4 seconds (2s animation + 2s display)
-    cycleInterval = setInterval(runCycle, 4000)
-    
+
+    // Initial display, then start cycling
+    displayTimer = setTimeout(startTransition, DISPLAY_DURATION_MS)
+
     return () => {
-      clearInterval(cycleInterval)
-      clearInterval(animationInterval)
-      clearTimeout(displayTimeout)
+      clearTimeout(displayTimer)
+      if (animationFrame !== null) {
+        cancelAnimationFrame(animationFrame)
+      }
     }
   }, [stats.length])
 
@@ -162,36 +159,35 @@ export function CyclingStatsMatrix() {
     <Card className="col-span-3 card-matte w-fit mx-auto">
       <CardContent className="p-3">
         <div className="flex items-center justify-center flex-col space-y-2">
-          {/* Single Matrix display for both digits */}
           <Matrix
-            rows={9}
-            cols={14}
-            pattern={getTransitionFrame()}
+            rows={ROWS}
+            cols={COLS}
+            pattern={displayFrame}
             size={14}
             gap={1}
             palette={{
-              on: tmobilePink,
+              on: T_MOBILE_PINK,
               off: 'hsl(var(--muted-foreground)/0.1)'
             }}
             ariaLabel={`Number ${currentStat.value}`}
           />
 
-          {/* Description text */}
           <p 
-            className="text-xs font-medium tracking-wide uppercase text-center"
-            style={{ color: tmobilePink }}
+            className="text-xs font-medium tracking-wide uppercase text-center transition-opacity duration-300"
+            style={{ 
+              color: T_MOBILE_PINK,
+              opacity: isTransitioning ? 0.5 : 1
+            }}
           >
             {currentStat.label}
           </p>
 
-          {/* Loading state */}
           {quickStats.isLoading && (
             <p className="text-xs text-muted-foreground animate-pulse">
               Loading...
             </p>
           )}
 
-          {/* Error state */}
           {quickStats.error && (
             <p className="text-xs text-red-500">
               Error loading data
