@@ -4,6 +4,7 @@ import { RefreshCw, TrendingUp, TrendingDown, Activity } from 'lucide-react'
 import { SentimentChart } from '@/components/charts/SentimentChart'
 import { CyclingStatsMatrix } from '@/components/dashboard/CyclingStatsMatrix'
 import { SocialMediaFeed } from '@/components/dashboard/SocialMediaFeed'
+import { PriorityQueue } from '@/components/dashboard/PriorityQueue'
 
 export function Dashboard() {
   const { dashboardSummary, isLoading, isError, refetchAll, isFetching } = useDashboard()
@@ -115,6 +116,15 @@ export function Dashboard() {
             <SocialMediaFeed />
           </CardContent>
         </Card>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <div className="col-span-4">
+          <PriorityQueue />
+        </div>
+        <div className="col-span-3">
+          {/* Placeholder for future component */}
+        </div>
       </div>
     </div>
   )

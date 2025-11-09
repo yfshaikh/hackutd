@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react'
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
+import { useMemo, useState, useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
+import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
@@ -17,11 +18,66 @@ L.Icon.Default.mergeOptions({
   shadowUrl: new URL('leaflet/dist/images/marker-shadow.png', import.meta.url).href,
 })
 
+// Map flyTo component to handle navigation
+function MapController({ focusLocation }: { focusLocation: string | null }) {
+  const map = useMap()
+  
+  useEffect(() => {
+    if (focusLocation) {
+      // Parse location to get city name
+      const city = focusLocation.split(',')[0].trim()
+      
+      // City coordinates from the existing mapping
+      const cityCoordinates: Record<string, [number, number]> = {
+        'Houston': [29.7604, -95.3698],
+        'Chicago': [41.8781, -87.6298],
+        'Charlotte': [35.2271, -80.8431],
+        'Seattle': [47.6062, -122.3321],
+        'Denver': [39.7392, -104.9903],
+        'Atlanta': [33.7490, -84.3880],
+        'San Antonio': [29.4241, -98.4936],
+        'Los Angeles': [34.0522, -118.2437],
+        'Dallas': [32.7767, -96.7970],
+        'Minneapolis': [44.9778, -93.2650],
+        'Jacksonville': [30.3322, -81.6557],
+        'New Hampshire': [43.4525, -71.5639],
+        'Connecticut': [41.5978, -72.7554],
+        'Michigan': [42.3314, -84.5467],
+        'Florida': [27.7663, -82.6404],
+        'Pennsylvania': [40.5908, -77.2098],
+      }
+      
+      const coords = cityCoordinates[city]
+      if (coords) {
+        map.flyTo(coords, 10, {
+          duration: 2,
+          easeLinearity: 0.25
+        })
+      }
+    }
+  }, [focusLocation, map])
+  
+  return null
+}
+
 export function NetworkMap() {
   const { data: outageData, isLoading, error, isFetching, dataUpdatedAt } = useOutageData()
   const forceRefresh = useForceRefetchOutageData()
   const { getCacheInfo } = useCachedOutageData()
   const [isRefreshing, setIsRefreshing] = useState(false)
+  const location = useLocation()
+  const [focusLocation, setFocusLocation] = useState<string | null>(null)
+  const popupRefs = useRef<Map<string, L.Popup>>(new Map())
+
+  // Get focus location from navigation state
+  useEffect(() => {
+    if (location.state?.focusLocation) {
+      setFocusLocation(location.state.focusLocation)
+      
+      // Clear the location state after using it
+      window.history.replaceState({}, document.title)
+    }
+  }, [location])
 
   // Memoize map markers to avoid recalculation on every render
   const mapMarkers = useMemo(() => {
@@ -30,6 +86,24 @@ export function NetworkMap() {
 
   // Get cache information
   const cacheInfo = getCacheInfo()
+  
+  // Open popup for focused location
+  useEffect(() => {
+    if (focusLocation && mapMarkers.length > 0) {
+      // Find marker matching the focused location
+      const marker = mapMarkers.find(m => m.title.includes(focusLocation.split(',')[0]))
+      
+      if (marker) {
+        // Trigger popup open after a short delay (for map fly animation)
+        setTimeout(() => {
+          const popup = popupRefs.current.get(marker.id)
+          if (popup) {
+            popup.openOn(popup._map as any)
+          }
+        }, 2000)
+      }
+    }
+  }, [focusLocation, mapMarkers])
 
   const handleRefresh = async () => {
     try {
@@ -207,6 +281,7 @@ export function NetworkMap() {
               style={{ height: '100%', width: '100%' }}
               className="rounded-b-lg"
             >
+              <MapController focusLocation={focusLocation} />
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -223,8 +298,13 @@ export function NetworkMap() {
                     fillOpacity: 0.7,
                     weight: 2
                   }}
-                  eventHandlers={{
-                    click: () => {}
+                  ref={(ref) => {
+                    if (ref) {
+                      const popup = ref.getPopup()
+                      if (popup) {
+                        popupRefs.current.set(marker.id, popup)
+                      }
+                    }
                   }}
                 >
                   <Popup>

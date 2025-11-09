@@ -24,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<NetworkMap />} />
+            <Route path="network-map" element={<NetworkMap />} />
             <Route path="dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
