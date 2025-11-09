@@ -20,6 +20,7 @@ export function CyclingStatsMatrix() {
   const [currentStatIndex, setCurrentStatIndex] = useState(0)
   const [transitionProgress, setTransitionProgress] = useState(0) // 0 = fully showing current, 1 = fully showing next
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   // Define the stats to cycle through
   const stats: StatDisplay[] = useMemo(() => [
@@ -114,6 +115,9 @@ export function CyclingStatsMatrix() {
 
   // Handle cycling through stats
   useEffect(() => {
+    // Don't cycle if hovered
+    if (isHovered) return
+
     let displayTimer: number
     let animationFrame: number | null = null
     let startTime: number | null = null
@@ -156,13 +160,18 @@ export function CyclingStatsMatrix() {
         cancelAnimationFrame(animationFrame)
       }
     }
-  }, [stats.length])
+  }, [stats.length, isHovered])
 
   const currentStat = stats[currentStatIndex]
 
   return (
-    <Card className="card-matte h-full">
-      <CardContent className="px-4 py-3 h-full">
+    <div 
+      className="h-full cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Card className="card-matte h-full">
+        <CardContent className="px-4 py-3 h-full">
         <div className="flex items-center justify-between h-full gap-6">
           <div className="shrink-0">
           <Matrix
@@ -211,5 +220,6 @@ export function CyclingStatsMatrix() {
         </div>
       </CardContent>
     </Card>
+    </div>
   )
 }
