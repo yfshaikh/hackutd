@@ -11,6 +11,7 @@ crewai-tools
 dspy
 firecrawl
 praw
+tweepy
 selenium
 beautifulsoup4
 webdriver-manager
