@@ -26,11 +26,12 @@ export const dashboardQueryKeys = {
 } as const;
 
 // Stale times for different types of data (in milliseconds)
+// Adjusted for demo purposes - data stays fresh longer to use cached backend data
 const STALE_TIMES = {
-  historical: 1000 * 60 * 60, // 1 hour - historical data changes slowly
-  recent: 1000 * 60 * 15,     // 15 minutes - recent data updates more frequently
-  realtime: 1000 * 60 * 5,    // 5 minutes - real-time data needs frequent updates
-  health: 1000 * 60 * 2,      // 2 minutes - health check
+  historical: 1000 * 60 * 60 * 24, // 24 hours - historical data changes slowly
+  recent: 1000 * 60 * 60,          // 1 hour - recent data (backend caches for 24h)
+  realtime: 1000 * 60 * 30,        // 30 minutes - real-time data (backend caches for 24h)
+  health: 1000 * 60 * 15,          // 15 minutes - health check
 } as const;
 
 /**

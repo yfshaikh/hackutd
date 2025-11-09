@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from typing import List, Dict, Any
 import os
 from dataclasses import dataclass
+from pathlib import Path
 
 @dataclass
 class NegativePost:
@@ -57,6 +58,12 @@ class RedditSentimentMonitor:
             # 'cellphones',  # General but catches T-Mobile discussions
             # 'NoContract'   # Many T-Mobile customers use prepaid
         ]
+        
+        # Cache settings (for demo purposes)
+        self.cache_duration_hours = 24  # Cache data for 24 hours
+        self.cache_dir = Path(__file__).parent.parent  # backend directory
+        self.negative_cache_file = self.cache_dir / 'reddit_negative_cache.json'
+        self.positive_cache_file = self.cache_dir / 'reddit_positive_cache.json'
         
         # Keywords that indicate negative sentiment (expanded from outage-specific)
         self.negative_keywords = {
@@ -193,6 +200,46 @@ class RedditSentimentMonitor:
         happiness_score = min(happiness_score / 10.0, 1.0)
         
         return len(keywords_found) > 0, keywords_found, happiness_score
+
+    def is_cache_valid(self, cache_file: Path) -> bool:
+        """Check if cache file exists and is still valid"""
+        if not cache_file.exists():
+            return False
+        
+        try:
+            with open(cache_file, 'r') as f:
+                data = json.load(f)
+            
+            cached_time = datetime.fromisoformat(data.get('cached_at', ''))
+            cache_age = datetime.now() - cached_time
+            
+            return cache_age.total_seconds() < (self.cache_duration_hours * 3600)
+        except Exception as e:
+            print(f"Error checking cache validity: {e}")
+            return False
+
+    def load_from_cache(self, cache_file: Path) -> Dict[str, Any]:
+        """Load data from cache file"""
+        try:
+            with open(cache_file, 'r') as f:
+                data = json.load(f)
+            print(f"✅ Loaded data from cache: {cache_file.name}")
+            return data
+        except Exception as e:
+            print(f"❌ Error loading cache: {e}")
+            return {}
+
+    def save_to_cache(self, cache_file: Path, data: Dict[str, Any]):
+        """Save data to cache file"""
+        try:
+            data['cached_at'] = datetime.now().isoformat()
+            data['cache_expires_at'] = (datetime.now() + timedelta(hours=self.cache_duration_hours)).isoformat()
+            
+            with open(cache_file, 'w') as f:
+                json.dump(data, f, indent=2)
+            print(f"✅ Saved data to cache: {cache_file.name}")
+        except Exception as e:
+            print(f"❌ Error saving cache: {e}")
 
     def fetch_recent_posts(self, subreddit_name: str, limit: int = 50, time_filter: str = 'day') -> List[Dict[str, Any]]:
         """
@@ -390,14 +437,29 @@ class RedditSentimentMonitor:
         print(f"Results saved to {filename}")
 
     # API-friendly functions for the FastAPI routes
-    def scan_for_outages_api(self, limit_per_subreddit: int = 30) -> Dict[str, Any]:
+    def scan_for_outages_api(self, limit_per_subreddit: int = 30, use_cache: bool = True) -> Dict[str, Any]:
         """API-friendly function to scan for T-Mobile outages (backward compatibility)"""
         # For backward compatibility, redirect to negative sentiment analysis
-        return self.scan_for_negative_sentiment_api(limit_per_subreddit)
+        return self.scan_for_negative_sentiment_api(limit_per_subreddit, use_cache)
     
-    def scan_for_negative_sentiment_api(self, limit_per_subreddit: int = 30) -> Dict[str, Any]:
-        """API-friendly function to scan for T-Mobile negative sentiment"""
+    def scan_for_negative_sentiment_api(self, limit_per_subreddit: int = 30, use_cache: bool = True) -> Dict[str, Any]:
+        """
+        API-friendly function to scan for T-Mobile negative sentiment
+        
+        Args:
+            limit_per_subreddit: Number of posts to fetch per subreddit
+            use_cache: If True, use cached data if available (recommended for demos)
+        """
+        # Check cache first if enabled
+        if use_cache and self.is_cache_valid(self.negative_cache_file):
+            print("📦 Using cached Reddit negative sentiment data")
+            cached_data = self.load_from_cache(self.negative_cache_file)
+            if cached_data:
+                cached_data['from_cache'] = True
+                return cached_data
+        
         try:
+            print("🔍 Fetching fresh Reddit negative sentiment data...")
             negative_posts = []
             
             for subreddit in self.target_subreddits:
@@ -416,10 +478,11 @@ class RedditSentimentMonitor:
             final_posts = sorted(unique_posts.values(), key=lambda x: x.confidence_score, reverse=True)
             
             # Convert to API response format
-            return {
+            result = {
                 'success': True,
                 'timestamp': datetime.now().isoformat(),
                 'total_negative_posts': len(final_posts),
+                'from_cache': False,
                 'negative_posts': [
                     {
                         'id': post.post_id,
@@ -437,18 +500,48 @@ class RedditSentimentMonitor:
                     for post in final_posts[:20]  # Limit to top 20 for API response
                 ]
             }
+            
+            # Save to cache
+            self.save_to_cache(self.negative_cache_file, result)
+            
+            return result
         except Exception as e:
+            # Try to return stale cache on error
+            if self.negative_cache_file.exists():
+                print(f"⚠️  Error occurred, attempting to use stale cache: {e}")
+                cached_data = self.load_from_cache(self.negative_cache_file)
+                if cached_data:
+                    cached_data['from_cache'] = True
+                    cached_data['cache_stale'] = True
+                    return cached_data
+            
             return {
                 'success': False,
                 'error': str(e),
                 'timestamp': datetime.now().isoformat(),
                 'total_negative_posts': 0,
+                'from_cache': False,
                 'negative_posts': []
             }
 
-    def scan_for_happiness_api(self, limit_per_subreddit: int = 30) -> Dict[str, Any]:
-        """API-friendly function to scan for positive T-Mobile sentiment"""
+    def scan_for_happiness_api(self, limit_per_subreddit: int = 30, use_cache: bool = True) -> Dict[str, Any]:
+        """
+        API-friendly function to scan for positive T-Mobile sentiment
+        
+        Args:
+            limit_per_subreddit: Number of posts to fetch per subreddit
+            use_cache: If True, use cached data if available (recommended for demos)
+        """
+        # Check cache first if enabled
+        if use_cache and self.is_cache_valid(self.positive_cache_file):
+            print("📦 Using cached Reddit positive sentiment data")
+            cached_data = self.load_from_cache(self.positive_cache_file)
+            if cached_data:
+                cached_data['from_cache'] = True
+                return cached_data
+        
         try:
+            print("🔍 Fetching fresh Reddit positive sentiment data...")
             happiness_posts = []
             
             for subreddit in self.target_subreddits:
@@ -468,12 +561,13 @@ class RedditSentimentMonitor:
             
             avg_happiness = sum(post.happiness_score for post in final_posts) / len(final_posts) if final_posts else 0
             
-            return {
+            result = {
                 'success': True,
                 'timestamp': datetime.now().isoformat(),
                 'total_positive_posts': len(final_posts),
                 'average_happiness_score': round(avg_happiness, 3),
                 'category_breakdown': category_breakdown,
+                'from_cache': False,
                 'happiness_posts': [
                     {
                         'id': post.post_id,
@@ -492,7 +586,21 @@ class RedditSentimentMonitor:
                     for post in final_posts[:20]  # Limit to top 20 for API response
                 ]
             }
+            
+            # Save to cache
+            self.save_to_cache(self.positive_cache_file, result)
+            
+            return result
         except Exception as e:
+            # Try to return stale cache on error
+            if self.positive_cache_file.exists():
+                print(f"⚠️  Error occurred, attempting to use stale cache: {e}")
+                cached_data = self.load_from_cache(self.positive_cache_file)
+                if cached_data:
+                    cached_data['from_cache'] = True
+                    cached_data['cache_stale'] = True
+                    return cached_data
+            
             return {
                 'success': False,
                 'error': str(e),
@@ -500,6 +608,7 @@ class RedditSentimentMonitor:
                 'total_positive_posts': 0,
                 'average_happiness_score': 0,
                 'category_breakdown': {},
+                'from_cache': False,
                 'happiness_posts': []
             }
 

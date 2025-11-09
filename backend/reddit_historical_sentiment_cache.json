@@ -1,0 +1,83 @@
+{
+  "success": true,
+  "analysis_period": {
+    "start_date": "2025-05-13T11:08:36.505055",
+    "end_date": "2025-11-09T11:08:36.505055",
+    "months_analyzed": 6
+  },
+  "overall_statistics": {
+    "total_posts_analyzed": 121,
+    "total_positive": 7,
+    "total_negative": 114,
+    "overall_sentiment_ratio": 0.058,
+    "sentiment_score": -0.884
+  },
+  "monthly_data": [
+    {
+      "month": "2025-05",
+      "timestamp": "2025-05-01T00:00:00",
+      "positive_count": 1,
+      "negative_count": 7,
+      "neutral_count": 0,
+      "total_posts": 8,
+      "sentiment_ratio": 0.125
+    },
+    {
+      "month": "2025-06",
+      "timestamp": "2025-06-01T00:00:00",
+      "positive_count": 1,
+      "negative_count": 9,
+      "neutral_count": 0,
+      "total_posts": 10,
+      "sentiment_ratio": 0.1
+    },
+    {
+      "month": "2025-07",
+      "timestamp": "2025-07-01T00:00:00",
+      "positive_count": 0,
+      "negative_count": 14,
+      "neutral_count": 0,
+      "total_posts": 14,
+      "sentiment_ratio": 0.0
+    },
+    {
+      "month": "2025-08",
+      "timestamp": "2025-08-01T00:00:00",
+      "positive_count": 0,
+      "negative_count": 24,
+      "neutral_count": 0,
+      "total_posts": 24,
+      "sentiment_ratio": 0.0
+    },
+    {
+      "month": "2025-09",
+      "timestamp": "2025-09-01T00:00:00",
+      "positive_count": 1,
+      "negative_count": 16,
+      "neutral_count": 0,
+      "total_posts": 17,
+      "sentiment_ratio": 0.059
+    },
+    {
+      "month": "2025-10",
+      "timestamp": "2025-10-01T00:00:00",
+      "positive_count": 2,
+      "negative_count": 16,
+      "neutral_count": 0,
+      "total_posts": 18,
+      "sentiment_ratio": 0.111
+    },
+    {
+      "month": "2025-11",
+      "timestamp": "2025-11-01T00:00:00",
+      "positive_count": 2,
+      "negative_count": 28,
+      "neutral_count": 0,
+      "total_posts": 30,
+      "sentiment_ratio": 0.067
+    }
+  ],
+  "timestamp": "2025-11-09T11:08:45.654968",
+  "cached_at": "2025-11-09T11:08:45.654986",
+  "cache_expires_at": "2025-11-10T11:08:45.654989"
+}

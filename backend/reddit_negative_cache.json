@@ -1,0 +1,118 @@
+{
+  "success": true,
+  "timestamp": "2025-11-09T11:04:02.986375",
+  "total_negative_posts": 7,
+  "from_cache": false,
+  "negative_posts": [
+    {
+      "id": "1os7z1p",
+      "title": "3 Weeks of \u201cIntermittent\u201d Connection",
+      "content": "A few weeks ago, we started experiencing what tech support representatives referred to as \u201cintermittent\u201d network disruptions in our area. Home internet and cell phone service both included. Customer service has not been able to give me any clear answers on when it will be resolved. After over a doze...",
+      "author": "heylaylayy",
+      "created_utc": "2025-11-08T20:44:10",
+      "score": 7,
+      "num_comments": 0,
+      "url": "https://reddit.com/r/tmobile/comments/1os7z1p/3_weeks_of_intermittent_connection/",
+      "subreddit": "tmobile",
+      "confidence_score": 0.656,
+      "keywords_found": [
+        "down",
+        "area",
+        "everywhere"
+      ]
+    },
+    {
+      "id": "1oji44r",
+      "title": "Advantage Plan w/ Lookout Prem+",
+      "content": "I\u2019m currently on chat with T-Mobile customer service. I noticed my Lookout Premium Plus downgraded to Basic (In the Mobile Security app) and asked customer service why? They stated it\u2019s still active (Prem+) which lead us to talk about device protection and they stated that because I have Lookout Pre...",
+      "author": "OyaDntSAY",
+      "created_utc": "2025-10-29T17:04:55",
+      "score": 3,
+      "num_comments": 8,
+      "url": "https://reddit.com/r/Sprint/comments/1oji44r/advantage_plan_w_lookout_prem/",
+      "subreddit": "Sprint",
+      "confidence_score": 0.562,
+      "keywords_found": [
+        "down",
+        "state"
+      ]
+    },
+    {
+      "id": "1oorqhs",
+      "title": "Tips n trick to separate the frequency band on the 5G Home Minternet gateway",
+      "content": "I know you might be wondering, how can I separate the bands on my Minternet gateway?? Even on the app, it doesn't help much.\n\nDon't worry, that's why I'm here :D\n\nSo to start on this\n\n1. Find your Admin IP # (should be behind the router)\n2. Enter it in your web browser or mobile browser\n3. It should...",
+      "author": "-FREDV-",
+      "created_utc": "2025-11-04T21:01:47",
+      "score": 6,
+      "num_comments": 7,
+      "url": "https://reddit.com/r/mintmobile/comments/1oorqhs/tips_n_trick_to_separate_the_frequency_band_on/",
+      "subreddit": "mintmobile",
+      "confidence_score": 0.469,
+      "keywords_found": [
+        "down"
+      ]
+    },
+    {
+      "id": "1os9hhh",
+      "title": "Porting Out Question",
+      "content": "I'm looking to port out to AT&T while they're offering up to $800/line to switch from a competitor. \n\n\n\nMy main question is when and how will I get the final bill? How will my current phone get unlocked when porting out? I've only been with T-Mobile for about 5 months, but service in my workplace is...",
+      "author": "rth121",
+      "created_utc": "2025-11-08T22:01:13",
+      "score": 0,
+      "num_comments": 6,
+      "url": "https://reddit.com/r/tmobile/comments/1os9hhh/porting_out_question/",
+      "subreddit": "tmobile",
+      "confidence_score": 0.375,
+      "keywords_found": [
+        "collections"
+      ]
+    },
+    {
+      "id": "1osaebo",
+      "title": "Lookout Premium Plus a.k.a. F-Secure Mobile Security Premium Plus Identity Theft Monitoring feature is irretrievably broken on my T-Mobile Unlimited Premium v4 plan and F-Secure is refusing to fix it after 4 mos.",
+      "content": "Lookout Premium Plus a.k.a. F-Secure Mobile Security Premium Plus Identity Theft Monitoring feature is irretrievably broken on my T-Mobile Unlimited Premium v4 plan and F-Secure is refusing to fix it after I gave them over 4 months to do so.\n\nI can still use all of the other features of Lookout, jus...",
+      "author": "SirGalahad_",
+      "created_utc": "2025-11-08T22:49:34",
+      "score": 1,
+      "num_comments": 2,
+      "url": "https://reddit.com/r/Sprint/comments/1osaebo/lookout_premium_plus_aka_fsecure_mobile_security/",
+      "subreddit": "Sprint",
+      "confidence_score": 0.094,
+      "keywords_found": [
+        "state"
+      ]
+    },
+    {
+      "id": "1o53azb",
+      "title": "Need sprint nano sim card in Canada",
+      "content": "Am in urgent need of Sprint Nano sim card in Vancouver area BC. Bought some on Ebay but package got lost. Delivery possible within US in Point Roberts. Anyone from Canada is more desired. Need it for a project. Thanks in advance ",
+      "author": "This-Dragonfruit1796",
+      "created_utc": "2025-10-12T17:52:00",
+      "score": 0,
+      "num_comments": 9,
+      "url": "https://reddit.com/r/Sprint/comments/1o53azb/need_sprint_nano_sim_card_in_canada/",
+      "subreddit": "Sprint",
+      "confidence_score": 0.094,
+      "keywords_found": [
+        "area"
+      ]
+    },
+    {
+      "id": "1oqhz03",
+      "title": "Deprioritization",
+      "content": "So I m thinking about going with the 25 dollar deal. And I know it has a lot to do with the area you're in. That being said... For those of you in a really strong T-Mobile area, how's you speed past the 35gb deprioritization. Thinking about switching from US Mobile.  Just weigh options. Because once...",
+      "author": "N8_Pend",
+      "created_utc": "2025-11-06T20:01:15",
+      "score": 3,
+      "num_comments": 11,
+      "url": "https://reddit.com/r/MetroPCS/comments/1oqhz03/deprioritization/",
+      "subreddit": "MetroPCS",
+      "confidence_score": 0.094,
+      "keywords_found": [
+        "area"
+      ]
+    }
+  ],
+  "cached_at": "2025-11-09T11:04:02.986399",
+  "cache_expires_at": "2025-11-10T11:04:02.986401"
+}

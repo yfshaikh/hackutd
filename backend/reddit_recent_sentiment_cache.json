@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "period_days": 7,
+  "positive_count": 0,
+  "negative_count": 8,
+  "neutral_count": 0,
+  "total_posts": 8,
+  "sentiment_ratio": 0.0,
+  "sentiment_score": -1.0,
+  "timestamp": "2025-11-09T11:08:36.093755",
+  "cached_at": "2025-11-09T11:08:36.093761",
+  "cache_expires_at": "2025-11-10T11:08:36.093762"
+}

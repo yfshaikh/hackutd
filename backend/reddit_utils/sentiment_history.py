@@ -6,6 +6,7 @@ import os
 from dataclasses import dataclass
 from collections import defaultdict
 import calendar
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -39,6 +40,12 @@ class RedditSentimentHistory:
             # 'cellphones',
             # 'NoContract'
         ]
+        
+        # Cache settings (for demo purposes)
+        self.cache_duration_hours = 24  # Cache data for 24 hours
+        self.cache_dir = Path(__file__).parent.parent  # backend directory
+        self.historical_cache_file = self.cache_dir / 'reddit_historical_sentiment_cache.json'
+        self.recent_cache_file = self.cache_dir / 'reddit_recent_sentiment_cache.json'
         
         # Negative sentiment keywords (expanded from outage-specific to general negative)
         self.negative_keywords = {
@@ -113,6 +120,46 @@ class RedditSentimentHistory:
             't-mobile', 'tmobile', 't mobile', 'magenta', 'uncarrier',
             'sprint', 'metro', 'metro by t-mobile', 'mint mobile'
         ]
+
+    def is_cache_valid(self, cache_file: Path) -> bool:
+        """Check if cache file exists and is still valid"""
+        if not cache_file.exists():
+            return False
+        
+        try:
+            with open(cache_file, 'r') as f:
+                data = json.load(f)
+            
+            cached_time = datetime.fromisoformat(data.get('cached_at', ''))
+            cache_age = datetime.now() - cached_time
+            
+            return cache_age.total_seconds() < (self.cache_duration_hours * 3600)
+        except Exception as e:
+            print(f"Error checking cache validity: {e}")
+            return False
+
+    def load_from_cache(self, cache_file: Path) -> Dict[str, Any]:
+        """Load data from cache file"""
+        try:
+            with open(cache_file, 'r') as f:
+                data = json.load(f)
+            print(f"✅ Loaded data from cache: {cache_file.name}")
+            return data
+        except Exception as e:
+            print(f"❌ Error loading cache: {e}")
+            return {}
+
+    def save_to_cache(self, cache_file: Path, data: Dict[str, Any]):
+        """Save data to cache file"""
+        try:
+            data['cached_at'] = datetime.now().isoformat()
+            data['cache_expires_at'] = (datetime.now() + timedelta(hours=self.cache_duration_hours)).isoformat()
+            
+            with open(cache_file, 'w') as f:
+                json.dump(data, f, indent=2)
+            print(f"✅ Saved data to cache: {cache_file.name}")
+        except Exception as e:
+            print(f"❌ Error saving cache: {e}")
 
     def is_tmobile_related(self, text: str) -> bool:
         """Check if text is related to T-Mobile"""
@@ -217,10 +264,22 @@ class RedditSentimentHistory:
             print(f"Error fetching posts from r/{subreddit_name}: {str(e)}")
             return []
 
-    def analyze_historical_sentiment(self, months_back: int = 6) -> Dict[str, Any]:
+    def analyze_historical_sentiment(self, months_back: int = 6, use_cache: bool = True) -> Dict[str, Any]:
         """
         Analyze sentiment over the past N months, returning monthly aggregated data
+        
+        Args:
+            months_back: Number of months to analyze
+            use_cache: If True, use cached data if available (recommended for demos)
         """
+        # Check cache first if enabled
+        if use_cache and self.is_cache_valid(self.historical_cache_file):
+            print("📦 Using cached historical sentiment data")
+            cached_data = self.load_from_cache(self.historical_cache_file)
+            if cached_data:
+                return cached_data
+        
+        print("🔍 Fetching fresh historical sentiment data...")
         end_date = datetime.now()
         start_date = end_date - timedelta(days=months_back * 30)  # Approximate months
         
@@ -282,7 +341,7 @@ class RedditSentimentHistory:
         
         overall_sentiment_ratio = total_positive / (total_positive + total_negative) if (total_positive + total_negative) > 0 else 0.5
         
-        return {
+        result = {
             'success': True,
             'analysis_period': {
                 'start_date': start_date.isoformat(),
@@ -310,11 +369,28 @@ class RedditSentimentHistory:
             ],
             'timestamp': datetime.now().isoformat()
         }
+        
+        # Save to cache
+        self.save_to_cache(self.historical_cache_file, result)
+        
+        return result
 
-    def get_recent_sentiment_summary(self, days_back: int = 7) -> Dict[str, Any]:
+    def get_recent_sentiment_summary(self, days_back: int = 7, use_cache: bool = True) -> Dict[str, Any]:
         """
         Get a quick sentiment summary for recent posts (for API usage)
+        
+        Args:
+            days_back: Number of days to analyze
+            use_cache: If True, use cached data if available (recommended for demos)
         """
+        # Check cache first if enabled
+        if use_cache and self.is_cache_valid(self.recent_cache_file):
+            print("📦 Using cached recent sentiment data")
+            cached_data = self.load_from_cache(self.recent_cache_file)
+            if cached_data:
+                return cached_data
+        
+        print("🔍 Fetching fresh recent sentiment data...")
         end_date = datetime.now()
         start_date = end_date - timedelta(days=days_back)
         
@@ -342,7 +418,7 @@ class RedditSentimentHistory:
         total = positive_count + negative_count + neutral_count
         sentiment_ratio = positive_count / (positive_count + negative_count) if (positive_count + negative_count) > 0 else 0.5
         
-        return {
+        result = {
             'success': True,
             'period_days': days_back,
             'positive_count': positive_count,
@@ -353,6 +429,11 @@ class RedditSentimentHistory:
             'sentiment_score': round((sentiment_ratio - 0.5) * 2, 3),
             'timestamp': datetime.now().isoformat()
         }
+        
+        # Save to cache
+        self.save_to_cache(self.recent_cache_file, result)
+        
+        return result
 
 def main():
     """Main function to run historical sentiment analysis"""

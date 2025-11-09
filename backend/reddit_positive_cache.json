@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "timestamp": "2025-11-09T11:03:59.713394",
+  "total_positive_posts": 0,
+  "average_happiness_score": 0,
+  "category_breakdown": {},
+  "from_cache": false,
+  "happiness_posts": [],
+  "cached_at": "2025-11-09T11:03:59.713411",
+  "cache_expires_at": "2025-11-10T11:03:59.713414"
+}

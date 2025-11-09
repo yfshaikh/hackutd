@@ -71,19 +71,24 @@ def get_reddit_monitor():
 
 # Dashboard Routes
 @dashboard_router.get("/sentiment-history")
-async def get_sentiment_history():
+async def get_sentiment_history(
+    use_cache: bool = Query(default=True, description="Use cached data if available (recommended for demos)")
+):
     """
     Get historical sentiment data for the past 6 months
     
     Returns monthly aggregated sentiment data showing positive vs negative
     post counts over time for dashboard visualization.
     
+    Args:
+        use_cache: If True, use cached data if available (default: True)
+    
     Returns:
         JSON response with historical sentiment data
     """
     try:
         analyzer = RedditSentimentHistory()
-        result = analyzer.analyze_historical_sentiment(months_back=6)
+        result = analyzer.analyze_historical_sentiment(months_back=6, use_cache=use_cache)
         return JSONResponse(content=result)
         
     except Exception as e:
@@ -110,7 +115,7 @@ async def get_recent_sentiment():
     try:
         # Get Reddit sentiment
         analyzer = RedditSentimentHistory()
-        reddit_result = analyzer.get_recent_sentiment_summary(days_back=7)
+        reddit_result = analyzer.get_recent_sentiment_summary(days_back=7, use_cache=True)
         
         # Try to get Twitter sentiment (if available)
         twitter_positive = 0
@@ -247,8 +252,8 @@ async def get_combined_recent_posts(
         # Get Reddit posts
         try:
             monitor = get_reddit_monitor()
-            negative_result = monitor.scan_for_outages_api(limit_per_subreddit=20)
-            positive_result = monitor.scan_for_happiness_api(limit_per_subreddit=20)
+            negative_result = monitor.scan_for_outages_api(limit_per_subreddit=20, use_cache=True)
+            positive_result = monitor.scan_for_happiness_api(limit_per_subreddit=20, use_cache=True)
             
             # Add negative posts
             negative_posts_list = negative_result.get('outages') or negative_result.get('negative_posts', [])
@@ -388,7 +393,8 @@ async def get_combined_recent_posts(
 
 @reddit_router.get("/outages", response_model=RedditOutageResponse)
 async def get_reddit_outages(
-    limit: int = Query(default=30, ge=5, le=100, description="Number of posts to fetch per subreddit")
+    limit: int = Query(default=30, ge=5, le=100, description="Number of posts to fetch per subreddit"),
+    use_cache: bool = Query(default=True, description="Use cached data if available (recommended for demos)")
 ):
     """
     Get T-Mobile outage reports from Reddit
@@ -405,7 +411,7 @@ async def get_reddit_outages(
     """
     try:
         monitor = get_reddit_monitor()
-        result = monitor.scan_for_outages_api(limit_per_subreddit=limit)
+        result = monitor.scan_for_outages_api(limit_per_subreddit=limit, use_cache=use_cache)
         
         if not result['success']:
             raise HTTPException(status_code=503, detail=result.get('error', 'Failed to fetch outage data'))
@@ -428,7 +434,8 @@ async def get_reddit_outages(
 
 @reddit_router.get("/happiness", response_model=RedditHappinessResponse)
 async def get_reddit_happiness(
-    limit: int = Query(default=30, ge=5, le=100, description="Number of posts to fetch per subreddit")
+    limit: int = Query(default=30, ge=5, le=100, description="Number of posts to fetch per subreddit"),
+    use_cache: bool = Query(default=True, description="Use cached data if available (recommended for demos)")
 ):
     """
     Get T-Mobile positive sentiment data for Customer Happiness Index
@@ -445,7 +452,7 @@ async def get_reddit_happiness(
     """
     try:
         monitor = get_reddit_monitor()
-        result = monitor.scan_for_happiness_api(limit_per_subreddit=limit)
+        result = monitor.scan_for_happiness_api(limit_per_subreddit=limit, use_cache=use_cache)
         
         if not result['success']:
             raise HTTPException(status_code=503, detail=result.get('error', 'Failed to fetch happiness data'))
@@ -470,7 +477,8 @@ async def get_reddit_happiness(
 
 @reddit_router.get("/sentiment", response_model=CombinedSentimentResponse)
 async def get_combined_sentiment(
-    limit: int = Query(default=30, ge=5, le=100, description="Number of posts to fetch per subreddit")
+    limit: int = Query(default=30, ge=5, le=100, description="Number of posts to fetch per subreddit"),
+    use_cache: bool = Query(default=True, description="Use cached data if available (recommended for demos)")
 ):
     """
     Get comprehensive T-Mobile sentiment analysis combining outages and happiness
@@ -489,8 +497,8 @@ async def get_combined_sentiment(
         monitor = get_reddit_monitor()
         
         # Get both outage and happiness data
-        outage_result = monitor.scan_for_outages_api(limit_per_subreddit=limit)
-        happiness_result = monitor.scan_for_happiness_api(limit_per_subreddit=limit)
+        outage_result = monitor.scan_for_outages_api(limit_per_subreddit=limit, use_cache=use_cache)
+        happiness_result = monitor.scan_for_happiness_api(limit_per_subreddit=limit, use_cache=use_cache)
         
         # Calculate overall sentiment metrics
         total_outages = outage_result.get('total_outage_posts', 0)
@@ -550,7 +558,8 @@ async def get_combined_sentiment(
 
 @reddit_router.get("/recent-posts")
 async def get_recent_posts(
-    limit: int = Query(default=10, ge=5, le=50, description="Number of recent posts to return")
+    limit: int = Query(default=10, ge=5, le=50, description="Number of recent posts to return"),
+    use_cache: bool = Query(default=True, description="Use cached data if available (recommended for demos)")
 ):
     """
     Get recent T-Mobile social media posts (both positive and negative)
@@ -569,8 +578,8 @@ async def get_recent_posts(
         monitor = get_reddit_monitor()
         
         # Get both positive and negative posts
-        negative_result = monitor.scan_for_outages_api(limit_per_subreddit=20)
-        positive_result = monitor.scan_for_happiness_api(limit_per_subreddit=20)
+        negative_result = monitor.scan_for_outages_api(limit_per_subreddit=20, use_cache=use_cache)
+        positive_result = monitor.scan_for_happiness_api(limit_per_subreddit=20, use_cache=use_cache)
         
         # Combine posts
         all_posts = []
