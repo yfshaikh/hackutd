@@ -1,0 +1,448 @@
+call_id,city,state,category,subcategory,total_seconds,resolution,transcript
+C240300213,Savannah,GA,Billing & Payments,Overcharge,552,Escalated to Tier 2,"Agent (Sam): Hi, Sam here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Savannah, GA. My bill jumped by $30 without reason.
+Agent (Sam): I can help with that. Let me pull up your account.
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Sam): Your ticket is in progress; thanks for your patience.
+Customer: Okay, I'll wait for the update."
+C900733876,Fargo,ND,Account & App,App Crash,332,Goodwill credit issued,"Agent (Sam): You're speaking with Sam from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Fargo, ND. The app crashes on launch.
+Agent (Sam): I'm pushing a network refresh; please toggle airplane mode.
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Sam): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C481403860,Rapid City,SD,Account & App,App Crash,509,Resolved on first call,"Agent (Hayden): You're speaking with Hayden from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Rapid City, SD. The app crashes on launch.
+Agent (Hayden): We can expedite shipping on a replacement.
+Customer: That makes sense. What should I try next?
+Agent (Hayden): I'm checking logs and applying updates on my end.
+Agent (Hayden): I'm checking logs and applying updates on my end.
+Agent (Hayden): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C243965641,Bellevue,WA,Account & App,App Crash,827,Replacement device shipped,"Agent (Sam): Thanks for calling T-Mobile, this is Sam. How can I help you today?
+Customer: Hi, I'm calling from Bellevue, WA. The app crashes on launch.
+Agent (Sam): I can help with that. Let me pull up your account.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C483834378,Los Angeles,CA,Devices & Orders,Order Delay,688,Replacement device shipped,"Agent (Sam): You're speaking with Sam from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Los Angeles, CA. Shipment is overdue.
+Agent (Sam): I'm pushing a network refresh; please toggle airplane mode.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C862580075,Minneapolis,MN,Devices & Orders,Order Delay,1043,Goodwill credit issued,"Agent (Emerson): Thanks for calling T-Mobile, this is Emerson. How can I help you today?
+Customer: Hi, I'm calling from Minneapolis, MN. Tracking hasn't updated in days.
+Agent (Emerson): I'm pushing a network refresh; please toggle airplane mode.
+Agent (Emerson): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Emerson): I’ve scheduled a callback for tomorrow to confirm.
+Customer: Okay, I'll wait for the update."
+C036053247,Memphis,TN,Billing & Payments,Promo Not Applied,989,Escalated to Tier 2,"Agent (Jamie): Thanks for calling T-Mobile, this is Jamie. How can I help you today?
+Customer: Hi, I'm calling from Memphis, TN. The trade-in promo didn't apply.
+Agent (Jamie): Thanks for the details. I'll run diagnostics on your line.
+Customer: That makes sense. What should I try next?
+Agent (Jamie): I'm checking logs and applying updates on my end.
+Agent (Jamie): I'm checking logs and applying updates on my end.
+Agent (Jamie): I'm checking logs and applying updates on my end.
+Agent (Jamie): I'm checking logs and applying updates on my end.
+Agent (Jamie): Your ticket is in progress; thanks for your patience.
+Customer: Okay, I'll wait for the update."
+C535930158,San Francisco,CA,Account & App,Security/Pin Reset,608,Replacement device shipped,"Agent (Rowan): You're speaking with Rowan from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from San Francisco, CA. Got an alert about a suspicious login.
+Agent (Rowan): I see the issue. I'll file a ticket and apply a credit.
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Rowan): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C277165879,San Diego,CA,Account & App,Security/Pin Reset,407,Pending vendor response,"Agent (Morgan): You're speaking with Morgan from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from San Diego, CA. Forgot my PIN.
+Agent (Morgan): I'll escalate to Tier 2 and set a callback window.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Morgan): I’ve scheduled a callback for tomorrow to confirm.
+Customer: Okay, I'll wait for the update."
+C600857473,Miami,FL,Billing & Payments,Refund Request,724,Resolved on first call,"Agent (Casey): Hi, Casey here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Miami, FL. I was promised a credit that hasn't posted.
+Agent (Casey): I can help with that. Let me pull up your account.
+Agent (Casey): I'm checking logs and applying updates on my end.
+Agent (Casey): I'm checking logs and applying updates on my end.
+Agent (Casey): I'm checking logs and applying updates on my end.
+Agent (Casey): I'm checking logs and applying updates on my end.
+Agent (Casey): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C152087837,Des Moines,IA,Devices & Orders,Return/Exchange,617,Goodwill credit issued,"Agent (Quinn): Thanks for calling T-Mobile, this is Quinn. How can I help you today?
+Customer: Hi, I'm calling from Des Moines, IA. The phone reboots randomly.
+Agent (Quinn): I'm pushing a network refresh; please toggle airplane mode.
+Customer: That makes sense. What should I try next?
+Agent (Quinn): I'm checking logs and applying updates on my end.
+Agent (Quinn): I'm checking logs and applying updates on my end.
+Agent (Quinn): I'm checking logs and applying updates on my end.
+Agent (Quinn): We’ve applied the fix—thanks for your patience!
+Customer: Thanks, that fixed it."
+C101920105,Pittsburgh,PA,Devices & Orders,Upgrade Status,577,Replacement device shipped,"Agent (Alex): You're speaking with Alex from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Pittsburgh, PA. Where's my upgrade order now?
+Agent (Alex): I'll escalate to Tier 2 and set a callback window.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C636018448,Nashville,TN,Account & App,eSIM/SIM,824,Goodwill credit issued,"Agent (Quinn): Hi, Quinn here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Nashville, TN. SIM not recognized after update.
+Agent (Quinn): Thanks for the details. I'll run diagnostics on your line.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Quinn): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C910477458,Fargo,ND,Devices & Orders,Upgrade Status,892,Goodwill credit issued,"Agent (Avery): Hi, Avery here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Fargo, ND. I want to confirm my trade-in was received.
+Agent (Avery): I see the issue. I'll file a ticket and apply a credit.
+Customer: That makes sense. What should I try next?
+Agent (Avery): I'm checking logs and applying updates on my end.
+Agent (Avery): I'm checking logs and applying updates on my end.
+Agent (Avery): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C117369984,Brooklyn,NY,Billing & Payments,Payment Failure,890,Goodwill credit issued,"Agent (Sam): Hi, Sam here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Brooklyn, NY. Payment kept getting declined in the app.
+Agent (Sam): I'll escalate to Tier 2 and set a callback window.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): We’ve applied the fix—thanks for your patience!
+Customer: Thanks, that fixed it."
+C285158116,Denver,CO,Network & Coverage,Dropped Calls,1488,Goodwill credit issued,"Agent (Cameron): Hi, Cameron here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Denver, CO. Every call with my mom disconnects.
+Agent (Cameron): We can expedite shipping on a replacement.
+Agent (Cameron): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Cameron): We’ve applied the fix—thanks for your patience!
+Customer: Thanks, that fixed it."
+C854043795,Brooklyn,NY,Plans & Features,Voicemail,541,Goodwill credit issued,"Agent (Avery): Thanks for calling T-Mobile, this is Avery. How can I help you today?
+Customer: Hi, I'm calling from Brooklyn, NY. Visual voicemail isn't loading.
+Agent (Avery): We can expedite shipping on a replacement.
+Customer: That makes sense. What should I try next?
+Agent (Avery): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Avery): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C816379782,New York,NY,Plans & Features,Hotspot Issues,639,Replacement device shipped,"Agent (Quinn): Thanks for calling T-Mobile, this is Quinn. How can I help you today?
+Customer: Hi, I'm calling from New York, NY. Hotspot disconnects frequently.
+Agent (Quinn): I see the issue. I'll file a ticket and apply a credit.
+Customer: That makes sense. What should I try next?
+Agent (Quinn): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Quinn): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C547285808,Charleston,SC,Network & Coverage,No Service,494,Pending vendor response,"Agent (Morgan): Hi, Morgan here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Charleston, SC. My phone shows no bars at home.
+Agent (Morgan): We can expedite shipping on a replacement.
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Agent (Morgan): We’ll follow up once we have an update.
+Customer: Okay, I'll wait for the update."
+C968773853,New York,NY,Devices & Orders,Upgrade Status,694,Replacement device shipped,"Agent (Alex): You're speaking with Alex from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from New York, NY. Where's my upgrade order now?
+Agent (Alex): I'll walk you through an eSIM reactivation.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C704943011,Cleveland,OH,Devices & Orders,Return/Exchange,1124,Resolved on first call,"Agent (Reese): Thanks for calling T-Mobile, this is Reese. How can I help you today?
+Customer: Hi, I'm calling from Cleveland, OH. I need to return a defective device.
+Agent (Reese): I see the issue. I'll file a ticket and apply a credit.
+Agent (Reese): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Reese): I'm checking logs and applying updates on my end.
+Agent (Reese): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C547126478,Denver,CO,Network & Coverage,Dropped Calls,1504,Replacement device shipped,"Agent (Rowan): You're speaking with Rowan from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Denver, CO. Calls drop after a couple minutes.
+Agent (Rowan): I'm pushing a network refresh; please toggle airplane mode.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Agent (Rowan): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C506846165,Anchorage,AK,Plans & Features,Voicemail,830,Escalated to Tier 2,"Agent (Rowan): You're speaking with Rowan from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Anchorage, AK. Visual voicemail isn't loading.
+Agent (Rowan): I see the issue. I'll file a ticket and apply a credit.
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Rowan): I’ve scheduled a callback for tomorrow to confirm.
+Customer: Okay, I'll wait for the update."
+C086707902,Honolulu,HI,Plans & Features,Plan Change,1020,Resolved on first call,"Agent (Alex): You're speaking with Alex from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Honolulu, HI. I want to add a line for my kid.
+Agent (Alex): I can help with that. Let me pull up your account.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Alex): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C409125398,Omaha,NE,Billing & Payments,Promo Not Applied,470,Resolved on first call,"Agent (Sam): Thanks for calling T-Mobile, this is Sam. How can I help you today?
+Customer: Hi, I'm calling from Omaha, NE. My bill doesn't reflect the advertised discount.
+Agent (Sam): We can expedite shipping on a replacement.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Sam): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C842265516,Nashville,TN,Billing & Payments,Payment Failure,1025,Resolved on first call,"Agent (Logan): Thanks for calling T-Mobile, this is Logan. How can I help you today?
+Customer: Hi, I'm calling from Nashville, TN. My autopay failed even though my card works.
+Agent (Logan): I see the issue. I'll file a ticket and apply a credit.
+Agent (Logan): I'm checking logs and applying updates on my end.
+Agent (Logan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Logan): We’ve applied the fix—thanks for your patience!
+Customer: Thanks, that fixed it."
+C891050711,San Antonio,TX,Network & Coverage,No Service,1388,Callback scheduled,"Agent (Sam): Thanks for calling T-Mobile, this is Sam. How can I help you today?
+Customer: Hi, I'm calling from San Antonio, TX. My phone shows no bars at home.
+Agent (Sam): Thanks for the details. I'll run diagnostics on your line.
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): We’ll follow up once we have an update.
+Customer: Okay, I'll wait for the update."
+C220619639,New York,NY,Account & App,Login Issues,378,Resolved on first call,"Agent (Sam): Hi, Sam here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from New York, NY. Locked out of my account.
+Agent (Sam): I'll walk you through an eSIM reactivation.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Sam): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C271819083,Bellevue,WA,Plans & Features,Hotspot Issues,402,Goodwill credit issued,"Agent (Riley): Thanks for calling T-Mobile, this is Riley. How can I help you today?
+Customer: Hi, I'm calling from Bellevue, WA. Hotspot disconnects frequently.
+Agent (Riley): Thanks for the details. I'll run diagnostics on your line.
+Agent (Riley): I'm checking logs and applying updates on my end.
+Agent (Riley): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Riley): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Riley): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C220741595,Fargo,ND,Network & Coverage,Dropped Calls,1416,Pending vendor response,"Agent (Morgan): Hi, Morgan here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Fargo, ND. Calls drop after a couple minutes.
+Agent (Morgan): I'll walk you through an eSIM reactivation.
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Morgan): Your ticket is in progress; thanks for your patience.
+Customer: Okay, I'll wait for the update."
+C002529971,Richmond,VA,Network & Coverage,Dropped Calls,1165,Escalated to Tier 2,"Agent (Reese): You're speaking with Reese from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Richmond, VA. Every call with my mom disconnects.
+Agent (Reese): I'll walk you through an eSIM reactivation.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Reese): I'm checking logs and applying updates on my end.
+Agent (Reese): I'm checking logs and applying updates on my end.
+Agent (Reese): I'm checking logs and applying updates on my end.
+Agent (Reese): I’ve scheduled a callback for tomorrow to confirm.
+Customer: Okay, I'll wait for the update."
+C213901227,Charlotte,NC,Billing & Payments,Promo Not Applied,609,Resolved on first call,"Agent (Sam): Thanks for calling T-Mobile, this is Sam. How can I help you today?
+Customer: Hi, I'm calling from Charlotte, NC. My bill doesn't reflect the advertised discount.
+Agent (Sam): Thanks for the details. I'll run diagnostics on your line.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C948619794,Washington,DC,Network & Coverage,Dropped Calls,1099,Resolved on first call,"Agent (Hayden): Thanks for calling T-Mobile, this is Hayden. How can I help you today?
+Customer: Hi, I'm calling from Washington, DC. Calls drop after a couple minutes.
+Agent (Hayden): I see the issue. I'll file a ticket and apply a credit.
+Agent (Hayden): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Hayden): I'm checking logs and applying updates on my end.
+Agent (Hayden): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C630493087,Charlotte,NC,Account & App,eSIM/SIM,172,Goodwill credit issued,"Agent (Cameron): You're speaking with Cameron from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Charlotte, NC. SIM not recognized after update.
+Agent (Cameron): I see the issue. I'll file a ticket and apply a credit.
+Customer: That makes sense. What should I try next?
+Agent (Cameron): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Cameron): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Cameron): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C567510215,Austin,TX,Network & Coverage,No Service,795,Resolved on first call,"Agent (Reese): Thanks for calling T-Mobile, this is Reese. How can I help you today?
+Customer: Hi, I'm calling from Austin, TX. My phone shows no bars at home.
+Agent (Reese): Thanks for the details. I'll run diagnostics on your line.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Reese): We’ve applied the fix—thanks for your patience!
+Customer: Thanks, that fixed it."
+C142296010,Bellevue,WA,Account & App,Login Issues,298,Replacement device shipped,"Agent (Jordan): You're speaking with Jordan from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Bellevue, WA. Locked out of my account.
+Agent (Jordan): Thanks for the details. I'll run diagnostics on your line.
+Agent (Jordan): I'm checking logs and applying updates on my end.
+Agent (Jordan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Jordan): I'm checking logs and applying updates on my end.
+Agent (Jordan): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C354239375,San Francisco,CA,Billing & Payments,Refund Request,399,Callback scheduled,"Agent (Morgan): You're speaking with Morgan from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from San Francisco, CA. I was promised a credit that hasn't posted.
+Agent (Morgan): We can expedite shipping on a replacement.
+Customer: That makes sense. What should I try next?
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Morgan): We’ll follow up once we have an update.
+Customer: Okay, I'll wait for the update."
+C666206863,Spokane,WA,Billing & Payments,Refund Request,980,Callback scheduled,"Agent (Riley): Hi, Riley here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Spokane, WA. I was promised a credit that hasn't posted.
+Agent (Riley): We can expedite shipping on a replacement.
+Agent (Riley): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Riley): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Riley): I’ve scheduled a callback for tomorrow to confirm.
+Customer: Okay, I'll wait for the update."
+C754260216,Omaha,NE,Network & Coverage,Slow Data,1165,Goodwill credit issued,"Agent (Alex): You're speaking with Alex from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Omaha, NE. Speed tests show under 1 Mbps.
+Agent (Alex): We can expedite shipping on a replacement.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Alex): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Alex): We’ve applied the fix—thanks for your patience!
+Customer: Thanks, that fixed it."
+C760527411,Madison,WI,Account & App,App Crash,729,Escalated to Tier 2,"Agent (Jordan): You're speaking with Jordan from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Madison, WI. Payment screen freezes every time.
+Agent (Jordan): We can expedite shipping on a replacement.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Jordan): I'm checking logs and applying updates on my end.
+Agent (Jordan): I’ve scheduled a callback for tomorrow to confirm.
+Customer: Okay, I'll wait for the update."
+C780305056,Honolulu,HI,Network & Coverage,5G Not Available,804,Resolved on first call,"Agent (Sam): Thanks for calling T-Mobile, this is Sam. How can I help you today?
+Customer: Hi, I'm calling from Honolulu, HI. My 5G icon never shows up.
+Agent (Sam): I'll walk you through an eSIM reactivation.
+Customer: That makes sense. What should I try next?
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): We’ve applied the fix—thanks for your patience!
+Customer: Thanks, that fixed it."
+C357897497,San Diego,CA,Account & App,Login Issues,843,Goodwill credit issued,"Agent (Alex): Thanks for calling T-Mobile, this is Alex. How can I help you today?
+Customer: Hi, I'm calling from San Diego, CA. Locked out of my account.
+Agent (Alex): I can help with that. Let me pull up your account.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): We’ve applied the fix—thanks for your patience!
+Customer: Thanks, that fixed it."
+C791625084,Anchorage,AK,Network & Coverage,Slow Data,587,Replacement device shipped,"Agent (Riley): You're speaking with Riley from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Anchorage, AK. Speed tests show under 1 Mbps.
+Agent (Riley): I'll escalate to Tier 2 and set a callback window.
+Agent (Riley): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Riley): I'm checking logs and applying updates on my end.
+Agent (Riley): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C126905031,Rapid City,SD,Plans & Features,Hotspot Issues,546,Replacement device shipped,"Agent (Rowan): You're speaking with Rowan from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Rapid City, SD. Hotspot disconnects frequently.
+Agent (Rowan): I'm pushing a network refresh; please toggle airplane mode.
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Rowan): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C184030330,Columbus,OH,Billing & Payments,Refund Request,447,Resolved on first call,"Agent (Sam): You're speaking with Sam from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Columbus, OH. I was promised a credit that hasn't posted.
+Agent (Sam): I can help with that. Let me pull up your account.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Agent (Sam): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Sam): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C030949065,Cleveland,OH,Devices & Orders,Upgrade Status,453,Resolved on first call,"Agent (Rowan): Hi, Rowan here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Cleveland, OH. Where's my upgrade order now?
+Agent (Rowan): I'll escalate to Tier 2 and set a callback window.
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Agent (Rowan): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Rowan): We’ll follow up once we have an update.
+Customer: Okay, I'll wait for the update."
+C084843316,Memphis,TN,Network & Coverage,No Service,1478,Resolved after escalation,"Agent (Morgan): Thanks for calling T-Mobile, this is Morgan. How can I help you today?
+Customer: Hi, I'm calling from Memphis, TN. My phone shows no bars at home.
+Agent (Morgan): We can expedite shipping on a replacement.
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Agent (Morgan): I'm checking logs and applying updates on my end.
+Agent (Morgan): We’ll follow up once we have an update.
+Customer: Okay, I'll wait for the update."
+C922006236,Rapid City,SD,Network & Coverage,Slow Data,1478,Resolved on first call,"Agent (Parker): You're speaking with Parker from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Rapid City, SD. My data is crawling at peak times.
+Agent (Parker): I'll walk you through an eSIM reactivation.
+Agent (Parker): I'm checking logs and applying updates on my end.
+Customer: That makes sense. What should I try next?
+Agent (Parker): I'm checking logs and applying updates on my end.
+Agent (Parker): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
+C865011724,Indianapolis,IN,Plans & Features,Voicemail,728,Resolved on first call,"Agent (Hayden): Hi, Hayden here with T-Mobile Support—how may I assist?
+Customer: Hi, I'm calling from Indianapolis, IN. I can't set up my voicemail greeting.
+Agent (Hayden): I'll escalate to Tier 2 and set a callback window.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Hayden): Glad we could get this resolved on the first call.
+Customer: Thanks, that fixed it."
+C110922160,Boston,MA,Network & Coverage,5G Not Available,1394,Resolved on first call,"Agent (Alex): You're speaking with Alex from T-Mobile Care. What can I do for you?
+Customer: Hi, I'm calling from Boston, MA. My 5G icon never shows up.
+Agent (Alex): I can help with that. Let me pull up your account.
+Customer: That makes sense. What should I try next?
+Customer: That makes sense. What should I try next?
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): I'm checking logs and applying updates on my end.
+Agent (Alex): You're all set. Anything else I can do for you today?
+Customer: Thanks, that fixed it."
