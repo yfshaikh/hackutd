@@ -93,7 +93,6 @@ export function Dashboard() {
             ) : dashboardSummary.chartData.length > 0 ? (
               <SentimentChart 
                 data={dashboardSummary.chartData.slice(-6)} 
-                height={280} 
               />
             ) : (
               <div className="h-[280px] flex items-center justify-center text-muted-foreground">
