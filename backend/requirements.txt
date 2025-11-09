@@ -10,3 +10,4 @@ crewai
 crewai-tools
 dspy
 firecrawl
+praw

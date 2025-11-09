@@ -5,6 +5,7 @@ import logging
 import os
 # from routes.chat_routes import chat_router
 from routes.outage_routes import outage_router
+from routes.reddit_routes import reddit_router
 
 
 
@@ -42,6 +43,7 @@ app.add_middleware(
 # Include routes
 # app.include_router(chat_router)
 app.include_router(outage_router)
+app.include_router(reddit_router)
 
 
 
