@@ -9,7 +9,8 @@ import {
   type RecentSentimentResponse,
   type RedditOutageResponse,
   type RedditHappinessResponse,
-  type CombinedSentimentResponse
+  type CombinedSentimentResponse,
+  type RecentPostsResponse
 } from '@/lib/api/dashboard';
 
 // Query keys for consistent caching
@@ -21,6 +22,7 @@ export const dashboardQueryKeys = {
   positivePosts: () => [...dashboardQueryKeys.all, 'positive-posts'] as const,
   combinedSentiment: () => [...dashboardQueryKeys.all, 'combined-sentiment'] as const,
   healthCheck: () => [...dashboardQueryKeys.all, 'health'] as const,
+  recentPosts: () => [...dashboardQueryKeys.all, 'recent-posts'] as const,
 } as const;
 
 // Stale times for different types of data (in milliseconds)
@@ -122,6 +124,21 @@ export function useHealthCheck(): UseQueryResult<{ status: string; timestamp: st
 }
 
 /**
+ * Hook for recent social media posts
+ * Updates every 5 minutes for real-time social feed
+ */
+export function useRecentPosts(): UseQueryResult<RecentPostsResponse, Error> {
+  return useQuery({
+    queryKey: dashboardQueryKeys.recentPosts(),
+    queryFn: () => dashboardApi.getRecentPosts(10),
+    staleTime: STALE_TIMES.realtime,
+    gcTime: STALE_TIMES.realtime * 2,
+    retry: 2,
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+  });
+}
+
+/**
  * Main dashboard hook that combines all dashboard data
  * This is the primary hook components should use
  */
@@ -132,6 +149,7 @@ export function useDashboard() {
   const positivePosts = usePositivePosts();
   const combinedSentiment = useCombinedSentiment();
   const healthCheck = useHealthCheck();
+  const recentPosts = useRecentPosts();
 
   // Derived loading states
   const isLoading = historicalSentiment.isLoading || 
@@ -154,6 +172,7 @@ export function useDashboard() {
     positivePosts.error,
     combinedSentiment.error,
     healthCheck.error,
+    recentPosts.error,
   ].filter(Boolean);
 
   // Computed dashboard summary
@@ -191,6 +210,7 @@ export function useDashboard() {
     positivePosts,
     combinedSentiment,
     healthCheck,
+    recentPosts,
     
     // Aggregate states
     isLoading,
@@ -209,6 +229,7 @@ export function useDashboard() {
       positivePosts.refetch();
       combinedSentiment.refetch();
       healthCheck.refetch();
+      recentPosts.refetch();
     },
     
     // Check if any query is currently fetching
@@ -217,7 +238,8 @@ export function useDashboard() {
                negativePosts.isFetching || 
                positivePosts.isFetching || 
                combinedSentiment.isFetching || 
-               healthCheck.isFetching,
+               healthCheck.isFetching ||
+               recentPosts.isFetching,
   };
 }
 

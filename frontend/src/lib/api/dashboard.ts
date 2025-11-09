@@ -106,6 +106,31 @@ export interface CombinedSentimentResponse {
   };
 }
 
+export interface SocialMediaPost {
+  id: string;
+  title: string;
+  content: string;
+  author: string;
+  created_utc: string;
+  score: number;
+  num_comments: number;
+  url: string;
+  subreddit: string;
+  sentiment: 'positive' | 'negative';
+  // Additional fields based on sentiment type
+  confidence_score?: number;
+  keywords_found?: string[];
+  happiness_score?: number;
+  category?: string;
+}
+
+export interface RecentPostsResponse {
+  success: boolean;
+  timestamp: string;
+  total_posts: number;
+  posts: SocialMediaPost[];
+}
+
 // API client functions
 export const dashboardApi = {
   // Get historical sentiment data (6 months)
@@ -189,6 +214,20 @@ export const dashboardApi = {
       return await response.json();
     } catch (error) {
       console.error('Health check failed:', error);
+      throw error;
+    }
+  },
+
+  // Get recent social media posts (both positive and negative)
+  getRecentPosts: async (limit: number = 10): Promise<RecentPostsResponse> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/reddit/recent-posts?limit=${limit}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Failed to fetch recent posts:', error);
       throw error;
     }
   }

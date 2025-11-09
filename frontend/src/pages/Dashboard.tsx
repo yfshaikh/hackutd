@@ -3,6 +3,7 @@ import { useDashboard, useQuickStats } from '@/hooks/useDashboard'
 import { RefreshCw, TrendingUp, TrendingDown, Activity } from 'lucide-react'
 import { SentimentChart } from '@/components/charts/SentimentChart'
 import { CyclingStatsMatrix } from '@/components/dashboard/CyclingStatsMatrix'
+import { SocialMediaFeed } from '@/components/dashboard/SocialMediaFeed'
 
 export function Dashboard() {
   const { dashboardSummary, isLoading, isError, refetchAll, isFetching } = useDashboard()
@@ -104,6 +105,15 @@ export function Dashboard() {
                 </div>
               </div>
             )}
+          </CardContent>
+        </Card>
+
+        <Card className="col-span-3 card-matte">
+          <CardHeader>
+            <CardTitle>Recent Social Media Posts</CardTitle>
+          </CardHeader>
+          <CardContent className="h-[280px] overflow-hidden">
+            <SocialMediaFeed />
           </CardContent>
         </Card>
       </div>

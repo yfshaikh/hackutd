@@ -6,6 +6,9 @@ import os
 from dataclasses import dataclass
 from collections import defaultdict
 import calendar
+from dotenv import load_dotenv
+
+load_dotenv()
 
 @dataclass
 class SentimentTimePoint:
@@ -33,8 +36,8 @@ class RedditSentimentHistory:
             'Sprint',
             'MetroPCS',
             'mintmobile',
-            'cellphones',
-            'NoContract'
+            # 'cellphones',
+            # 'NoContract'
         ]
         
         # Negative sentiment keywords (expanded from outage-specific to general negative)

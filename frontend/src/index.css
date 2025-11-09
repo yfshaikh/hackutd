@@ -217,6 +217,48 @@
     100% { transform: rotate(360deg); }
   }
 
+  /* Kinetic testimonials scroll animations */
+  @keyframes scroll-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  @keyframes scroll-down {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+  }
+
+  .animate-scroll-up {
+    animation: scroll-up linear infinite;
+  }
+
+  .animate-scroll-down {
+    animation: scroll-down linear infinite;
+  }
+
+  .testimonial-column:hover .animate-scroll-up,
+  .testimonial-column:hover .animate-scroll-down {
+    animation-play-state: paused;
+  }
+
+  /* Social media feed scroll animation */
+  @keyframes scroll-posts {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  .animate-scroll-posts {
+    animation: scroll-posts 30s linear infinite;
+  }
+
+  .pause-animation:hover {
+    animation-play-state: paused;
+  }
+
+  .animation-paused {
+    animation-play-state: paused;
+  }
+
   /* Enhanced matte card hover effects */
   .card-matte:hover {
     border-color: rgba(226, 0, 116, 0.4);

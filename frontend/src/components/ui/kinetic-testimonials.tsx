@@ -8,6 +8,7 @@ interface Testimonial {
   handle: string;
   review: string;
   avatar: string;
+  url?: string; // Optional URL to make the card clickable
 }
 
 interface TestimonialCardProps {
@@ -15,7 +16,7 @@ interface TestimonialCardProps {
   index: number;
   cardClassName?: string;
   avatarClassName?: string;
-}
+} 
 
 interface KineticTestimonialProps {
   testimonials?: Testimonial[];
@@ -51,6 +52,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = React.memo(
 
     const gradientClass = gradients[index % gradients.length];
 
+    const handleClick = () => {
+      if (testimonial.url) {
+        window.open(testimonial.url, '_blank', 'noopener,noreferrer');
+      }
+    };
+
     return (
       <div
         className="w-full mb-4 flex-shrink-0"
@@ -58,9 +65,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = React.memo(
         onMouseLeave={() => setIsHovered(false)}
       >
         <Card
-          className={`transition-all duration-300 pointer-events-none relative overflow-hidden ${
-            isHovered ? "text-white shadow-2xl border-transparent" : ""
-          } ${cardClassName}`}
+          className={`transition-all duration-300 relative overflow-hidden ${
+            testimonial.url ? "cursor-pointer pointer-events-auto" : "pointer-events-none"
+          } ${isHovered ? "text-white shadow-2xl border-transparent" : ""} ${cardClassName}`}
+          onClick={handleClick}
         >
           {isHovered && (
             <div
@@ -171,8 +179,6 @@ const KineticTestimonial: React.FC<KineticTestimonialProps> = ({
   );
 
   const desktopColumnsData = useMemo(() => createColumns(desktopColumns), [createColumns, desktopColumns]);
-  const fiveColumnsData = useMemo(() => createColumns(5), [createColumns]);
-  const fourColumnsData = useMemo(() => createColumns(4), [createColumns]);
   const tabletColumnsData = useMemo(() => createColumns(tabletColumns), [createColumns, tabletColumns]);
   const mobileColumnsData = useMemo(() => createColumns(actualMobileColumns), [createColumns, actualMobileColumns]);
 

@@ -284,6 +284,81 @@ async def get_combined_sentiment(
             }
         )
 
+@reddit_router.get("/recent-posts")
+async def get_recent_posts(
+    limit: int = Query(default=10, ge=5, le=50, description="Number of recent posts to return")
+):
+    """
+    Get recent T-Mobile social media posts (both positive and negative)
+    
+    Fetches the most recent posts about T-Mobile from Reddit, combining both
+    positive and negative sentiment posts. Posts are sorted by timestamp to
+    show the most recent activity.
+    
+    Args:
+        limit: Number of posts to return (5-50, default 10)
+    
+    Returns:
+        JSON response with recent posts including title, content, author, url, and sentiment
+    """
+    try:
+        monitor = get_reddit_monitor()
+        
+        # Get both positive and negative posts
+        negative_result = monitor.scan_for_outages_api(limit_per_subreddit=20)
+        positive_result = monitor.scan_for_happiness_api(limit_per_subreddit=20)
+        
+        # Combine posts
+        all_posts = []
+        
+        # Add negative posts with sentiment marker (check for both 'outages' and 'negative_posts')
+        negative_posts_list = negative_result.get('outages') or negative_result.get('negative_posts', [])
+        if negative_result.get('success') and negative_posts_list:
+            for post in negative_posts_list:
+                all_posts.append({
+                    **post,
+                    'sentiment': 'negative',
+                    'created_timestamp': datetime.fromisoformat(post['created_utc']).timestamp()
+                })
+        
+        # Add positive posts with sentiment marker
+        if positive_result.get('success') and positive_result.get('happiness_posts'):
+            for post in positive_result['happiness_posts']:
+                all_posts.append({
+                    **post,
+                    'sentiment': 'positive',
+                    'created_timestamp': datetime.fromisoformat(post['created_utc']).timestamp()
+                })
+        
+        # Sort by timestamp (most recent first) and limit
+        all_posts.sort(key=lambda x: x['created_timestamp'], reverse=True)
+        recent_posts = all_posts[:limit]
+        
+        # Remove the temporary timestamp field
+        for post in recent_posts:
+            del post['created_timestamp']
+        
+        return JSONResponse(content={
+            'success': True,
+            'timestamp': datetime.now().isoformat(),
+            'total_posts': len(recent_posts),
+            'posts': recent_posts
+        })
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={
+                'success': False,
+                'error': f'Internal server error: {str(e)}',
+                'timestamp': datetime.now().isoformat(),
+                'total_posts': 0,
+                'posts': []
+            }
+        )
+
 @reddit_router.get("/health")
 async def reddit_health_check():
     """

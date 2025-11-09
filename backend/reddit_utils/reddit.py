@@ -54,8 +54,8 @@ class RedditSentimentMonitor:
             'Sprint',  # T-Mobile acquired Sprint
             'MetroPCS',
             'mintmobile',  # T-Mobile MVNO
-            'cellphones',  # General but catches T-Mobile discussions
-            'NoContract'   # Many T-Mobile customers use prepaid
+            # 'cellphones',  # General but catches T-Mobile discussions
+            # 'NoContract'   # Many T-Mobile customers use prepaid
         ]
         
         # Keywords that indicate negative sentiment (expanded from outage-specific)
