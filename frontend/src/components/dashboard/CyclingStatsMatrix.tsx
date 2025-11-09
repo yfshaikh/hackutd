@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card'
 interface StatDisplay {
   value: number
   label: string
+  labelLine2?: string
 }
 
 const ROWS = 9
@@ -24,19 +25,23 @@ export function CyclingStatsMatrix() {
   const stats: StatDisplay[] = useMemo(() => [
     {
       value: quickStats.negativePosts,
-      label: 'negative posts last 30 days'
+      label: 'negative posts',
+      labelLine2: 'last 30 days'
     },
     {
       value: quickStats.positivePosts,
-      label: 'positive posts last 30 days'
+      label: 'positive posts',
+      labelLine2: 'last 30 days'
     },
     {
       value: Math.round(Math.abs(quickStats.sentimentScore * 100)),
-      label: 'sentiment confidence %'
+      label: 'sentiment confidence',
+      labelLine2: '%'
     },
     {
       value: quickStats.totalPosts,
-      label: 'total posts monitored'
+      label: 'total posts',
+      labelLine2: 'monitored'
     }
   ], [quickStats.negativePosts, quickStats.positivePosts, quickStats.sentimentScore, quickStats.totalPosts])
 
@@ -156,43 +161,53 @@ export function CyclingStatsMatrix() {
   const currentStat = stats[currentStatIndex]
 
   return (
-    <Card className="col-span-3 card-matte w-fit mx-auto">
-      <CardContent className="p-3">
-        <div className="flex items-center justify-center flex-col space-y-2">
+    <Card className="card-matte h-full">
+      <CardContent className="px-4 py-3 h-full">
+        <div className="flex items-center justify-between h-full gap-6">
+          <div className="shrink-0">
           <Matrix
             rows={ROWS}
             cols={COLS}
             pattern={displayFrame}
-            size={14}
-            gap={1}
+            size={16}
+            gap={2}
             palette={{
               on: T_MOBILE_PINK,
               off: 'hsl(var(--muted-foreground)/0.1)'
             }}
             ariaLabel={`Number ${currentStat.value}`}
           />
+          </div>
 
-          <p 
-            className="text-xs font-medium tracking-wide uppercase text-center transition-opacity duration-300"
+          <div className="flex flex-col justify-end flex-1 min-w-0">
+          <div 
+              className="transition-opacity duration-300"
             style={{ 
-              color: T_MOBILE_PINK,
               opacity: isTransitioning ? 0.5 : 1
             }}
           >
-            {currentStat.label}
-          </p>
+              <p className="text-3xl font-bold tracking-wide text-white leading-tight">
+              {currentStat.label}
+            </p>
+              {currentStat.labelLine2 && (
+                <p className="text-3xl font-bold tracking-wide text-white leading-tight">
+                {currentStat.labelLine2}
+              </p>
+              )}
+          </div>
 
           {quickStats.isLoading && (
-            <p className="text-xs text-muted-foreground animate-pulse">
+              <p className="text-xs text-muted-foreground animate-pulse mt-2">
               Loading...
             </p>
           )}
 
           {quickStats.error && (
-            <p className="text-xs text-red-500">
+              <p className="text-xs text-red-500 mt-2">
               Error loading data
             </p>
           )}
+          </div>
         </div>
       </CardContent>
     </Card>
