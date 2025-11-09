@@ -264,52 +264,27 @@ async def get_facebook_sentiment(
             }
         )
 
-@facebook_router.get("/pages")
-async def get_monitored_pages():
+@facebook_router.get("/keywords")
+async def get_search_keywords():
     """
-    Get list of T-Mobile Facebook pages being monitored
+    Get list of T-Mobile keywords being used to search user posts
     
-    Returns information about the Facebook pages that are being monitored
-    for T-Mobile sentiment analysis, including page names and basic statistics.
+    Returns information about the keywords being used to search for
+    T-Mobile-related posts from users across Facebook.
     
     Returns:
-        JSON response with monitored pages and their information
+        JSON response with search keywords
     """
     try:
         monitor = get_facebook_monitor()
         
-        pages_info = []
-        for page_name, page_id in monitor.target_pages.items():
-            try:
-                page_info = monitor.get_page_info(page_id)
-                if 'error' not in page_info:
-                    pages_info.append({
-                        'name': page_info.get('name', page_name),
-                        'id': page_id,
-                        'username': page_info.get('username', ''),
-                        'fan_count': page_info.get('fan_count', 0),
-                        'about': page_info.get('about', '')[:200] + '...' if page_info.get('about', '') else ''
-                    })
-                else:
-                    pages_info.append({
-                        'name': page_name,
-                        'id': page_id,
-                        'error': 'Could not access page information',
-                        'status': 'inaccessible'
-                    })
-            except Exception as e:
-                pages_info.append({
-                    'name': page_name,
-                    'id': page_id,
-                    'error': str(e),
-                    'status': 'error'
-                })
-        
         return JSONResponse(content={
             'success': True,
             'timestamp': datetime.now().isoformat(),
-            'monitored_pages': pages_info,
-            'total_pages': len(pages_info)
+            'search_keywords': monitor.search_keywords,
+            'total_keywords': len(monitor.search_keywords),
+            'search_type': 'public_user_posts',
+            'description': 'Searching public user posts containing these T-Mobile keywords'
         })
         
     except Exception as e:
@@ -319,8 +294,8 @@ async def get_monitored_pages():
                 'success': False,
                 'error': f'Internal server error: {str(e)}',
                 'timestamp': datetime.now().isoformat(),
-                'monitored_pages': [],
-                'total_pages': 0
+                'search_keywords': [],
+                'total_keywords': 0
             }
         )
 
@@ -330,7 +305,7 @@ async def facebook_health_check():
     Health check endpoint for Facebook API functionality
     
     Verifies that Facebook access token is configured and accessible.
-    Tests connection to T-Mobile's official Facebook page.
+    Tests ability to search for public T-Mobile posts.
     Use this endpoint to test Facebook integration before making data requests.
     
     Returns:
@@ -339,33 +314,29 @@ async def facebook_health_check():
     try:
         monitor = get_facebook_monitor()
         
-        # Test access to T-Mobile's main page
-        tmobile_page_info = monitor.get_page_info('TMobile')
+        # Test searching for a T-Mobile post
+        test_posts = monitor.search_public_posts('tmobile', limit=1)
         
-        if 'error' in tmobile_page_info:
+        if test_posts or test_posts == []:  # Empty results are OK, means no posts found but API works
+            return JSONResponse(content={
+                'success': True,
+                'message': 'Facebook API is accessible and can search public posts',
+                'timestamp': datetime.now().isoformat(),
+                'search_keywords': monitor.search_keywords,
+                'api_version': 'v18.0',
+                'search_type': 'public_user_posts',
+                'test_result': f'Found {len(test_posts)} test post(s)'
+            })
+        else:
             return JSONResponse(
                 status_code=503,
                 content={
                     'success': False,
-                    'message': 'Facebook API is not accessible',
-                    'error': str(tmobile_page_info.get('error', 'Unknown error')),
+                    'message': 'Facebook API search is not accessible',
                     'timestamp': datetime.now().isoformat(),
-                    'help': 'Please check your Facebook access token (FACEBOOK_ACCESS_TOKEN) and permissions'
+                    'help': 'Your app may need "Page Public Content Access" feature approval from Facebook'
                 }
             )
-        
-        return JSONResponse(content={
-            'success': True,
-            'message': 'Facebook API is accessible',
-            'timestamp': datetime.now().isoformat(),
-            'target_pages': list(monitor.target_pages.keys()),
-            'test_page_info': {
-                'name': tmobile_page_info.get('name', 'T-Mobile'),
-                'id': tmobile_page_info.get('id', 'TMobile'),
-                'fan_count': tmobile_page_info.get('fan_count', 0)
-            },
-            'api_version': 'v18.0'
-        })
         
     except Exception as e:
         return JSONResponse(

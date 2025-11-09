@@ -28,17 +28,16 @@ class FacebookSentimentMonitor:
     def __init__(self):
         """Initialize Facebook Graph API client"""
         # Facebook API credentials
-        self.access_token = os.getenv('FACEBOOK_ACCESS_TOKEN', 'your_facebook_access_token')
+        self.access_token = os.getenv('FACEBOOK_ACCESS_TOKEN')
+        if not self.access_token:
+            raise ValueError("FACEBOOK_ACCESS_TOKEN environment variable is not set")
         self.base_url = 'https://graph.facebook.com/v18.0'
         
-        # T-Mobile related Facebook pages to monitor
-        self.target_pages = {
-            'T-Mobile': 'TMobile',  # Official T-Mobile page
-            'T-Mobile Support': 'TMobileSupport',  # T-Mobile support page
-            'Metro by T-Mobile': 'MetroByTMobile',  # Metro by T-Mobile
-            'Sprint': 'sprint',  # Sprint (now part of T-Mobile)
-            # Add more page IDs as needed
-        }
+        # Search keywords for T-Mobile user posts
+        self.search_keywords = [
+            'tmobile', 't-mobile', 'T-Mobile', 'TMobile',
+            'metro by tmobile', 'sprint tmobile'
+        ]
         
         # Outage-related keywords (same as Reddit)
         self.outage_keywords = {
@@ -172,31 +171,24 @@ class FacebookSentimentMonitor:
         
         return len(keywords_found) > 0, keywords_found, happiness_score
 
-    def get_page_posts(self, page_id: str, limit: int = 25) -> List[Dict[str, Any]]:
-        """Get recent posts from a Facebook page"""
+    def search_public_posts(self, keyword: str, limit: int = 25) -> List[Dict[str, Any]]:
+        """Search for public posts containing a keyword"""
         params = {
-            'fields': 'id,message,created_time,likes.summary(true),comments.summary(true),shares',
+            'q': keyword,
+            'type': 'post',
+            'fields': 'id,message,created_time,from,likes.summary(true),comments.summary(true),shares,permalink_url',
             'limit': limit
         }
         
-        response = self._make_api_request(f"{page_id}/posts", params)
+        response = self._make_api_request('search', params)
         
         if 'error' in response:
-            print(f"Error fetching posts from page {page_id}: {response['error']}")
+            print(f"Error searching posts for '{keyword}': {response['error']}")
             return []
         
         return response.get('data', [])
 
-    def get_page_info(self, page_id: str) -> Dict[str, Any]:
-        """Get information about a Facebook page"""
-        params = {
-            'fields': 'id,name,username,fan_count,about'
-        }
-        
-        response = self._make_api_request(page_id, params)
-        return response
-
-    def analyze_post_sentiment(self, post: Dict[str, Any], page_name: str, page_id: str) -> Optional[FacebookPost]:
+    def analyze_post_sentiment(self, post: Dict[str, Any]) -> Optional[FacebookPost]:
         """Analyze a single Facebook post for sentiment"""
         message = post.get('message', '')
         if not message:
@@ -225,8 +217,13 @@ class FacebookSentimentMonitor:
         comments = post.get('comments', {}).get('summary', {}).get('total_count', 0)
         shares = post.get('shares', {}).get('count', 0)
         
+        # Get user info
+        from_info = post.get('from', {})
+        page_name = from_info.get('name', 'Unknown User')
+        page_id = from_info.get('id', '')
+        
         # Create post URL
-        post_url = f"https://facebook.com/{post['id']}"
+        post_url = post.get('permalink_url', f"https://facebook.com/{post['id']}")
         
         # Parse creation time
         created_time = datetime.fromisoformat(post['created_time'].replace('Z', '+00:00'))
@@ -246,34 +243,31 @@ class FacebookSentimentMonitor:
             confidence_score=confidence_score
         )
 
-    def monitor_all_pages_api(self, limit_per_page: int = 25) -> Dict[str, Any]:
-        """API-friendly function to monitor all T-Mobile Facebook pages"""
+    def search_user_posts_api(self, limit_per_keyword: int = 25) -> Dict[str, Any]:
+        """API-friendly function to search public user posts about T-Mobile"""
         try:
             all_posts = []
             outage_posts = []
             positive_posts = []
             
-            for page_name, page_id in self.target_pages.items():
-                print(f"Monitoring Facebook page: {page_name} ({page_id})")
+            # Search for posts using T-Mobile keywords
+            for keyword in self.search_keywords:
+                print(f"Searching Facebook for posts containing: {keyword}")
                 
-                # Get page info
-                page_info = self.get_page_info(page_id)
-                if 'error' in page_info:
-                    print(f"Could not access page {page_name}: {page_info.get('error', 'Unknown error')}")
-                    continue
-                
-                # Get posts from this page
-                posts = self.get_page_posts(page_id, limit_per_page)
+                # Get posts matching this keyword
+                posts = self.search_public_posts(keyword, limit=limit_per_keyword)
                 
                 for post in posts:
-                    analyzed_post = self.analyze_post_sentiment(post, page_name, page_id)
+                    analyzed_post = self.analyze_post_sentiment(post)
                     if analyzed_post:
-                        all_posts.append(analyzed_post)
-                        
-                        if analyzed_post.sentiment_type == 'outage':
-                            outage_posts.append(analyzed_post)
-                        elif analyzed_post.sentiment_type == 'positive':
-                            positive_posts.append(analyzed_post)
+                        # Check for duplicates
+                        if not any(p.post_id == analyzed_post.post_id for p in all_posts):
+                            all_posts.append(analyzed_post)
+                            
+                            if analyzed_post.sentiment_type == 'outage':
+                                outage_posts.append(analyzed_post)
+                            elif analyzed_post.sentiment_type == 'positive':
+                                positive_posts.append(analyzed_post)
             
             # Sort posts by confidence/happiness scores
             outage_posts.sort(key=lambda x: x.confidence_score, reverse=True)
@@ -288,7 +282,7 @@ class FacebookSentimentMonitor:
                         'id': post.post_id,
                         'message': post.message[:300] + '...' if len(post.message) > 300 else post.message,
                         'created_time': post.created_time.isoformat(),
-                        'page_name': post.page_name,
+                        'author': post.page_name,
                         'likes': post.likes,
                         'comments': post.comments,
                         'shares': post.shares,
@@ -303,7 +297,7 @@ class FacebookSentimentMonitor:
                         'id': post.post_id,
                         'message': post.message[:300] + '...' if len(post.message) > 300 else post.message,
                         'created_time': post.created_time.isoformat(),
-                        'page_name': post.page_name,
+                        'author': post.page_name,
                         'likes': post.likes,
                         'comments': post.comments,
                         'shares': post.shares,
@@ -325,10 +319,10 @@ class FacebookSentimentMonitor:
                 'positive_posts': []
             }
 
-    def get_outages_api(self, limit_per_page: int = 25) -> Dict[str, Any]:
-        """API-friendly function to get T-Mobile outage posts from Facebook"""
+    def get_outages_api(self, limit_per_keyword: int = 25) -> Dict[str, Any]:
+        """API-friendly function to get T-Mobile outage posts from user posts on Facebook"""
         try:
-            result = self.monitor_all_pages_api(limit_per_page)
+            result = self.search_user_posts_api(limit_per_keyword)
             
             if not result['success']:
                 return result
@@ -349,10 +343,10 @@ class FacebookSentimentMonitor:
                 'outages': []
             }
 
-    def get_happiness_api(self, limit_per_page: int = 25) -> Dict[str, Any]:
-        """API-friendly function to get T-Mobile positive sentiment from Facebook"""
+    def get_happiness_api(self, limit_per_keyword: int = 25) -> Dict[str, Any]:
+        """API-friendly function to get T-Mobile positive sentiment from user posts on Facebook"""
         try:
-            result = self.monitor_all_pages_api(limit_per_page)
+            result = self.search_user_posts_api(limit_per_keyword)
             
             if not result['success']:
                 return result
@@ -384,11 +378,11 @@ def main():
     monitor = FacebookSentimentMonitor()
     
     try:
-        # Test monitoring
-        result = monitor.monitor_all_pages_api(limit_per_page=10)
+        # Test searching user posts
+        result = monitor.search_user_posts_api(limit_per_keyword=10)
         
         print("\n" + "="*50)
-        print("FACEBOOK T-MOBILE SENTIMENT MONITORING")
+        print("FACEBOOK T-MOBILE USER SENTIMENT MONITORING")
         print("="*50)
         
         if result['success']:
@@ -398,17 +392,17 @@ def main():
             
             # Show top outage posts
             if result['outage_posts']:
-                print("\nTop Outage Posts:")
+                print("\nTop Outage Posts from Users:")
                 for i, post in enumerate(result['outage_posts'][:3], 1):
-                    print(f"{i}. [{post['confidence_score']:.2f}] {post['page_name']}")
+                    print(f"{i}. [{post['confidence_score']:.2f}] by {post['author']}")
                     print(f"   Message: {post['message'][:100]}...")
                     print(f"   Engagement: {post['likes']} likes, {post['comments']} comments")
             
             # Show top positive posts
             if result['positive_posts']:
-                print("\nTop Positive Posts:")
+                print("\nTop Positive Posts from Users:")
                 for i, post in enumerate(result['positive_posts'][:3], 1):
-                    print(f"{i}. [{post['happiness_score']:.2f}] {post['page_name']}")
+                    print(f"{i}. [{post['happiness_score']:.2f}] by {post['author']}")
                     print(f"   Message: {post['message'][:100]}...")
                     print(f"   Engagement: {post['likes']} likes, {post['comments']} comments")
         else:
