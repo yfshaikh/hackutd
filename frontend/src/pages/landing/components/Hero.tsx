@@ -27,7 +27,7 @@ export function Hero() {
 
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         {/* Logo/Badge */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -39,7 +39,7 @@ export function Hero() {
             </div>
             <span className="text-sm font-medium text-muted-foreground">T-Mobile Intelligence</span>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Main Heading */}
         <motion.h1
@@ -48,9 +48,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6 text-5xl md:text-7xl font-bold tracking-tight"
         >
-          Customer Happiness{' '}
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary via-accent to-primary">
-            Intelligence
+          Read the{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E20074] via-[#FF4D9F] to-[#E20074]">
+            Room
           </span>
         </motion.h1>
 
@@ -97,8 +97,8 @@ export function Hero() {
             <div className="text-sm text-muted-foreground">Real-time Monitoring</div>
           </div>
           <div className="p-6 rounded-xl bg-card border border-border backdrop-blur">
-            <div className="text-4xl font-bold text-primary mb-2">3</div>
-            <div className="text-sm text-muted-foreground">Data Sources Integrated</div>
+            <div className="text-4xl font-bold text-primary mb-2">4+</div>
+            <div className="text-sm text-muted-foreground">Data Sources For Realtime Insights</div>
           </div>
           <div className="p-6 rounded-xl bg-card border border-border backdrop-blur">
             <div className="text-4xl font-bold text-primary mb-2">AI</div>
@@ -108,7 +108,7 @@ export function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1 }}
@@ -126,7 +126,7 @@ export function Hero() {
           <span className="text-sm">Scroll to explore</span>
           <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent" />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </section>
   )
 }

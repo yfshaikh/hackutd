@@ -24,7 +24,7 @@ const RedditNode = memo(() => {
       <div className="wrapper gradient">
         <div className="inner">
           <div className="body">
-            <svg viewBox="0 -4 48 48" className="node-icon">
+            <svg viewBox="0 -4 48 48" className="node-icon hidden">
               <path fill="#FF5700" d="M31.14,32.325803 C29.346,32.325803 27.8385,30.884067 27.8385,29.106421 C27.8385,27.328775 29.346,25.839477 31.14,25.839477 C32.934,25.839477 34.389,27.328775 34.389,29.106421 C34.389,30.884067 32.934,32.325803 31.14,32.325803 M31.902,38.574316 C30.231,40.228597 27.654,41.032699 24.024,41.032699 C24.0165,41.032699 24.0075,41.031213 23.9985,41.031213 C23.991,41.031213 23.982,41.032699 23.973,41.032699 C20.343,41.032699 17.7675,40.228597 16.098,38.574316 C15.585,38.065993 15.585,37.244055 16.098,36.737218 C16.6095,36.23038 17.439,36.23038 17.952,36.737218 C19.104,37.878716 21.0735,38.434602 23.973,38.434602 C23.982,38.434602 23.991,38.436088 23.9985,38.436088 C24.0075,38.436088 24.0165,38.434602 24.024,38.434602 C26.9235,38.434602 28.8945,37.878716 30.048,36.737218 C30.561,36.228894 31.3905,36.23038 31.902,36.737218 C32.4135,37.245541 32.4135,38.067479 31.902,38.574316 M13.611,29.106421 C13.611,27.330262 15.1155,25.839477 16.908,25.839477 C18.702,25.839477 20.157,27.330262 20.157,29.106421 C20.157,30.884067 18.702,32.325803 16.908,32.325803 C15.1155,32.325803 13.611,30.884067 13.611,29.106421 M39.996,8.598098 C41.211,8.598098 42.1995,9.577586 42.1995,10.780024 C42.1995,11.983948 41.211,12.963436 39.996,12.963436 C38.781,12.963436 37.7925,11.983948 37.7925,10.780024 C37.7925,9.577586 38.781,8.598098 39.996,8.598098 M48,25.570452 C48,22.417955 45.4125,19.854043 42.231,19.854043 C40.854,19.854043 39.5895,20.335612 38.5965,21.136742 C35.079,18.945898 30.615,17.62604 25.83,17.346611 L28.326,9.527051 L35.1855,11.127824 C35.3655,13.602556 37.4535,15.561534 39.996,15.561534 C42.6555,15.561534 44.82,13.416766 44.82,10.780024 C44.82,8.144768 42.6555,6 39.996,6 C38.136,6 36.519,7.049346 35.7135,8.581748 L27.7425,6.722354 C27.075,6.56629 26.4,6.94679 26.193,7.594828 L23.094,17.300535 C17.9385,17.425386 13.092,18.749703 9.3165,21.068371 C8.337,20.308859 7.1055,19.854043 5.769,19.854043 C2.5875,19.854043 0,22.417955 0,25.570452 C0,27.519025 0.99,29.241677 2.4975,30.273187 C2.4345,30.726516 2.4015,31.182818 2.4015,31.645065 C2.4015,35.585315 4.713,39.250595 8.91,41.964625 C12.933,44.567182 18.258,46 23.9025,46 C29.547,46 34.872,44.567182 38.895,41.964625 C43.092,39.250595 45.4035,35.585315 45.4035,31.645065 C45.4035,31.224435 45.375,30.806778 45.3225,30.392093 C46.9305,29.376932 48,27.594828 48,25.570452"/>
             </svg>
             <div>
@@ -45,7 +45,7 @@ const XNode = memo(() => {
       <div className="wrapper gradient">
         <div className="inner">
           <div className="body">
-            <svg viewBox="0 0 48 48" className="node-icon">
+            <svg viewBox="0 0 48 48" className="node-icon hidden">
               <path fill="#E0E0E0" fillRule="evenodd" d="M38,42H10c-2.209,0-4-1.791-4-4V10c0-2.209,1.791-4,4-4h28c2.209,0,4,1.791,4,4v28C42,40.209,40.209,42,38,42z" clipRule="evenodd"/>
               <path fill="#fff" d="M34.257,34h-6.437L13.829,14h6.437L34.257,34z M28.587,32.304h2.563L19.499,15.696h-2.563L28.587,32.304z"/>
               <polygon fill="#fff" points="15.866,34 23.069,25.656 22.127,24.407 13.823,34"/>
@@ -333,7 +333,7 @@ export function ArchitectureSection() {
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
           Built for{' '}
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E20074] to-[#FF4D9F]">
             Scale & Speed
           </span>
         </h2>
@@ -353,12 +353,12 @@ export function ArchitectureSection() {
       >
         {/* Custom Tab Navigation */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex rounded-lg bg-muted p-1">
+          <div className="inline-flex gap-2 rounded-lg bg-muted p-1">
             <button
               onClick={() => setActiveTab('social')}
               className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all ${
                 activeTab === 'social'
-                  ? 'bg-primary text-primary-foreground shadow-md'
+                  ? 'bg-[#E20074] text-white shadow-md'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -368,7 +368,7 @@ export function ArchitectureSection() {
               onClick={() => setActiveTab('outage')}
               className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all ${
                 activeTab === 'outage'
-                  ? 'bg-primary text-primary-foreground shadow-md'
+                  ? 'bg-[#E20074] text-white shadow-md'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -378,7 +378,7 @@ export function ArchitectureSection() {
               onClick={() => setActiveTab('insights')}
               className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all ${
                 activeTab === 'insights'
-                  ? 'bg-primary text-primary-foreground shadow-md'
+                  ? 'bg-[#E20074] text-white shadow-md'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -436,7 +436,7 @@ export function ArchitectureSection() {
       </motion.div>
 
       {/* Key Features */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
@@ -472,7 +472,7 @@ export function ArchitectureSection() {
             Transform raw data into clear, actionable insights to improve customer experience.
           </p>
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   )
 }
