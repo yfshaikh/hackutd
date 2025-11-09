@@ -8,6 +8,7 @@ from routes.outage_routes import outage_router
 from routes.reddit_routes import reddit_router, dashboard_router
 from routes.twitter_routes import twitter_router
 from routes.insights_routes import router as insights_router
+from routes.callcenter_routes import router as callcenter_router
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -51,6 +52,7 @@ app.include_router(reddit_router)
 app.include_router(dashboard_router)
 app.include_router(twitter_router)
 app.include_router(insights_router)
+app.include_router(callcenter_router)
 
 
 

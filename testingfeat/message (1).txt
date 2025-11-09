@@ -1,0 +1,117 @@
+📊 Customer Happiness Index Dashboard — Module Specification
+
+This document defines the three core dashboard modules we want to build for the T-Mobile Customer Happiness Index. These modules will use the enriched call dataset containing:
+
+call_id
+
+city, state
+
+category, subcategory
+
+total_seconds (call duration)
+
+resolution
+
+csat_1_5 (model-estimated Customer Satisfaction rating)
+
+sentiment_score (range: -1 to +1)
+
+sentiment_label (positive, neutral, negative, mixed)
+
+transcript (for contextual drill-down)
+
+The goal is to surface real-time CX health, identify pain points, and enable rapid insight-driven response.
+
+1) Customer Happiness Overview (Top-Level KPIs)
+Purpose
+
+Provide a high-level snapshot of customer experience health across all calls. This is the executive-level view.
+
+Key Metrics
+Metric	Description	Calculation
+Average CSAT Score (1–5)	Overall customer satisfaction	mean(csat_1_5)
+Sentiment Index (-1 to +1)	Overall emotional tone across conversations	mean(sentiment_score)
+First-Call Resolution Rate	Efficiency and customer effort reduction	count(resolution == "Resolved on first call") / total_calls
+Avg Call Duration (minutes)	Operational efficiency indicator	mean(total_seconds) / 60
+Top Issue Category (by call volume)	Identifies highest attention area	mode(category)
+Display Recommendations
+
+KPI tiles for CSAT, sentiment, FCR rate, call duration
+
+Call volume trend line overlain with sentiment trend
+
+Highlight the top complaint category in a prominent tile
+
+2) Category Deep Dive
+Purpose
+
+Understand performance across major issue categories to identify which customer needs are most impacted.
+
+Required Grouping
+
+Group dataset by category.
+
+Key Visuals
+Chart	X-Axis	Y-Axis	Purpose
+Category vs Avg Call Duration	Category	Average total_seconds	Spots complex/time-consuming issues
+Category vs Avg CSAT	Category	Average csat_1_5	Identifies dissatisfaction hotspots
+Sentiment Distribution per Category	Category	% of sentiment_label types	Visibility into emotional drivers
+Call Volume by Category (bar chart)	Category	Call count	Shows where customers are needing most help
+Insights to Highlight
+
+Categories with:
+
+High volume + low satisfaction → urgent improvement needed
+
+Low volume + high duration → targeted workflow/knowledgebase fix
+
+High satisfaction but high duration → potential automation / agent scripting opportunity
+
+3) Subcategory Root-Cause Lens (Drill-down for Managers)
+Purpose
+
+Enable managers to isolate the specific subcategories, within high-impact categories, that are driving negative sentiment or poor CSAT.
+
+Required Filters
+
+Must be able to drill down from category → subcategory
+
+Key Visuals
+Visualization	Purpose
+Heatmap: Subcategory vs Avg CSAT	Quickly identify problematic areas
+Subcategory Sentiment Scores (bar or scatter)	Emotional pain points mapped clearly
+Subcategory Call Volume Trend Over Time	Detect spikes or emerging issues
+Resolution Outcome Breakdown per Subcategory	Detect agent training vs systemic issue
+Example Insight Structure
+
+For any subcategory performing poorly:
+
+Subcategory Name
+- Avg CSAT: 2.4 (Low)
+- Sentiment Bias: Mostly Negative
+- Avg Call Duration: 11.2 minutes (Higher than avg)
+- First-Call Resolution: 41%
+Root Cause Hypothesis:
+Customers experience unclear steps during device setup causing repeated escalations.
+Recommended Action:
+Add guided onboarding flow + agent scripting for step-by-step troubleshooting.
+
+Data Requirements & Integrity Notes
+
+All metrics require complete/correct columns listed above.
+
+Outliers (extremely long calls, zero-duration calls) should be handled (trim or winsorize).
+
+Sentiment score and CSAT were model-generated and should be interpreted as relative indicators, not absolute truth.
+
+Next Steps for Claude
+
+Claude should now be able to:
+
+Generate dashboard UI code (Streamlit / Dash / React / Tableau instructions).
+
+Create SQL or Pandas transformations to compute all required metrics.
+
+Design visual layout wireframes for each module.
+
+Write narrative / insight descriptions for report mode.

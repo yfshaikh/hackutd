@@ -2,10 +2,14 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
-import { AlertCircle, TrendingDown, Users, AlertTriangle, BarChart3, RefreshCw } from 'lucide-react';
+import { AlertCircle, TrendingDown, Users, AlertTriangle, BarChart3, RefreshCw, MessageSquare, Phone } from 'lucide-react';
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { useInsights } from '@/hooks/useInsights';
 import { AnimatedNumber } from '@/components/ui/animated-number';
+import { Tabs, TabsList, TabsTab, TabsPanels, TabsPanel } from '@/components/animate-ui/components/base/tabs';
+import { CustomerHappinessOverview } from './InsightsPage/components/CustomerHappinessOverview';
+import { CategoryDeepDive } from './InsightsPage/components/CategoryDeepDive';
+import { SubcategoryRootCause } from './InsightsPage/components/SubcategoryRootCause';
 
 const InsightsPage = () => {
   const { data: insights, isLoading, isError, error, refetch, isFetching } = useInsights();
@@ -64,6 +68,64 @@ const InsightsPage = () => {
     );
   }
 
+  return (
+    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
+      {/* Header */}
+      <div className="flex items-center justify-between space-y-2">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">Customer Insights</h2>
+          <p className="text-muted-foreground text-sm">
+            Multi-source analysis across Trustpilot reviews and call center data
+          </p>
+        </div>
+        <button
+          onClick={() => refetch()}
+          disabled={isFetching}
+          className="flex items-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/80 disabled:opacity-50 tmobile-glow-matte transition-all duration-200"
+        >
+          <RefreshCw className={`h-4 w-4 ${isFetching ? 'animate-spin' : ''}`} />
+          Refresh Trustpilot
+        </button>
+      </div>
+
+      {/* Tabs for different insight sources */}
+      <Tabs defaultValue="trustpilot" className="w-full">
+        <div className="relative">
+          <TabsList>
+            <TabsTab value="trustpilot">
+              <MessageSquare className="h-4 w-4" />
+              Trustpilot Reviews
+            </TabsTab>
+            <TabsTab value="callcenter">
+              <Phone className="h-4 w-4" />
+              Call Center Happiness
+            </TabsTab>
+          </TabsList>
+        </div>
+
+        <TabsPanels className="mt-6">
+          {/* Trustpilot Insights Tab */}
+          <TabsPanel value="trustpilot">
+            <TrustpilotInsights 
+              insights={insights}
+              animateBars={animateBars}
+              getRiskColor={getRiskColor}
+              getSeverityColor={getSeverityColor}
+            />
+          </TabsPanel>
+
+          {/* Call Center Happiness Tab */}
+          <TabsPanel value="callcenter">
+            <CallCenterHappiness />
+          </TabsPanel>
+        </TabsPanels>
+      </Tabs>
+    </div>
+  );
+};
+
+// Trustpilot Insights Component (extracted from original InsightsPage)
+const TrustpilotInsights = ({ insights, animateBars, getRiskColor, getSeverityColor }: any) => {
   // Churn Risk Pie Chart Data
   const churnRiskData = [
     {
@@ -79,26 +141,7 @@ const InsightsPage = () => {
   ];
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      {/* Header */}
-      <div className="flex items-center justify-between space-y-2">
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight">Customer Insights</h2>
-          <p className="text-muted-foreground text-sm">
-            AI-powered analysis of {insights.metadata.total_reviews.toLocaleString()} Trustpilot reviews • TrustScore: {insights.metadata.trustscore}/5
-          </p>
-        </div>
-        <button
-          onClick={() => refetch()}
-          disabled={isFetching}
-          className="flex items-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/80 disabled:opacity-50 tmobile-glow-matte transition-all duration-200"
-        >
-          <RefreshCw className={`h-4 w-4 ${isFetching ? 'animate-spin' : ''}`} />
-          Refresh
-        </button>
-      </div>
-
-      {/* Key Metrics - More Compact */}
+    <div className="space-y-4">{/* Key Metrics - More Compact */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Churn Risk with Animated Pie Chart */}
         <Card className="card-matte">
@@ -198,7 +241,7 @@ const InsightsPage = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
-              {insights.actionable_insights.slice(0, 5).map((insight, idx) => (
+              {insights.actionable_insights.slice(0, 5).map((insight: any, idx: number) => (
                 <div
                   key={idx}
                   className="border-l-4 p-3 rounded bg-secondary/50"
@@ -242,9 +285,9 @@ const InsightsPage = () => {
             <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
               {Object.entries(insights.issue_analysis.top_issues)
                 .slice(0, 8)
-                .map(([keyword, count], idx) => {
-                  const maxCount = Math.max(...Object.values(insights.issue_analysis.top_issues));
-                  const percentage = (count / maxCount) * 100;
+                .map(([keyword, count]: [string, any], idx: number) => {
+                  const maxCount = Math.max(...Object.values(insights.issue_analysis.top_issues).map(Number));
+                  const percentage = (Number(count) / maxCount) * 100;
                   return (
                     <div key={idx} className="flex items-center gap-2">
                       <div className="flex-1">
@@ -270,6 +313,56 @@ const InsightsPage = () => {
             </div>
           </CardContent>
         </Card>
+      </div>
+    </div>
+  );
+};
+
+// Call Center Happiness Component
+const CallCenterHappiness = () => {
+  const [activeModule, setActiveModule] = useState<'overview' | 'category' | 'subcategory'>('overview');
+
+  return (
+    <div className="space-y-6">
+      {/* Module Navigation */}
+      <div className="flex gap-2 flex-wrap">
+        <button
+          onClick={() => setActiveModule('overview')}
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            activeModule === 'overview'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+          }`}
+        >
+          📊 Happiness Overview
+        </button>
+        <button
+          onClick={() => setActiveModule('category')}
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            activeModule === 'category'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+          }`}
+        >
+          📈 Category Deep Dive
+        </button>
+        <button
+          onClick={() => setActiveModule('subcategory')}
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            activeModule === 'subcategory'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+          }`}
+        >
+          🔍 Subcategory Root-Cause
+        </button>
+      </div>
+
+      {/* Active Module */}
+      <div className="mt-6">
+        {activeModule === 'overview' && <CustomerHappinessOverview />}
+        {activeModule === 'category' && <CategoryDeepDive />}
+        {activeModule === 'subcategory' && <SubcategoryRootCause />}
       </div>
     </div>
   );
