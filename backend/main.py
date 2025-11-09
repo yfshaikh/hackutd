@@ -6,7 +6,10 @@ import os
 # from routes.chat_routes import chat_router
 from routes.outage_routes import outage_router
 from routes.reddit_routes import reddit_router
+from routes.facebook_routes import facebook_router
+from dotenv import load_dotenv
 
+load_dotenv()
 
 
 # Configure logging
@@ -44,6 +47,7 @@ app.add_middleware(
 # app.include_router(chat_router)
 app.include_router(outage_router)
 app.include_router(reddit_router)
+app.include_router(facebook_router)
 
 
 
@@ -74,3 +78,4 @@ async def http_exception_handler(request, exc):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
