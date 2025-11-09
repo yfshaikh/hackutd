@@ -15,3 +15,5 @@ tweepy
 selenium
 beautifulsoup4
 webdriver-manager
+pandas
+numpy<2.0.0
