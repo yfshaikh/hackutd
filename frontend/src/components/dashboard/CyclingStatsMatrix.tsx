@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, useRef } from 'react'
 import { Matrix, digits, type Frame } from '@/components/ui/matrix'
 import { useQuickStats } from '@/hooks/useDashboard'
 import { Card, CardContent } from '@/components/ui/card'
@@ -10,9 +10,11 @@ interface StatDisplay {
 
 export function CyclingStatsMatrix() {
   const quickStats = useQuickStats()
-  const [currentStatIndex, setCurrentStatIndex] = useState(0)
+  const [displayedStatIndex, setDisplayedStatIndex] = useState(0) // What's currently shown
+  const [targetStatIndex, setTargetStatIndex] = useState(0) // What we're animating to
   const [animationFrame, setAnimationFrame] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
+  const currentIndexRef = useRef(0) // Track the actual current index
 
   // T-Mobile pink color
   const tmobilePink = '#E20074'
@@ -64,11 +66,13 @@ export function CyclingStatsMatrix() {
     return combinedFrame
   }
 
-  const currentFrame = useMemo(() => createCombinedFrame(stats[currentStatIndex].value), [stats, currentStatIndex, quickStats.isLoading])
-  const nextFrame = useMemo(() => createCombinedFrame(stats[(currentStatIndex + 1) % stats.length].value), [stats, currentStatIndex, quickStats.isLoading])
+  const currentFrame = useMemo(() => createCombinedFrame(stats[displayedStatIndex].value), [stats, displayedStatIndex, quickStats.isLoading])
+  const nextFrame = useMemo(() => createCombinedFrame(stats[targetStatIndex].value), [stats, targetStatIndex, quickStats.isLoading])
 
   // Create animated transition frame
   const getTransitionFrame = (): Frame => {
+    // After animation completes, keep showing the frame we animated to
+    if (!isAnimating && animationFrame >= 40) return nextFrame
     if (!isAnimating) return currentFrame
     
     const transitionFrame: Frame = Array(9).fill(0).map(() => Array(14).fill(0))
@@ -76,52 +80,91 @@ export function CyclingStatsMatrix() {
     
     for (let row = 0; row < 9; row++) {
       for (let col = 0; col < 14; col++) {
-        const pixelDelay = (row * 14 + col) / (9 * 14) // Stagger based on position
+        // Create a smoother stagger pattern - diagonal from top-left to bottom-right
+        const pixelDelay = (row + col) / (9 + 14 - 2) // Normalized 0-1
         
-        if (progress < 0.6) {
-          // Fade out current (slower)
-          const fadeOutProgress = Math.max(0, Math.min(1, (progress / 0.6 - pixelDelay * 1.5)))
-          transitionFrame[row][col] = currentFrame[row][col] * (1 - fadeOutProgress)
-        } else {
-          // Fade in next (slower)
-          const fadeInProgress = Math.max(0, Math.min(1, ((progress - 0.6) / 0.4 - pixelDelay * 1.5)))
-          transitionFrame[row][col] = nextFrame[row][col] * fadeInProgress
+        // Create overlapping fade transitions for smoother animation
+        const fadeOutStart = pixelDelay * 0.3 // Start fade-out at different times
+        const fadeOutEnd = fadeOutStart + 0.5 // 50% of animation for fade-out
+        const fadeInStart = fadeOutStart + 0.25 // Start fade-in midway through fade-out
+        const fadeInEnd = fadeInStart + 0.5 // 50% of animation for fade-in
+        
+        let currentPixelValue = 0
+        let nextPixelValue = 0
+        
+        // Calculate fade-out progress
+        if (progress >= fadeOutStart && progress <= fadeOutEnd) {
+          const fadeOutProgress = (progress - fadeOutStart) / (fadeOutEnd - fadeOutStart)
+          const easedFadeOut = 1 - Math.pow(fadeOutProgress, 2) // Ease-out curve
+          currentPixelValue = currentFrame[row][col] * easedFadeOut
+        } else if (progress < fadeOutStart) {
+          currentPixelValue = currentFrame[row][col]
         }
+        
+        // Calculate fade-in progress
+        if (progress >= fadeInStart && progress <= fadeInEnd) {
+          const fadeInProgress = (progress - fadeInStart) / (fadeInEnd - fadeInStart)
+          const easedFadeIn = Math.pow(fadeInProgress, 2) // Ease-in curve
+          nextPixelValue = nextFrame[row][col] * easedFadeIn
+        } else if (progress > fadeInEnd) {
+          nextPixelValue = nextFrame[row][col]
+        }
+        
+        // Combine both values for smooth transition
+        transitionFrame[row][col] = Math.max(currentPixelValue, nextPixelValue)
       }
     }
     
     return transitionFrame
   }
 
-  // Animation logic
+  // Single animation cycle controller
   useEffect(() => {
-    if (!isAnimating) return
+    let cycleInterval: ReturnType<typeof setInterval>
+    let animationInterval: ReturnType<typeof setInterval>
     
-    const interval = setInterval(() => {
-      setAnimationFrame(prev => {
-        if (prev >= 40) {
-          setIsAnimating(false)
-          setCurrentStatIndex(curr => (curr + 1) % stats.length)
-          return 0
-        }
-        return prev + 1
-      })
-    }, 50) // 50ms per frame = smooth animation
-    
-    return () => clearInterval(interval)
-  }, [isAnimating, stats.length])
-
-  // Cycle through stats
-  useEffect(() => {
-    const interval = setInterval(() => {
+    const runCycle = () => {
+      // Phase 1: Prepare to animate to the next stat using the ref
+      const nextIndex = (currentIndexRef.current + 1) % stats.length
+      currentIndexRef.current = nextIndex
+      
+      setTargetStatIndex(nextIndex)
       setIsAnimating(true)
       setAnimationFrame(0)
-    }, 4000)
+      
+      // Phase 2: Run animation frames
+      let frameCount = 0
+      animationInterval = setInterval(() => {
+        frameCount++
+        setAnimationFrame(frameCount)
+        
+        if (frameCount >= 40) {
+          clearInterval(animationInterval)
+          setIsAnimating(false)
+          
+          // Phase 3: Animation complete - update displayed to match target
+          setDisplayedStatIndex(nextIndex)
+        }
+      }, 50) // 50ms per frame
+    }
+    
+    // Wait 2 seconds before starting first animation (show initial stat)
+    const initialTimeout = setTimeout(() => {
+      runCycle()
+      
+      // Then repeat every 4 seconds (2s animation + 2s display)
+      cycleInterval = setInterval(runCycle, 4000)
+    }, 2000)
+    
+    return () => {
+      clearTimeout(initialTimeout)
+      clearInterval(cycleInterval)
+      clearInterval(animationInterval)
+    }
+  }, [stats.length])
 
-    return () => clearInterval(interval)
-  }, [])
-
-  const currentStat = stats[currentStatIndex]
+  // Show the label for what's actually displayed
+  const currentStat = stats[targetStatIndex]
 
   return (
     <Card className="col-span-3 card-matte w-fit mx-auto">
