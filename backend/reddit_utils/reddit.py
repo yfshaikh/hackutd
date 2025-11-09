@@ -7,8 +7,8 @@ import os
 from dataclasses import dataclass
 
 @dataclass
-class OutagePost:
-    """Data class to represent a potential outage post"""
+class NegativePost:
+    """Data class to represent a negative sentiment post"""
     title: str
     content: str
     author: str
@@ -18,7 +18,7 @@ class OutagePost:
     url: str
     subreddit: str
     post_id: str
-    outage_keywords_found: List[str]
+    negative_keywords_found: List[str]
     confidence_score: float
 
 @dataclass
@@ -37,14 +37,15 @@ class HappinessPost:
     happiness_score: float
     category: str  # Type of positive feedback (service, speed, coverage, etc.)
 
-class RedditOutageMonitor:
+class RedditSentimentMonitor:
     def __init__(self):
         """Initialize Reddit API client"""
         # Reddit API credentials - you'll need to register your app at https://www.reddit.com/prefs/apps
         self.reddit = praw.Reddit(
             client_id=os.getenv('REDDIT_CLIENT_ID', 'your_client_id'),
             client_secret=os.getenv('REDDIT_CLIENT_SECRET', 'your_client_secret'),
-            user_agent=os.getenv('REDDIT_USER_AGENT', 'outage_monitor/1.0 by OkCommunication9478')
+            user_agent=os.getenv('REDDIT_USER_AGENT', 'sentiment_monitor/1.0 by OkCommunication9478'),
+            check_for_async=False  # Disable async environment check as recommended for FastAPI
         )
         
         # T-Mobile focused subreddits only
@@ -57,18 +58,37 @@ class RedditOutageMonitor:
             'NoContract'   # Many T-Mobile customers use prepaid
         ]
         
-        # Keywords that indicate potential outages
-        self.outage_keywords = {
-            'primary': [
+        # Keywords that indicate negative sentiment (expanded from outage-specific)
+        self.negative_keywords = {
+            'service_issues': [
                 'outage', 'outages', 'down', 'service down', 'network down',
                 'not working', 'connection issues', 'connectivity issues',
-                'service interruption', 'network issues', 'signal issues'
-            ],
-            'secondary': [
+                'service interruption', 'network issues', 'signal issues',
                 'no service', 'no signal', 'dropped calls', 'slow data',
                 'can\'t connect', 'cannot connect', 'connection problems',
                 'network problems', 'service problems', 'technical difficulties',
                 'maintenance', 'emergency maintenance'
+            ],
+            'quality_complaints': [
+                'terrible service', 'awful service', 'horrible service', 'worst service',
+                'poor coverage', 'bad coverage', 'weak signal', 'no bars',
+                'slow internet', 'slow speeds', 'throttling', 'deprioritized',
+                'overpriced', 'expensive', 'rip off', 'scam', 'fraud'
+            ],
+            'customer_service_issues': [
+                'rude staff', 'unhelpful', 'terrible support', 'worst customer service',
+                'hung up on me', 'long wait times', 'can\'t reach anyone',
+                'poor customer service', 'incompetent staff', 'lied to me'
+            ],
+            'billing_issues': [
+                'unexpected charges', 'hidden fees', 'billing error', 'overcharged',
+                'wrong bill', 'billing issues', 'can\'t pay bill', 'account suspended',
+                'collections', 'credit check failed'
+            ],
+            'general_negative': [
+                'hate tmobile', 'hate t-mobile', 'worst carrier', 'switching carriers',
+                'leaving tmobile', 'cancel service', 'disappointed', 'frustrated',
+                'angry', 'furious', 'fed up', 'never again', 'regret signing up'
             ],
             'location_indicators': [
                 'area', 'region', 'city', 'state', 'nationwide', 'widespread',
@@ -111,35 +131,32 @@ class RedditOutageMonitor:
             ]
         }
 
-    def is_outage_related(self, text: str) -> tuple[bool, List[str], float]:
+    def is_negative_sentiment(self, text: str) -> tuple[bool, List[str], float]:
         """
-        Check if text contains outage-related keywords
-        Returns: (is_outage, keywords_found, confidence_score)
+        Check if text contains negative sentiment keywords
+        Returns: (is_negative, keywords_found, confidence_score)
         """
         text_lower = text.lower()
         keywords_found = []
         confidence_score = 0.0
         
-        # Check for primary outage keywords (higher weight)
-        for keyword in self.outage_keywords['primary']:
-            if keyword in text_lower:
-                keywords_found.append(keyword)
-                confidence_score += 2.0
-        
-        # Check for secondary outage keywords (lower weight)
-        for keyword in self.outage_keywords['secondary']:
-            if keyword in text_lower:
-                keywords_found.append(keyword)
-                confidence_score += 1.0
-        
-        # Check for location indicators (bonus points)
-        for keyword in self.outage_keywords['location_indicators']:
-            if keyword in text_lower:
-                keywords_found.append(keyword)
-                confidence_score += 0.5
+        # Check for different categories of negative sentiment with different weights
+        for category, keywords in self.negative_keywords.items():
+            for keyword in keywords:
+                if keyword in text_lower:
+                    keywords_found.append(keyword)
+                    # Weight different categories
+                    if category in ['service_issues', 'quality_complaints']:
+                        confidence_score += 2.5  # Highest weight for service/quality issues
+                    elif category in ['customer_service_issues', 'billing_issues']:
+                        confidence_score += 2.0  # High weight for customer service/billing
+                    elif category == 'general_negative':
+                        confidence_score += 1.5  # Moderate weight for general negative
+                    elif category == 'location_indicators':
+                        confidence_score += 0.5  # Bonus points for location context
         
         # Normalize confidence score
-        confidence_score = min(confidence_score / 5.0, 1.0)
+        confidence_score = min(confidence_score / 8.0, 1.0)
         
         return len(keywords_found) > 0, keywords_found, confidence_score
 
@@ -211,18 +228,18 @@ class RedditOutageMonitor:
             print(f"Error fetching posts from r/{subreddit_name}: {str(e)}")
             return []
 
-    def analyze_posts_for_outages(self, posts: List[Dict[str, Any]]) -> List[OutagePost]:
-        """Analyze posts for potential outage indicators"""
-        outage_posts = []
+    def analyze_posts_for_negative_sentiment(self, posts: List[Dict[str, Any]]) -> List[NegativePost]:
+        """Analyze posts for negative sentiment indicators"""
+        negative_posts = []
         
         for post in posts:
             # Combine title and content for analysis
             full_text = f"{post['title']} {post['content']}"
             
-            # Check if it's outage-related
-            is_outage, keywords_found, confidence = self.is_outage_related(full_text)
+            # Check if it's negative sentiment
+            is_negative, keywords_found, confidence = self.is_negative_sentiment(full_text)
             
-            if is_outage:
+            if is_negative:
                 # Check if it's T-Mobile related (higher priority)
                 is_tmobile = self.is_tmobile_related(full_text)
                 
@@ -230,7 +247,7 @@ class RedditOutageMonitor:
                 if is_tmobile:
                     confidence = min(confidence * 1.5, 1.0)
                 
-                outage_post = OutagePost(
+                negative_post = NegativePost(
                     title=post['title'],
                     content=post['content'],
                     author=post['author'],
@@ -240,14 +257,14 @@ class RedditOutageMonitor:
                     url=post['url'],
                     subreddit=post['subreddit'],
                     post_id=post['post_id'],
-                    outage_keywords_found=keywords_found,
+                    negative_keywords_found=keywords_found,
                     confidence_score=confidence
                 )
-                outage_posts.append(outage_post)
+                negative_posts.append(negative_post)
         
         # Sort by confidence score (highest first)
-        outage_posts.sort(key=lambda x: x.confidence_score, reverse=True)
-        return outage_posts
+        negative_posts.sort(key=lambda x: x.confidence_score, reverse=True)
+        return negative_posts
 
     def analyze_posts_for_happiness(self, posts: List[Dict[str, Any]]) -> List[HappinessPost]:
         """Analyze posts for positive sentiment indicators for Customer Happiness Index"""
@@ -313,26 +330,26 @@ class RedditOutageMonitor:
         # Return category with highest count
         return max(category_counts, key=category_counts.get)
 
-    def scan_all_subreddits(self, limit_per_subreddit: int = 50) -> List[OutagePost]:
-        """Scan all target subreddits for outage-related posts"""
-        all_outage_posts = []
+    def scan_all_subreddits(self, limit_per_subreddit: int = 50) -> List[NegativePost]:
+        """Scan all target subreddits for negative sentiment posts"""
+        all_negative_posts = []
         
-        print(f"Scanning {len(self.target_subreddits)} subreddits for outage-related posts...")
+        print(f"Scanning {len(self.target_subreddits)} subreddits for negative sentiment posts...")
         
         for subreddit in self.target_subreddits:
             print(f"Scanning r/{subreddit}...")
             posts = self.fetch_recent_posts(subreddit, limit=limit_per_subreddit)
             
             if posts:
-                outage_posts = self.analyze_posts_for_outages(posts)
-                all_outage_posts.extend(outage_posts)
-                print(f"Found {len(outage_posts)} potential outage posts in r/{subreddit}")
+                negative_posts = self.analyze_posts_for_negative_sentiment(posts)
+                all_negative_posts.extend(negative_posts)
+                print(f"Found {len(negative_posts)} negative sentiment posts in r/{subreddit}")
             else:
                 print(f"No posts found in r/{subreddit}")
         
         # Remove duplicates and sort by confidence
         unique_posts = {}
-        for post in all_outage_posts:
+        for post in all_negative_posts:
             if post.post_id not in unique_posts:
                 unique_posts[post.post_id] = post
             elif post.confidence_score > unique_posts[post.post_id].confidence_score:
@@ -343,15 +360,15 @@ class RedditOutageMonitor:
         
         return final_posts
 
-    def save_results_to_json(self, outage_posts: List[OutagePost], filename: str = 'reddit_outage_data.json'):
+    def save_results_to_json(self, negative_posts: List[NegativePost], filename: str = 'reddit_negative_data.json'):
         """Save the results to a JSON file"""
         data = {
             'timestamp': datetime.now().isoformat(),
-            'total_posts_found': len(outage_posts),
+            'total_posts_found': len(negative_posts),
             'posts': []
         }
         
-        for post in outage_posts:
+        for post in negative_posts:
             post_dict = {
                 'title': post.title,
                 'content': post.content[:500] + '...' if len(post.content) > 500 else post.content,
@@ -362,7 +379,7 @@ class RedditOutageMonitor:
                 'url': post.url,
                 'subreddit': post.subreddit,
                 'post_id': post.post_id,
-                'outage_keywords_found': post.outage_keywords_found,
+                'negative_keywords_found': post.negative_keywords_found,
                 'confidence_score': round(post.confidence_score, 3)
             }
             data['posts'].append(post_dict)
@@ -374,31 +391,36 @@ class RedditOutageMonitor:
 
     # API-friendly functions for the FastAPI routes
     def scan_for_outages_api(self, limit_per_subreddit: int = 30) -> Dict[str, Any]:
-        """API-friendly function to scan for T-Mobile outages"""
+        """API-friendly function to scan for T-Mobile outages (backward compatibility)"""
+        # For backward compatibility, redirect to negative sentiment analysis
+        return self.scan_for_negative_sentiment_api(limit_per_subreddit)
+    
+    def scan_for_negative_sentiment_api(self, limit_per_subreddit: int = 30) -> Dict[str, Any]:
+        """API-friendly function to scan for T-Mobile negative sentiment"""
         try:
-            outage_posts = []
+            negative_posts = []
             
             for subreddit in self.target_subreddits:
                 posts = self.fetch_recent_posts(subreddit, limit=limit_per_subreddit)
                 if posts:
-                    subreddit_outages = self.analyze_posts_for_outages(posts)
-                    # Filter to only T-Mobile related outages
-                    tmobile_outages = [
-                        post for post in subreddit_outages 
+                    subreddit_negatives = self.analyze_posts_for_negative_sentiment(posts)
+                    # Filter to only T-Mobile related negative posts
+                    tmobile_negatives = [
+                        post for post in subreddit_negatives 
                         if self.is_tmobile_related(f"{post.title} {post.content}")
                     ]
-                    outage_posts.extend(tmobile_outages)
+                    negative_posts.extend(tmobile_negatives)
             
             # Remove duplicates and sort
-            unique_posts = {post.post_id: post for post in outage_posts}
+            unique_posts = {post.post_id: post for post in negative_posts}
             final_posts = sorted(unique_posts.values(), key=lambda x: x.confidence_score, reverse=True)
             
             # Convert to API response format
             return {
                 'success': True,
                 'timestamp': datetime.now().isoformat(),
-                'total_outage_posts': len(final_posts),
-                'outages': [
+                'total_negative_posts': len(final_posts),
+                'negative_posts': [
                     {
                         'id': post.post_id,
                         'title': post.title,
@@ -410,7 +432,7 @@ class RedditOutageMonitor:
                         'url': post.url,
                         'subreddit': post.subreddit,
                         'confidence_score': round(post.confidence_score, 3),
-                        'keywords_found': post.outage_keywords_found
+                        'keywords_found': post.negative_keywords_found
                     }
                     for post in final_posts[:20]  # Limit to top 20 for API response
                 ]
@@ -420,8 +442,8 @@ class RedditOutageMonitor:
                 'success': False,
                 'error': str(e),
                 'timestamp': datetime.now().isoformat(),
-                'total_outage_posts': 0,
-                'outages': []
+                'total_negative_posts': 0,
+                'negative_posts': []
             }
 
     def scan_for_happiness_api(self, limit_per_subreddit: int = 30) -> Dict[str, Any]:
@@ -481,20 +503,20 @@ class RedditOutageMonitor:
                 'happiness_posts': []
             }
 
-    def print_summary(self, outage_posts: List[OutagePost]):
-        """Print a summary of found outage posts"""
-        if not outage_posts:
-            print("No potential outage posts found.")
+    def print_summary(self, negative_posts: List[NegativePost]):
+        """Print a summary of found negative sentiment posts"""
+        if not negative_posts:
+            print("No negative sentiment posts found.")
             return
         
         print(f"\n{'='*50}")
-        print(f"OUTAGE MONITORING SUMMARY")
+        print(f"NEGATIVE SENTIMENT MONITORING SUMMARY")
         print(f"{'='*50}")
-        print(f"Total potential outage posts found: {len(outage_posts)}")
+        print(f"Total negative sentiment posts found: {len(negative_posts)}")
         
         # Group by subreddit
         subreddit_counts = {}
-        for post in outage_posts:
+        for post in negative_posts:
             subreddit_counts[post.subreddit] = subreddit_counts.get(post.subreddit, 0) + 1
         
         print("\nPosts by subreddit:")
@@ -502,38 +524,38 @@ class RedditOutageMonitor:
             print(f"  r/{subreddit}: {count}")
         
         print(f"\nTop 5 highest confidence posts:")
-        for i, post in enumerate(outage_posts[:5], 1):
+        for i, post in enumerate(negative_posts[:5], 1):
             print(f"\n{i}. [{post.confidence_score:.2f}] r/{post.subreddit}")
             print(f"   Title: {post.title}")
             print(f"   Author: {post.author} | Score: {post.score} | Comments: {post.num_comments}")
-            print(f"   Keywords: {', '.join(post.outage_keywords_found)}")
+            print(f"   Keywords: {', '.join(post.negative_keywords_found)}")
             print(f"   URL: {post.url}")
 
 def main():
-    """Main function to run the Reddit outage monitor"""
+    """Main function to run the Reddit sentiment monitor"""
     # Set up environment variables for Reddit API
     # You need to create a Reddit app at https://www.reddit.com/prefs/apps
     # and set these environment variables:
     # export REDDIT_CLIENT_ID="your_client_id"
     # export REDDIT_CLIENT_SECRET="your_client_secret" 
-    # export REDDIT_USER_AGENT="outage_monitor/1.0 by your_username"
+    # export REDDIT_USER_AGENT="sentiment_monitor/1.0 by your_username"
     
-    monitor = RedditOutageMonitor()
+    monitor = RedditSentimentMonitor()
     
     try:
-        # Scan all subreddits for outage posts
-        outage_posts = monitor.scan_all_subreddits(limit_per_subreddit=100)
+        # Scan all subreddits for negative sentiment posts
+        negative_posts = monitor.scan_all_subreddits(limit_per_subreddit=100)
         
         # Print summary
-        monitor.print_summary(outage_posts)
+        monitor.print_summary(negative_posts)
         
         # Save results to JSON
-        monitor.save_results_to_json(outage_posts, 'latest_reddit_outage_data.json')
+        monitor.save_results_to_json(negative_posts, 'latest_reddit_negative_data.json')
         
-        return outage_posts
+        return negative_posts
         
     except Exception as e:
-        print(f"Error running outage monitor: {str(e)}")
+        print(f"Error running sentiment monitor: {str(e)}")
         return []
 
 if __name__ == "__main__":

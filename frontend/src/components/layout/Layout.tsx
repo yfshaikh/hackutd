@@ -1,7 +1,8 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { Map } from 'lucide-react'
+import { Map, BarChart3 } from 'lucide-react'
 
 const navigation = [
+  { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
   { name: 'Network Map', href: '/', icon: Map },
 ]
 
@@ -34,8 +35,8 @@ export function Layout() {
               
               return (
                 <Link key={item.name} to={item.href}>
-                  <div className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer ${
-                    isActive ? 'bg-sidebar-primary text-sidebar-primary-foreground' : ''
+                  <div className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-sidebar-accent cursor-pointer ${
+                    isActive ? 'text-pink-500' : 'text-white hover:text-sidebar-accent-foreground'
                   }`}>
                     <Icon className="h-4 w-4" />
                     {item.name}

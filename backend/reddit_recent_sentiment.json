@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "period_days": 7,
+  "positive_count": 13,
+  "negative_count": 7,
+  "neutral_count": 10,
+  "total_posts": 30,
+  "sentiment_ratio": 0.65,
+  "sentiment_score": 0.3,
+  "timestamp": "2025-11-08T21:25:30.609989"
+}

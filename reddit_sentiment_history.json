@@ -1,0 +1,81 @@
+{
+  "success": true,
+  "analysis_period": {
+    "start_date": "2025-05-12T21:22:52.061969",
+    "end_date": "2025-11-08T21:22:52.061969",
+    "months_analyzed": 6
+  },
+  "overall_statistics": {
+    "total_posts_analyzed": 171,
+    "total_positive": 11,
+    "total_negative": 160,
+    "overall_sentiment_ratio": 0.064,
+    "sentiment_score": -0.871
+  },
+  "monthly_data": [
+    {
+      "month": "2025-05",
+      "timestamp": "2025-05-01T00:00:00",
+      "positive_count": 1,
+      "negative_count": 10,
+      "neutral_count": 0,
+      "total_posts": 11,
+      "sentiment_ratio": 0.091
+    },
+    {
+      "month": "2025-06",
+      "timestamp": "2025-06-01T00:00:00",
+      "positive_count": 1,
+      "negative_count": 11,
+      "neutral_count": 0,
+      "total_posts": 12,
+      "sentiment_ratio": 0.083
+    },
+    {
+      "month": "2025-07",
+      "timestamp": "2025-07-01T00:00:00",
+      "positive_count": 1,
+      "negative_count": 14,
+      "neutral_count": 0,
+      "total_posts": 15,
+      "sentiment_ratio": 0.067
+    },
+    {
+      "month": "2025-08",
+      "timestamp": "2025-08-01T00:00:00",
+      "positive_count": 0,
+      "negative_count": 34,
+      "neutral_count": 0,
+      "total_posts": 34,
+      "sentiment_ratio": 0.0
+    },
+    {
+      "month": "2025-09",
+      "timestamp": "2025-09-01T00:00:00",
+      "positive_count": 2,
+      "negative_count": 30,
+      "neutral_count": 0,
+      "total_posts": 32,
+      "sentiment_ratio": 0.062
+    },
+    {
+      "month": "2025-10",
+      "timestamp": "2025-10-01T00:00:00",
+      "positive_count": 3,
+      "negative_count": 27,
+      "neutral_count": 0,
+      "total_posts": 30,
+      "sentiment_ratio": 0.1
+    },
+    {
+      "month": "2025-11",
+      "timestamp": "2025-11-01T00:00:00",
+      "positive_count": 3,
+      "negative_count": 34,
+      "neutral_count": 0,
+      "total_posts": 37,
+      "sentiment_ratio": 0.081
+    }
+  ],
+  "timestamp": "2025-11-08T21:23:06.674942"
+}

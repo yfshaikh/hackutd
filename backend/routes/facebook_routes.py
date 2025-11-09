@@ -33,7 +33,7 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 # Import our Facebook monitoring class
-from facebook_monitor import FacebookSentimentMonitor
+from facebook_utils.facebook_monitor import FacebookSentimentMonitor
 
 # Create router
 facebook_router = APIRouter(prefix="/api/facebook", tags=["facebook"])

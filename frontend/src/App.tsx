@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Layout } from './components/layout/Layout'
 import { NetworkMap } from './pages/NetworkMap'
+import { Dashboard } from './pages/Dashboard'
 
 // Create a client
 const queryClient = new QueryClient({
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<NetworkMap />} />
+            <Route path="dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
       </Router>

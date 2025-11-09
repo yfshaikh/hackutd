@@ -28,11 +28,13 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# Import our Reddit monitoring class
-from reddit import RedditOutageMonitor
+# Import our Reddit monitoring classes
+from reddit_utils.reddit import RedditSentimentMonitor
+from reddit_utils.sentiment_history import RedditSentimentHistory
 
-# Create router
+# Create routers
 reddit_router = APIRouter(prefix="/api/reddit", tags=["reddit"])
+dashboard_router = APIRouter(prefix="/api/dashboard", tags=["dashboard"])
 
 # Pydantic models for response structure
 class RedditOutageResponse(BaseModel):
@@ -60,11 +62,64 @@ class CombinedSentimentResponse(BaseModel):
 def get_reddit_monitor():
     """Create a new Reddit monitor instance"""
     try:
-        return RedditOutageMonitor()
+        return RedditSentimentMonitor()
     except Exception as e:
         raise HTTPException(
             status_code=503, 
             detail=f"Failed to initialize Reddit API client: {str(e)}. Please check your Reddit API credentials."
+        )
+
+# Dashboard Routes
+@dashboard_router.get("/sentiment-history")
+async def get_sentiment_history():
+    """
+    Get historical sentiment data for the past 6 months
+    
+    Returns monthly aggregated sentiment data showing positive vs negative
+    post counts over time for dashboard visualization.
+    
+    Returns:
+        JSON response with historical sentiment data
+    """
+    try:
+        analyzer = RedditSentimentHistory()
+        result = analyzer.analyze_historical_sentiment(months_back=6)
+        return JSONResponse(content=result)
+        
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={
+                'success': False,
+                'error': f'Failed to analyze historical sentiment: {str(e)}',
+                'timestamp': datetime.now().isoformat()
+            }
+        )
+
+@dashboard_router.get("/recent-sentiment")
+async def get_recent_sentiment():
+    """
+    Get recent sentiment summary for the past 7 days
+    
+    Returns aggregated sentiment data for the dashboard quick stats
+    and overall sentiment indicators.
+    
+    Returns:
+        JSON response with recent sentiment summary
+    """
+    try:
+        analyzer = RedditSentimentHistory()
+        result = analyzer.get_recent_sentiment_summary(days_back=7)
+        return JSONResponse(content=result)
+        
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={
+                'success': False,
+                'error': f'Failed to get recent sentiment: {str(e)}',
+                'timestamp': datetime.now().isoformat()
+            }
         )
 
 @reddit_router.get("/outages", response_model=RedditOutageResponse)
@@ -272,3 +327,6 @@ async def reddit_health_check():
                 'help': 'Please check your Reddit API credentials (REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USER_AGENT)'
             }
         )
+
+# Export both routers
+__all__ = ['reddit_router', 'dashboard_router']
