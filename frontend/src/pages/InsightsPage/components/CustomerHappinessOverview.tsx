@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { TrendingUp, Clock, CheckCircle2, AlertCircle, Phone } from 'lucide-react';
+import { TrendingUp, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
 import { AnimatedNumber } from '@/components/ui/animated-number';
 import { getHappinessOverview } from '@/lib/api/callcenter';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
@@ -186,8 +186,8 @@ export const CustomerHappinessOverview = () => {
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis 
                 dataKey="category" 
-                stroke="hsl(var(--muted-foreground))"
-                tick={{ fill: 'hsl(var(--foreground))' }}
+                stroke="#888"
+                tick={{ fill: '#fff' }}
                 angle={-45}
                 textAnchor="end"
                 height={100}
@@ -195,26 +195,31 @@ export const CustomerHappinessOverview = () => {
               />
               <YAxis 
                 yAxisId="left"
-                stroke="hsl(var(--muted-foreground))"
-                tick={{ fill: 'hsl(var(--foreground))' }}
-                label={{ value: 'Call Volume', angle: -90, position: 'insideLeft', fill: 'hsl(var(--foreground))' }}
+                stroke="#888"
+                tick={{ fill: '#fff' }}
+                label={{ value: 'Call Volume', angle: -90, position: 'insideLeft', fill: '#fff' }}
               />
               <YAxis 
                 yAxisId="right"
                 orientation="right"
-                stroke="hsl(var(--muted-foreground))"
-                tick={{ fill: 'hsl(var(--foreground))' }}
+                stroke="#888"
+                tick={{ fill: '#fff' }}
                 domain={[-1, 1]}
-                label={{ value: 'Sentiment', angle: 90, position: 'insideRight', fill: 'hsl(var(--foreground))' }}
+                label={{ value: 'Sentiment', angle: 90, position: 'insideRight', fill: '#fff' }}
               />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: 'hsl(var(--background))', 
-                  border: '1px solid hsl(var(--border))',
-                  color: 'hsl(var(--foreground))'
+                  backgroundColor: '#1a1a1a', 
+                  border: '1px solid #444',
+                  color: '#fff',
+                  borderRadius: '8px',
+                  padding: '12px',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)'
                 }}
+                labelStyle={{ color: '#fff', fontWeight: 'bold', marginBottom: '4px' }}
+                itemStyle={{ color: '#fff' }}
               />
-              <Legend wrapperStyle={{ color: 'hsl(var(--foreground))' }} />
+              <Legend wrapperStyle={{ color: '#fff' }} />
               <Line 
                 yAxisId="left"
                 type="monotone" 

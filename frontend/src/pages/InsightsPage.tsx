@@ -9,7 +9,6 @@ import { AnimatedNumber } from '@/components/ui/animated-number';
 import { Tabs, TabsList, TabsTab, TabsPanels, TabsPanel } from '@/components/animate-ui/components/base/tabs';
 import { CustomerHappinessOverview } from './InsightsPage/components/CustomerHappinessOverview';
 import { CategoryDeepDive } from './InsightsPage/components/CategoryDeepDive';
-import { SubcategoryRootCause } from './InsightsPage/components/SubcategoryRootCause';
 
 const InsightsPage = () => {
   const { data: insights, isLoading, isError, error, refetch, isFetching } = useInsights();
@@ -320,50 +319,10 @@ const TrustpilotInsights = ({ insights, animateBars, getRiskColor, getSeverityCo
 
 // Call Center Happiness Component
 const CallCenterHappiness = () => {
-  const [activeModule, setActiveModule] = useState<'overview' | 'category' | 'subcategory'>('overview');
-
   return (
-    <div className="space-y-6">
-      {/* Module Navigation */}
-      <div className="flex gap-2 flex-wrap">
-        <button
-          onClick={() => setActiveModule('overview')}
-          className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-            activeModule === 'overview'
-              ? 'bg-primary text-primary-foreground'
-              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-          }`}
-        >
-          📊 Happiness Overview
-        </button>
-        <button
-          onClick={() => setActiveModule('category')}
-          className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-            activeModule === 'category'
-              ? 'bg-primary text-primary-foreground'
-              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-          }`}
-        >
-          📈 Category Deep Dive
-        </button>
-        <button
-          onClick={() => setActiveModule('subcategory')}
-          className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-            activeModule === 'subcategory'
-              ? 'bg-primary text-primary-foreground'
-              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-          }`}
-        >
-          🔍 Subcategory Root-Cause
-        </button>
-      </div>
-
-      {/* Active Module */}
-      <div className="mt-6">
-        {activeModule === 'overview' && <CustomerHappinessOverview />}
-        {activeModule === 'category' && <CategoryDeepDive />}
-        {activeModule === 'subcategory' && <SubcategoryRootCause />}
-      </div>
+    <div className="space-y-8">
+      <CustomerHappinessOverview />
+      <CategoryDeepDive />
     </div>
   );
 };

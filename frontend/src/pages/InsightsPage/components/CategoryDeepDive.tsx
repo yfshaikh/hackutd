@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { AlertTriangle, TrendingUp, Clock, Users } from 'lucide-react';
 import { getCategoryAnalysis } from '@/lib/api/callcenter';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 interface CategoryStat {
   category: string;
@@ -135,22 +135,27 @@ export const CategoryDeepDive = () => {
           <CardContent>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={volumeChartData} layout="vertical">
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis type="number" stroke="hsl(var(--muted-foreground))" tick={{ fill: 'hsl(var(--foreground))' }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                <XAxis type="number" stroke="#888" tick={{ fill: '#fff' }} />
                 <YAxis 
                   type="category" 
                   dataKey="category" 
-                  stroke="hsl(var(--muted-foreground))"
-                  tick={{ fill: 'hsl(var(--foreground))' }}
+                  stroke="#888"
+                  tick={{ fill: '#fff' }}
                   width={120}
                   fontSize={12}
                 />
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: 'hsl(var(--background))', 
-                    border: '1px solid hsl(var(--border))',
-                    color: 'hsl(var(--foreground))'
+                    backgroundColor: '#1a1a1a', 
+                    border: '1px solid #444',
+                    color: '#fff',
+                    borderRadius: '8px',
+                    padding: '12px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)'
                   }}
+                  labelStyle={{ color: '#fff', fontWeight: 'bold', marginBottom: '4px' }}
+                  itemStyle={{ color: '#fff' }}
                 />
                 <Bar dataKey="count" fill="#ef4444" name="Calls" />
               </BarChart>
@@ -170,27 +175,32 @@ export const CategoryDeepDive = () => {
           <CardContent>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={csatChartData} layout="vertical">
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#333" />
                 <XAxis 
                   type="number" 
                   domain={[0, 5]} 
-                  stroke="hsl(var(--muted-foreground))"
-                  tick={{ fill: 'hsl(var(--foreground))' }}
+                  stroke="#888"
+                  tick={{ fill: '#fff' }}
                 />
                 <YAxis 
                   type="category" 
                   dataKey="category" 
-                  stroke="hsl(var(--muted-foreground))"
-                  tick={{ fill: 'hsl(var(--foreground))' }}
+                  stroke="#888"
+                  tick={{ fill: '#fff' }}
                   width={120}
                   fontSize={12}
                 />
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: 'hsl(var(--background))', 
-                    border: '1px solid hsl(var(--border))',
-                    color: 'hsl(var(--foreground))'
+                    backgroundColor: '#1a1a1a', 
+                    border: '1px solid #444',
+                    color: '#fff',
+                    borderRadius: '8px',
+                    padding: '12px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)'
                   }}
+                  labelStyle={{ color: '#fff', fontWeight: 'bold', marginBottom: '4px' }}
+                  itemStyle={{ color: '#fff' }}
                 />
                 <Bar dataKey="csat" name="Avg CSAT">
                   {csatChartData.map((entry, index) => (
@@ -214,22 +224,27 @@ export const CategoryDeepDive = () => {
           <CardContent>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={csatChartData} layout="vertical">
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis type="number" stroke="hsl(var(--muted-foreground))" tick={{ fill: 'hsl(var(--foreground))' }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                <XAxis type="number" stroke="#888" tick={{ fill: '#fff' }} />
                 <YAxis 
                   type="category" 
                   dataKey="category" 
-                  stroke="hsl(var(--muted-foreground))"
-                  tick={{ fill: 'hsl(var(--foreground))' }}
+                  stroke="#888"
+                  tick={{ fill: '#fff' }}
                   width={120}
                   fontSize={12}
                 />
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: 'hsl(var(--background))', 
-                    border: '1px solid hsl(var(--border))',
-                    color: 'hsl(var(--foreground))'
+                    backgroundColor: '#1a1a1a', 
+                    border: '1px solid #444',
+                    color: '#fff',
+                    borderRadius: '8px',
+                    padding: '12px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)'
                   }}
+                  labelStyle={{ color: '#fff', fontWeight: 'bold', marginBottom: '4px' }}
+                  itemStyle={{ color: '#fff' }}
                   formatter={(value: number) => [`${value.toFixed(1)} min`, 'Duration']}
                 />
                 <Bar dataKey="duration" fill="#f97316" name="Duration (min)" />
@@ -270,50 +285,6 @@ export const CategoryDeepDive = () => {
           </CardContent>
         </Card>
       </div>
-
-      {/* Detailed Category Table */}
-      <Card className="card-matte">
-        <CardHeader>
-          <CardTitle className="text-base">Sentiment Distribution by Category</CardTitle>
-          <CardDescription>Emotional drivers across issue types</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {categories.map((cat, idx) => (
-              <div key={idx} className="border-b border-border pb-3 last:border-0">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-medium">{cat.category}</h4>
-                  <span className="text-sm text-muted-foreground">{cat.call_count} calls</span>
-                </div>
-                <div className="flex gap-2">
-                  {Object.entries(cat.sentiment_percentages).map(([sentiment, percentage]) => {
-                    const colors = {
-                      positive: 'bg-green-500',
-                      neutral: 'bg-yellow-500',
-                      negative: 'bg-red-500',
-                      mixed: 'bg-blue-500'
-                    };
-                    return (
-                      <div key={sentiment} className="flex-1">
-                        <div className="flex items-center justify-between text-xs mb-1">
-                          <span className="capitalize">{sentiment}</span>
-                          <span>{percentage}%</span>
-                        </div>
-                        <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                          <div 
-                            className={`h-full ${colors[sentiment as keyof typeof colors]}`}
-                            style={{ width: `${percentage}%` }}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
