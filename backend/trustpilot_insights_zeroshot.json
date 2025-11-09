@@ -1,0 +1,3695 @@
+{
+  "summary": {
+    "total_reviews_analyzed": 494,
+    "analysis_method": "zero-shot-classification",
+    "model": "facebook/bart-large-mnli",
+    "timestamp": "2025-11-09T14:01:42.868165"
+  },
+  "metrics": {
+    "churn_risk_score": 100,
+    "at_risk_customers": 427,
+    "average_rating": 1.36,
+    "negative_reviews_count": 450,
+    "negative_reviews_percentage": 91.1
+  },
+  "top_issues": [
+    {
+      "category": "bad customer service experience",
+      "count": 459,
+      "percentage": "92.9%"
+    },
+    {
+      "category": "billing and pricing problems",
+      "count": 372,
+      "percentage": "75.3%"
+    },
+    {
+      "category": "device and technical issues",
+      "count": 363,
+      "percentage": "73.5%"
+    },
+    {
+      "category": "misleading promotions and false advertising",
+      "count": 353,
+      "percentage": "71.5%"
+    },
+    {
+      "category": "account and security issues",
+      "count": 348,
+      "percentage": "70.4%"
+    },
+    {
+      "category": "contract and cancellation problems",
+      "count": 324,
+      "percentage": "65.6%"
+    },
+    {
+      "category": "poor network coverage and connectivity",
+      "count": 306,
+      "percentage": "61.9%"
+    }
+  ],
+  "sentiment_distribution": [
+    {
+      "sentiment": "very frustrated and angry",
+      "count": 326,
+      "percentage": "66.0%"
+    },
+    {
+      "sentiment": "neutral or mixed feelings",
+      "count": 125,
+      "percentage": "25.3%"
+    },
+    {
+      "sentiment": "extremely positive and grateful",
+      "count": 20,
+      "percentage": "4.0%"
+    },
+    {
+      "sentiment": "satisfied and happy",
+      "count": 13,
+      "percentage": "2.6%"
+    },
+    {
+      "sentiment": "disappointed but calm",
+      "count": 10,
+      "percentage": "2.0%"
+    }
+  ],
+  "actionable_insights": [
+    {
+      "title": "Critical: Bad Customer Service Experience",
+      "description": "Mentioned in 92.9% of reviews - the most common complaint",
+      "action": "Prioritize immediate investigation and improvement of bad customer service experience",
+      "severity": "critical"
+    },
+    {
+      "title": "High Churn Risk: 427 customers",
+      "description": "86.4% of reviews indicate intent to cancel service",
+      "action": "Implement proactive retention campaigns and address root causes immediately",
+      "severity": "critical"
+    },
+    {
+      "title": "Customer Frustration at Critical Levels",
+      "description": "66.0% of reviews show extreme frustration",
+      "action": "Review customer service protocols and empower agents to resolve issues faster",
+      "severity": "high"
+    }
+  ],
+  "detailed_reviews": [
+    {
+      "id": "690f575b3f7cdc41745d3d48",
+      "text": "A company turned from a telecommunications company to a fraud company, or it hires people who’s not qualified at all  . The employees interest  took the money from the customer's pocket and gave them wrong information. I wish  close their business in the United States in America. My advice is not to get  with them any business they  take your money and then tell you that we are sorry for this mistake.\nAnd when you want speak with any manager they say no one available and he will tell you same what we said",
+      "rating": 1,
+      "timestamp": "2025-11-08 16:44:43",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9968878030776978
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9737424254417419
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5492820739746094
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9054076671600342
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6159617900848389
+      }
+    },
+    {
+      "id": "690eaab3b3642c8f60445f7a",
+      "text": "They are all professional liars. Don’t trust this company. Go with companies like lycamobile",
+      "rating": 1,
+      "timestamp": "2025-11-08 04:28:03",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9618178606033325
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9606325626373291
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9013775587081909
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.35871750116348267
+      }
+    },
+    {
+      "id": "690abdd33e66d1ea500c0d34",
+      "text": "If i can rate them -1 i will. Bought a phone from them from verizon switch to this tmobile lots of promises but everything is a lie. Poor service we got the buy 2 phones get 1 free. 2 phones arrived the other phone went missing until now. They said they are doing an investigation 2 weeks later still no update. Then later on my data got clockes so I don’t have seevice they blocked the wrong phone/ number they were supposed to block the number and phone that was missing. Until now 3week every thing is still messed up.  Went to a nearby retailer but end up talking to a customer service again and they want us to pay a freaking tax for the new phone they will ship but let me tell u guys until now i do t have a data 5 days witnout data imagine that! Screw you tmobile! After this week and this problem is not solved we will surely file a lawsuit. Scammers",
+      "rating": 1,
+      "timestamp": "2025-11-05 05:00:35",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9986334443092346
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.997808575630188
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9874690175056458
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9613615274429321
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.8928166627883911
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.742996871471405
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.574945867061615
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9282398819923401
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8001610040664673
+      }
+    },
+    {
+      "id": "690aa29e97fc8154b5fdee9b",
+      "text": "After 18 years with this company I decided to switch to a carrier at almost half the cost for the same service. When T Mobile asked why I  was switching, I told them my new carrier gives me the same service for $140 less. The only suggestion T Mobile gave me was to drop the insurance on the phones. What a great way to retain customers!",
+      "rating": 1,
+      "timestamp": "2025-11-05 03:04:30",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.6048813462257385
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.5863427519798279
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.8391488194465637
+      },
+      "sentiment": {
+        "label": "extremely positive and grateful",
+        "score": 0.40759822726249695
+      }
+    },
+    {
+      "id": "690aa23b6e226493332c0598",
+      "text": "My experience with T-Mobile has been awful. The first mistake was going to a non corporate store my next mistake was believing that they have the best network in the USA. I have had nothing but problems with my signal strength and wireless network. It is the WORST performance I’ve ever had. The area I live in can not support wireless. Do yourself a favor before changing your internet provider. Google internet speed test and test your speed where you intend to have your service. Make sure you have adequate speeds.  I found this out just recently. In my case I’m on my third wireless router and giving up. They have stopped calling me back to rectify at this point. I am a disabled veteran and went to T-Mobile because of their great veteran deals. No deal here. There is no deal to be had with the aggravation they have put me through. The biggest issue they have is their equipment and sales processes are flawed but they used to help me when I called. The minute I asked to get out they stopped helping.",
+      "rating": 1,
+      "timestamp": "2025-11-05 03:02:51",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9975595474243164
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9972867369651794
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9972784519195557
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9953880310058594
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.35623249411582947
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8351170420646667
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6995517611503601
+      }
+    },
+    {
+      "id": "690a8f47d5317ea27c5dd532",
+      "text": "Bought a new phone. Two days later the Sim card stopped working. Went to a mobile store. Customer service is atrocious. Poorly trained staff with zero customer service.",
+      "rating": 1,
+      "timestamp": "2025-11-05 01:41:59",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9992545247077942
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9983402490615845
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.819981575012207
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.7212172746658325
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.47416195273399353
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.7017893195152283
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.48941296339035034
+      }
+    },
+    {
+      "id": "6909fbdf5e5a6fecbcf37362",
+      "text": "We tried to join T-Mobile to move from Straight Talk/Verizon. T-Mobile sent (2) sim cards for are android phones. The sim's would not work on our less than 1 year old paid for phones because Straight Talk/Verizon had hidden locks on our phones that we purchased and refused to unlock our phones and release our phone numbers that belong to us for over 10+ years. Due to this T-Mobile \"advised me\" to take the sim cards to the local T-Mobile office at our local SAM'S CLUB and have the tech there cancel our account and give them the sim cards... which we did. The T-Mobile Service was \"cancelled\" and \"never\" activated because of the sims and locked phones! Then I receive a bill from T-Mobile for $70.19 for nothing except some trumped up charges they said we owed even though \"the service was never activated\". I sent them a letter telling them that I was not paying this unfair & fraud billing. Then about a week later I get another letter from them where they had reduced it to $29.00 with more unfair & fraud explanations. T-Mobile was basically wanting money just for \"contacting\" them and wanting to move our cellular service to them WHICH COULD NOT BE DONE due to Straight Talk/Verizon locking our phones. Which means we would have to purchase (2) new phones with (2) new phone numbers from T-Mobile to use their service and sim cards! BUT they billed me again for $29.00  for absolutely nothing except more fake/fraud charges. This is the way T-Mobile treats potential new customers, a high bill for nothing $70.19 then if you refuse to pay it they reduce it to a lower $29.00 bill even if you can't make their service work on your phones due to the other cellular service, in this case Straight Talk/Verizon, refusing to UNLOCK our phones and give up our phone numbers that we own! Cellular phone services have become a huge scam it seems with certain cellular network providers.",
+      "rating": 1,
+      "timestamp": "2025-11-04 15:13:03",
+      "issues": [
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9973435401916504
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9948676824569702
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9931108951568604
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9906401634216309
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.976437509059906
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9672371745109558
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.3092086911201477
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9855842590332031
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5405148267745972
+      }
+    },
+    {
+      "id": "69097bc8396a1cae289638b9",
+      "text": "I’ve been a T-Mobile customer for over four years and, up until recently, I would have spoken positively about my experience. However, I feel it’s important to share this so others can make informed decisions.\nOver two days last week, I spoke with six different representatives who all confirmed that I could switch my account to “pay only” and transfer my lines to a different carrier. I relied on that information and proceeded with the transition, only to be told later that the agreement would not be honored. When I requested to speak with a supervisor for clarification, the request was denied.\nI have also raised concerns for a long time about the steadily increasing cost of my bill for four phone lines and inconsistent home internet. I was previously promised a lower rate for the internet service, yet my bill continued to increase with no clear explanation.\nI’m not writing this out of frustration, but as a fair warning to others: transparency and follow-through are important when customers are making financial decisions. In today’s economy, families can’t afford unexpected bill increases or broken service agreements.\nI hope T-Mobile takes this feedback seriously and improves communication, consistency, and accountability for future customers.",
+      "rating": 1,
+      "timestamp": "2025-11-04 06:06:32",
+      "issues": [
+        {
+          "label": "billing and pricing problems",
+          "score": 0.99314945936203
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9862150549888611
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9199034571647644
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.6357433795928955
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5828717350959778
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9721155762672424
+      },
+      "sentiment": {
+        "label": "disappointed but calm",
+        "score": 0.5659554600715637
+      }
+    },
+    {
+      "id": "69092b5a47bae01650421637",
+      "text": "Came in person to get an ongoing issue resolved. Should I be shocked it couldn't be resolved, no not at all. We were in Costco and AT&T switched us over to their provider company for phone service. Between phone companies they would not let us cancel our services on our own and needed to do it for us with T mobile to transfer services. We were told we don't need to do anything or take any action all services were cancelled. Well they weren't. We got new credit cards and T mobile called saying we owed money this months bill couldn't come out due to insufficient funds. We called and couldn't get through to anyone because we currently open with services from them so we could not gain access to the T-Mobile account. Months later looking into this we see they have been charging us every month since April still for services we don't have. Apparently there's an extra line that wasn't closed keep in mind we weren't able to intervene so we are thinking everything has been closed. Talking to CARE at the store over the phone they weren't helpful and blaming us saying they can't do anything so then we get transferred to someone \"higher up\" and said they can't do anything but credit our latest payment. She also tried to tell us everything was closed but a free line wasn't, which we never had access to or even had a phone or sim card supplied. Between carriers they failed to close the account completely when we signed documents that they were. All I wanted was credit to us since changing carriers in April and all I'm getting is rude and unhelpful reps. I asked to talk even higher up about this and they said sure it will take 72 hours to hear from anyone so keep an eye out on your phone for a call. This is very unprofessional and unacceptable that there is no one that can help with any of this and you have to patiently wait at your phone for a call from someone. We came in on a day off in person to get this resolved. I work a high stress environment healthcare job I can't be by my phone every minute waiting for a call and dropping what I'm doing. Very unhappy and will be seeking action for better customer service and credit to us for services .",
+      "rating": 1,
+      "timestamp": "2025-11-04 00:23:22",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9959190487861633
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9942354559898376
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.992507815361023
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9365127682685852
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.7338021397590637
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.7115162014961243
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.6562276482582092
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9834033846855164
+      },
+      "sentiment": {
+        "label": "disappointed but calm",
+        "score": 0.4786001145839691
+      }
+    },
+    {
+      "id": "6909241956e3ce680ac9c81c",
+      "text": "We had their Protection 360 plan for our phone. They use Assurant which is the worse company to deal with. They refused to fix our broken phone screen and you can’t get anyone to do anything about it. We had to pay to fix it out of pocket but can’t file a complaint or get reimbursed from anyone. Total scam!",
+      "rating": 1,
+      "timestamp": "2025-11-03 23:52:25",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9989451169967651
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.979167103767395
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.7960360050201416
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.7526601552963257
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9275081753730774
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.7196773886680603
+      }
+    },
+    {
+      "id": "6906ad95d41b7f046a868e36",
+      "text": "My mother called them for me tonight to see if there was anything they could do about my defective phone. But because I had it so long they gave her a promo code to go to Walmart and get me a free phone.... I am very satisfied",
+      "rating": 5,
+      "timestamp": "2025-11-02 03:02:13",
+      "issues": [
+        {
+          "label": "device and technical issues",
+          "score": 0.9905821084976196
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.4743633270263672
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.9607602953910828
+      },
+      "sentiment": {
+        "label": "satisfied and happy",
+        "score": 0.4829213321208954
+      }
+    },
+    {
+      "id": "6906077069a0f722128e7478",
+      "text": "I have been using the connection for several years, I like good Internet coverage, high speed, but failures often occur, and the price is too high in my opinion.",
+      "rating": 3,
+      "timestamp": "2025-11-01 15:13:20",
+      "issues": [
+        {
+          "label": "device and technical issues",
+          "score": 0.9444762468338013
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.8672802448272705
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.38692834973335266
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8128762245178223
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.7942718863487244
+      }
+    },
+    {
+      "id": "6904da6c7b3aa103a4b5df07",
+      "text": "My dad died in 2021, and being the military account holder, we had to change the account holder to my husband and disconnect my dads line. We went in and got it switched within a week after he died. Then over a yr later we had to make changes, but found out my husband wasnt the account holder, but still in my dads name and we've been paying for his line the whole time. We were told someone would call my husband to switch it over, at the same time they asked for a proof of death certificate,  which I provided.  Since they didn't call my husband,  we called but were told to call the next day. The next day all our lines were cut off.  They told us since we didn't switch the account holder by the deadline, the account was deactivated.  My husband has to have a phone for his job and since they wouldn't let us reactivate our old account with our numbers we had for over 13 yrs, we had to open a new account so he could have a phone. When I called tmobile about this,  they said the cost to activate a new account and the money paid for my dad's line would be reimbursed,  but everytime I inquire about it, nobody knows anything and tells me to go to the tmobile store with my ID and they'll help me with it. At the store they tell me there's nothing they can do and don't know why I was told that. When opening the new account, they told me I'd be able to recover our old lines, but I had to open a new account first. When we called about this they said the lines were already being given to other people.  We were just so fed up and said if we don't get our old lines, we're going to another company.  We had our lines back the next day, but never anything else on being reimbursed.  Its now been over 4 yrs",
+      "rating": 1,
+      "timestamp": "2025-10-31 17:49:00",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9927141070365906
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9898668527603149
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9819322824478149
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9435209035873413
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.892968475818634
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.7220296859741211
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.6629205346107483
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9465575814247131
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5044102072715759
+      }
+    },
+    {
+      "id": "690471e16a1ed609466a04c2",
+      "text": "T-Mobile & Home Int.& T-money has become the biggest piece of trash out there, I mean they just totally suck. Nothing works right, you have to be available during their b/s hours and if you are able to speak with someone, well they know nothing about anything, however they are always willing to escalate your issue to some \"concerned team\" that don't exists. Say NO to T-anything.",
+      "rating": 1,
+      "timestamp": "2025-10-31 10:22:57",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9982655048370361
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.8528147339820862
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.8002077341079712
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.6029554605484009
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.5341002345085144
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.5234314203262329
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.5180639624595642
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8876343369483948
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.42102113366127014
+      }
+    },
+    {
+      "id": "69040775c03317a69ca8d5c7",
+      "text": "if i could give it a zero, or minus zero, i would do so.\n\nthis is a brazen company, only aiming for profit at any costs. \ni went to san louis obispo t mobile shop in downtown centre, thought i might need replace my sim card because my mobile phone was not working properly. the shop staff, without my permission, threw away my sim card, and replaced with their sim card. it turned out t mobile sim card also not working properly. \ni argued with the staff, and in the end, the shop manager fernando intervened, promising that i would receive a credit card reimbursement shortly. at that moment, i thought, it was weird why he did not refund me by credit card instantly, but i believed him, thinking it is a big brand. \n\ni could not be too wrong. from moment i left the shop, i forever lost my money. that promise was a lie. i wrote to their ceo and i was told lie too. \nthis company apparently, acts like a scammer. \nbe aware of it.",
+      "rating": 1,
+      "timestamp": "2025-10-31 02:48:53",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.994798481464386
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9882173538208008
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9281736612319946
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.7433268427848816
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.5588897466659546
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.48092782497406006
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.4009041488170624
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.7887347936630249
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.3836196959018707
+      }
+    },
+    {
+      "id": "6903f3f6db2426477782626a",
+      "text": "I would give a negative rating if I could. Tried the home internet 15 day free trial and cancelled and returned the unit the next day for slow speed/ false advertising. They acknowledged receipt of the unit 12 days into the 15 day trial period and billed me $50 8 days later. I disputed the charge through USAA and it was resolved in my favor. They continued to bill me after each of 3 calls to customer service during which I was assured that it would be taken care of.  I sent them copies of the cancellation emails and the USAA dispute resolution but they billed me again and sent it to a collection agency. I recently submitted a complaint to the BBB and am awaiting T-Mobile’s response. At this point their actions constitute civil harassment.",
+      "rating": 1,
+      "timestamp": "2025-10-31 01:25:42",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9990180134773254
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9963093996047974
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9901652336120605
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9815828800201416
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.7697807550430298
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.4741872251033783
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.31178516149520874
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.983600378036499
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6159210801124573
+      }
+    },
+    {
+      "id": "6902a756fcf72431f75f4671",
+      "text": "We were with our previous company for almost 4 years the services had been up and down. So we checked out some other companies T-Mobile had this big commercial about promoting phones and pay backs with a visa card ect. Our previous bill was for $126.00 mo perfect record with them . CSR for T mobile talk 7s into a 55+ payment program with 2 free phones and Internet included. Which should have been $70 (2 phone minus the discount for auto pay each line 15) $65.00 nothing about taxes extra. Plus 9.00 protective 2 lines $83.00 great so we switched over. Don't forget the visa promo which u can apply to your next bill. Paid of our old company . Went to get promo they denied it cause it wasn't claimed in time even though it took out old company 60 days to send our ending billing paid there promo limit was 30days . Our first bill was 55.00 paid that , but the next bill came and it was $265 cs was no help they just keep saying the visa will pay for it the next bill came it was another 209 + bill I have had to pay them so far 150 plus another 160 and the next bill is for 500 + I have called to get help they gave me the run around again saying the visa should help pays this yet 7 explained visa promo expired. To date I still have this huge bill our income is under 1000 month my boyfriend has stage 4 lung cancer. HELP????",
+      "rating": 1,
+      "timestamp": "2025-10-30 01:46:30",
+      "issues": [
+        {
+          "label": "billing and pricing problems",
+          "score": 0.997984766960144
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9940438270568848
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9865095615386963
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9821121096611023
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.7857359051704407
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.37747371196746826
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.33958831429481506
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8356947898864746
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.46065935492515564
+      }
+    },
+    {
+      "id": "69001654e96603c47649c746",
+      "text": "I have been a t mobile customer for many years. I transferred out one of my phone numbers My account is now defunct.I cannot log in and none of the other Phone numbers work.\nWhen I contact t mobile, they say my account is active even though I can't log in.It basically says open an account. The devices that are still on the account are not usable.They cannot receive or send phone calls or texts. T mobile tells me they need to send a code to my primary phone number.So that they can get into my account. They were the ones that got into my account.And closed off my phone numbers.So they should be able to get back in and turn them on.But no! I have talked to  four different personnel and they all give me the same run around.\nSince I took away the primary number now, the secondary number is now my primary, but they have canceled the active service. After they have canceled my service, they debited my account for hundred and ten dollars for november.\nI truly believe they have done this out of spite.What a horrible company",
+      "rating": 1,
+      "timestamp": "2025-10-28 03:03:16",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9918704628944397
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9788100719451904
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9764630198478699
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9017694592475891
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.8443609476089478
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.5793371200561523
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.42198601365089417
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.984653890132904
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6142069101333618
+      }
+    },
+    {
+      "id": "68fff6abc1374f4988fd7068",
+      "text": "they  promise  great deals  but  wen  you receive  the first bill  you get  nice  surprise  they said  120 a month  for  4  lines  and  you  ending  with  350 a month  be  aware of this  rip off  corporations",
+      "rating": 1,
+      "timestamp": "2025-10-28 00:48:11",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.997695803642273
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9897385239601135
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.8952676653862
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.48045143485069275
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.3275906443595886
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.7874557971954346
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.651496410369873
+      }
+    },
+    {
+      "id": "68fff5ff85191b325140bdde",
+      "text": "I was a customer for T-mobile for 10 years. I've decided to move to another carrier and I had 2 lines in use. For somehow they decided to add a 3rd line for free on my account that I never used. When I've made the transition to another carrier t mobile started to charge me for the \"FREE\" line that I had on the account. I've tried to log in to the account to pay and cancel and I could not access the account online. I've tried to call customer service a couple times and they couldn't help me cancel the account over the phone saying that I need to go to a store. When I came to the store they made me pay for the free line 225$ on open balance for the 3rd line that was a \"FREE\" line. I'll never ever recommend or use t mobile again. I'm feeling the same as somebody that was assaulted on the street.",
+      "rating": 1,
+      "timestamp": "2025-10-28 00:45:19",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.998535692691803
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9924050569534302
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9760946035385132
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9643862247467041
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9312031269073486
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.717785120010376
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.6650658249855042
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9819967150688171
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8237330913543701
+      }
+    },
+    {
+      "id": "68ffcad55a8846d1d0e13d38",
+      "text": "Worst customer service ever! I returned a phone they sent to me because it was the wrong phone and then wanted to charge me more than what was agreed upon as a monthly bill. After returning and canceling service they still continue to charge me and have reported my non-payment to a collection agency. I never turn the phone on I shipped it back to them immediately and never had service with them and talk to them about canceling and they said everything was good and I would not be billed anything but still now months later they are trying to charge me and ruin my credit score.",
+      "rating": 1,
+      "timestamp": "2025-10-27 21:41:09",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9993939399719238
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.998209536075592
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.992620050907135
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.8310297131538391
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.6028326153755188
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.342838853597641
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9915536046028137
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8643054366111755
+      }
+    },
+    {
+      "id": "68fe02b0ddf73ca7c6dca4c2",
+      "text": "I’ve been with T-Mobile for 10+ years. It used to feel customer-friendly. That’s no longer true.\n\nMy bill kept going up, so I removed paid add-ons (like Netflix) in my account. The services stopped working right away — but my next bill still charged me for them.\n\nWhen I called, customer service basically told me it was my fault for removing the add-ons myself instead of calling them, and that “add-ons aren’t prorated.” I was told I’m supposed to cancel exactly at the end of the billing cycle, or I get billed anyway. After ~20 minutes on the phone they finally issued a “one-time courtesy” credit.\n\nAt this point T-Mobile feels like any big telecom: higher prices, blame the customer, no loyalty. I’m planning to move my lines elsewhere.",
+      "rating": 1,
+      "timestamp": "2025-10-26 13:14:56",
+      "issues": [
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9963213205337524
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9956148266792297
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.8072603940963745
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.3945421278476715
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9420531392097473
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5376397371292114
+      }
+    },
+    {
+      "id": "68fd6da60e1d9f2550081d0e",
+      "text": "Loaded with FTC ILLEGAL bait & switch practices. “Unlimited” plans has a limit. Endless wasted time on phone calls TRYING TO UPGRADE . You spend hours & go in circles for zero progress. Do yourself a favor get A better carrier \n120$ month bill for garbage iphones with a terrible cam is a rip off. Tine for consumer Class action lawsuit.",
+      "rating": 2,
+      "timestamp": "2025-10-26 02:39:02",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9870477914810181
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9824013113975525
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9608981013298035
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.6376609802246094
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.5053988695144653
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8292691111564636
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5902609825134277
+      }
+    },
+    {
+      "id": "68fd0b48b55a5ab9246b8db5",
+      "text": "I was a customer for 15 yrs, left them for about 18 months, went back for about another 18 months, wasn’t happy with the deceptive business practices & fake promos, when I decided to leave again, they wouldn’t cancel my services when I requested, they’re telling me I have to wait until my billing cycle ends, which is ridiculous, I think this is because they don’t want to credit me back the prorated amount they would owe me.",
+      "rating": 1,
+      "timestamp": "2025-10-25 19:39:20",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9983916282653809
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9959028959274292
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9910774827003479
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.959373950958252
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.3942811191082001
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9971056580543518
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6498301029205322
+      }
+    },
+    {
+      "id": "68fc4735d0a37e01af86e1ca",
+      "text": "Signed up for the Free Trial. I cancelled after 3 days since no service at home or work is a deal killer.\nCouldn't cancel at the store had to call in to a third world country. \nWell they didnt cancel the number only the account which according to T Mobile I need to keep paying them. Staff at store where I was redirected agrees and spoke to a supervisor in Philippians who denied anyway.\nFiled a report with the IL Atty General Office for fraud.",
+      "rating": 1,
+      "timestamp": "2025-10-25 05:42:45",
+      "issues": [
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9930132031440735
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9907066226005554
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9708107709884644
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9613150954246521
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9480085372924805
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9285449981689453
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.6091845631599426
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.980414092540741
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.3975156247615814
+      }
+    },
+    {
+      "id": "68fb7da702867be1a1489d8b",
+      "text": "I asked this store for a US internet SIM. They sold me two SIMs that didn't work. I asked them to exchange the SIM cards since I had paid for them, and they refused to give me a refund, but they expected me to pay for them all over again (crazy). After wasting two days at the store without anyone being able to solve the problem, I asked for a refund again because of the absurd situation. I was shown a screenshot of a refund scheduled to be processed by September 8th. I have yet to receive the payment, and they are not responding to my emails. They are crooks.",
+      "rating": 1,
+      "timestamp": "2025-10-24 15:22:47",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9986379742622375
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9765956401824951
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.7498559951782227
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.4935646951198578
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.4039520025253296
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.4028019905090332
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.38610121607780457
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9006907343864441
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.7499818205833435
+      }
+    },
+    {
+      "id": "68fa746844ddf81e7c0df313",
+      "text": "T Mobile is something. They have lied to me for months. When I signed up in July they promised me under $200 for 6 lines. We are paying well over $300 and they said it’s correct. They promised to pay off my previous phones. I was approved and they still didn’t do that! I have a lemon of a phone that they have now dragged out 3 months and have refused to replace since the first week! They have done everything to this phone except replace it! Waste of time and money! Avoid T Mobile. All these phone companies are trash! They want billion dollar profits but won’t match it with their products and customer service. Keep raising their prices for trash!",
+      "rating": 1,
+      "timestamp": "2025-10-23 20:31:04",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9989429712295532
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9968516826629639
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9604103565216064
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9414400458335876
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.3816879689693451
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8166061639785767
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8245652914047241
+      }
+    },
+    {
+      "id": "68f7d04bcbc8cc83a9925678",
+      "text": "I've been with this company for 25 years recently I had a warranty issue they sent me a new phone. they're charging me because they allege they never received the old phone so they allege... I have a tracking receipt. Rip off Don't go with them I regret wasting my time with them I'm getting a new phone company.",
+      "rating": 1,
+      "timestamp": "2025-10-21 20:26:19",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9988097548484802
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9821123480796814
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9770195484161377
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.7978184819221497
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.37057051062583923
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9801231622695923
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.7304847836494446
+      }
+    },
+    {
+      "id": "68f7bbe2072361b28a186f27",
+      "text": "I have had a good experience with my local T-Mobile Authorized retailer. They have helped me get through some hard changes, and supported me along the way. However, I have a feeling that this is an uncommon occurrence, because I have had a lot more issues with their corporate than the local store. \nCorporate requires you have 8-16 digit pin, which... no I'm not going to remember that, is the standard not 4? \nOther than that it's a lot of back and forth with their phone support agents, and it can get frustrating. I recommend T-mobile over the other big 2, but out of a lack of more options, not because they are amazing saints.",
+      "rating": 3,
+      "timestamp": "2025-10-21 18:59:14",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9659023880958557
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.8763823509216309
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.5226776003837585
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.9426652789115906
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5732188820838928
+      }
+    },
+    {
+      "id": "68f5337791a012c55a99d2d0",
+      "text": "WARNING: Do Not Fall for T-Mobile’s Lies – Worst Experience Imaginable\n\nI’m writing this as a serious warning to anyone even thinking about signing up with T-Mobile. This company has mastered the art of deception, bait-and-switch tactics, and corporate gaslighting. They lure you in with flashy deals, too-good-to-be-true promotions, and promises of “unmatched customer service.” But once you’re locked in, the nightmare begins — and it only gets worse.\n\nLet me break down my experience so you know exactly what you’re getting into:\n\n1. Baited With Lies, Trapped With Fees\nThey roped me in with a promotional offer they had no intention of honoring. “Free phone with trade-in,” they said. “No activation fees.” “Guaranteed coverage.” Not a single one of those claims turned out to be true. When I brought it up? Suddenly the promotion “didn’t apply to my area” or “wasn’t properly applied at signup.” Their answer? Too bad — pay up or face penalties.\n\n2. Customer Service is a Joke (If You Can Even Reach Them)\nCalling T-Mobile support is like entering a black hole. You explain your issue five times to five different reps, none of whom can access the same notes. Promises of callbacks and escalation are just empty scripts. You’re met with fake apologies and robotic empathy, but never any actual solutions. It’s like being told “we care” while they stab you in the back with another fee.\n\n3. Dispute Resolution is a Total Scam\nTried to escalate my issue? Good luck. Once they’ve got your money, they hide behind “terms and conditions” you never saw. Disputes go nowhere. You're either ignored, misdirected, or gaslit into thinking you misunderstood the offer. They turn their own false advertising into your mistake.\n\n4. Product Guarantees are Meaningless\nTheir so-called satisfaction guarantee is a trap. I returned a device within the window — in perfect condition — and still got hit with a “restocking fee,” late return charge, and mysteriously lost trade-in credit. You can beg, plead, provide receipts — they don’t care. Once you're in the system, you're just another monthly dollar sign.\n\n5. Deliveries and Timelines? Completely Unreliable! If they tell you “2-day shipping,” expect two weeks and a dozen excuses. “The system glitched,” “warehouse delay,” “shipping partner issue,” — they have a script for every delay. Meanwhile, your bill starts immediately, whether you have the product or not.\n\n6. Threats, Penalties, and Intimidation\nTried to cancel after being completely misled? They hit me with a termination fee, an equipment non-return fee (even though I returned the device), and a threat to send it to collections if I didn’t pay immediately. All because I refused to keep paying for a service they failed to provide.\n\nBOTTOM LINE:\nT-Mobile is a dishonest, manipulative company that uses false advertising to pull you in, delivers none of what they promise, then holds you financially hostage when you try to leave. If you value your time, money, sanity — run. There are far better carriers out there who treat their customers like people, not ATM machines. I wish someone had warned me before I made the mistake. Consider this your warning.",
+      "rating": 1,
+      "timestamp": "2025-10-19 20:52:39",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9943312406539917
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9680866003036499
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.8093385100364685
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.753677487373352
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.7028256058692932
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.6814936399459839
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.5329532623291016
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8187755346298218
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5101104974746704
+      }
+    },
+    {
+      "id": "68f51f5a9adabad4866f3c48",
+      "text": "Horrible. T-mobile does not have international calling packages. INstead you need to buy separate and very costly package for the international calls.  Online services are pathetic as well. Dont want to improve also.",
+      "rating": 1,
+      "timestamp": "2025-10-19 19:26:50",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9738588929176331
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9124007821083069
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.7320283055305481
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.3154646158218384
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8342337012290955
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.37107688188552856
+      }
+    },
+    {
+      "id": "68f43c83b742607bfa1bab17",
+      "text": "I think that they have the best cellular service out of all the other carriers and I would recommend them to anyone",
+      "rating": 5,
+      "timestamp": "2025-10-19 03:18:59",
+      "issues": [],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.9711982011795044
+      },
+      "sentiment": {
+        "label": "satisfied and happy",
+        "score": 0.5535375475883484
+      }
+    },
+    {
+      "id": "68f3b36d23c37ef8b51d5f7b",
+      "text": "I feel bad for anyone who has a bad experience with T-Mobile🥲 I've personally always had a good experience with T-Mobile, I've been with them for around 5-6 years after switching from at&t & Straight Talk, never had any issues. Got amazing deals off expensive phones, and received free perks (gifts/discounts) with their T-life app, Customer support was always great for me too (but you do have to wait a while to speak with someone over the phone). Why am I giving 4 stars instead of 5? T-Mobiles cell towers barely work in rural areas, you will only have a good experience with this carrier if you live in the city area. 10067% Recommend T-Mobile and Mint Mobile\n\nI forgot to mention that T-Mobile also works great for people outside of the US, therefore I would recommend this carrier if u travel alot!!",
+      "rating": 4,
+      "timestamp": "2025-10-18 17:34:05",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.8811254501342773
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.8259359002113342
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.9697306752204895
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5778251886367798
+      }
+    },
+    {
+      "id": "68f2cd2a7bd9f7d4a34fc63e",
+      "text": "My router failed, they sent me a new router. I threw out the old broken router. No notification I needed to send back old router. Found a $200 extra charge on my next bill. When I talked to customer service  they tried to convince me it was my fault even though they gave me no notice whatsoever I needed to return the old broken router.",
+      "rating": 1,
+      "timestamp": "2025-10-18 01:11:38",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9963953495025635
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9926465749740601
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9908514618873596
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9608522057533264
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.820526123046875
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.6171270608901978
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.31257519125938416
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8257299065589905
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5183717012405396
+      }
+    },
+    {
+      "id": "68f2b9b9e92a93da556c576d",
+      "text": "Never received a $200 rebate for home internet, claimed that they never received a rebate submission despite the fact that the salesperson told me it wasn't necessary and a rep told me that the rebate was approved.  Now it's been too long and they claim they have no record of it.",
+      "rating": 1,
+      "timestamp": "2025-10-17 23:48:42",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9942091107368469
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.8273888826370239
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5867270231246948
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.5322350263595581
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.4575328826904297
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.36426109075546265
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8209385871887207
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.8143391609191895
+      }
+    },
+    {
+      "id": "68f28fd22099a0c5844b57ed",
+      "text": "I recently upgraded my plan with T-Mobile and the process was seamless. The coverage in my area is strong and customer support responded quickly to my questions. Very satisfied with my experience.",
+      "rating": 4,
+      "timestamp": "2025-10-17 20:49:54",
+      "issues": [],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.9849224090576172
+      },
+      "sentiment": {
+        "label": "extremely positive and grateful",
+        "score": 0.5435592532157898
+      }
+    },
+    {
+      "id": "68f247f8c95ebc1aeb0e4e6e",
+      "text": "Our trade in phones were mailed back during the 30 day window, but they were apparently not received, which would change our bill. I have been with T Mobile for 7 years, with no late payments in that time, and several phones. The initial person I spoke to told me that they would consider the phones received and to ignore the bill increase notice. A month later I got another notice, and this customer service rep would've address the prior discussion, and pulled the \"we will do this investigation for your phones because you're such a good customer\" BS. Meanwhile, they recommended i pay the additional  fees and late payments woth a promise to refund if the phones were found. Well, after 3 months, they for sure aren't going to find the phones. After a whole 3 days I got a call stating the phones weren't found and our bill would go up. At this point I realized its time to change carriers so I paid off 1 phone, attempted to pay the other but the system would not allow me to pay off both in one go. This morning, 4 days after that phone call, they suspended my service for \"late fees\". Basically, they dont care at all about customers. Don't waste your time with them.",
+      "rating": 1,
+      "timestamp": "2025-10-17 15:43:20",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9975056052207947
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.995998203754425
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9939278960227966
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.780387282371521
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.6242581605911255
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.39566770195961
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9223350882530212
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.42846930027008057
+      }
+    },
+    {
+      "id": "68efd0b0a67f823bda27a2d7",
+      "text": "I went ito the T-Mobile store on Peach Street here in Erie, PA a few days ago as my Metro T-Mobile phone had a broken charging port. The rep. there did not tell me that I was in the wrong office (T-Mobile and Metro T-Mobile are separate) and instead tried to sell me a $168 phone and switch me to T-Mobile where thecost for my service would have gone up to $55 from my current $40. As I  couldn't afford it, I l declined and was thinking about moving to Verizon when a friend later told me I had gone to the wrong store.  \n\nA day later, I went to the Metro T-Mobile store and was given a fantastic deal on a new phone ( $60) plus my monthly cost remained the same.  Since the T-Mobile rep. knew I was with Metro, why didn't he just tell me I needed to go to Metro T-Mobile in the first place? My guess: He would have lost a commission. Not good.  \n\nOverview: Beware T-Mobile and go to Metro T-Mobile for phone service as they acn be trusted. T-Mobile obiously can't.",
+      "rating": 1,
+      "timestamp": "2025-10-15 18:49:52",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9944003224372864
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9883844256401062
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9418293237686157
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.8074861764907837
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5383888483047485
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.32102319598197937
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.6086140871047974
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.38322553038597107
+      }
+    },
+    {
+      "id": "68efbabed36919f7a221796e",
+      "text": "Mi experiencia fue fatal de las peores el día 14 de octubre Fuy a la tienda #9a comprar un cable y esto me ocaciono un tremendo problema enviaron un mensaje de texto muy feo a una persona q hace más de 10 años me puso en la cuenta de t móvil por un solo mes pues me salí ya q no me gustó el servicio y costumer service envío mensaje de texto a esa persona diciendo q yo estaba investigando su cuenta y datos de el !!! La persona envío el texto q tengo en mi poder en esa tienda Fuy hablé con el manager todos se limpiaron las manos y me dieron un teléfono de costumer service llame expliqué lo q habían echo le dije yo soy cliente de 20 años de metro con mi mismo teléfono no entiendo como ustedes mienten de esa forma además tratándome de ladrona de datos ? Y cuentas ? Eso es muy grabe la mujer pidió disculpas y me dijo textualmente : mi consejo para q esto no suceda más no compre nunca más nada en T móvil!!! Claro q no compraré nunca más y consejo en ese lugar nadie es profesional pondré también mi queja en Google abran bien los ojos no se confíen  porque pueden llegar a ocasionar una desgracia",
+      "rating": 1,
+      "timestamp": "2025-10-15 17:16:14",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9991398453712463
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9760755300521851
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9642893671989441
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.8946948051452637
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.8759048581123352
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.5454607605934143
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.517832338809967
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9539311528205872
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8090888261795044
+      }
+    },
+    {
+      "id": "68eeec3535cfa5c95103f0a7",
+      "text": "No respect for the customers they tell you what you what here and never follow though was told are phone we be here the next day six days later we get she said to call when the phone came and she would take care of us but no reply back hinesville ga has the worst staff",
+      "rating": 1,
+      "timestamp": "2025-10-15 02:35:01",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9994269609451294
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.6409660577774048
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.5796695947647095
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.514619767665863
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.422920286655426
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.33184969425201416
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9582800269126892
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.45955967903137207
+      }
+    },
+    {
+      "id": "68eeaea00d90c2bea5c8233d",
+      "text": "This company intentionally misrepresents their promotions,  programs and plans. Every  time my payment has been $10 higher than what I was quoted and didn’t include what I was told. This time was no exception. \n\nThey now send me a letter that says I don’t have a warranty I set up and am paying for. Their insurance is thru Assurant. T Mobile says call Assurant. Assurant says call T mobile and you spend hours pingponging and both calls are going to the same cut rate third world unhelpful Philippines call center. At a certain point you want to go full looney tunes Daffy Duck and find a mallet to hit yourself over the head  with. Lol\n\n\nFinally, I go to the T-Mobile store and they tell me the letter I got is because you could only have two phones covered and so one phone is dropping off?  When I say I have only ever had one phone, and just added the second one two weeks ago, they say it’s  likely the phone I had previously. So when I ask, why was that phone even insured or still on my account and was I paying for a warranty when I haven’t had it for two years?  They then tell me it wasn’t on my account and I asked well if it wasn’t on my account why am I getting a letter saying that the insurance was dropping off and they can’t insure it now.  These are the things you will deal with when you sign up with T-mobile. Mindless nonsense that sucks your time and energy away.",
+      "rating": 1,
+      "timestamp": "2025-10-14 22:12:16",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9967802166938782
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9910950660705566
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9534963369369507
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.6858037114143372
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.5463355779647827
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.45954087376594543
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9133428335189819
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6549296379089355
+      }
+    },
+    {
+      "id": "68ee9953ebfcd2ff3a1de9e2",
+      "text": "While the internet service itself was acceptable, I was disappointed by the lack of transparency regarding their 'Unlimited' plan. The plan is premium-priced but comes with significant, hidden restrictions. Most notably, hotspot usage is prohibited, which is a critical feature for many. Furthermore, I experienced consistent slowdowns that suggest bandwidth throttling, making the 'Unlimited' promise feel misleading. The service is okay, but the deceptive practices are not.",
+      "rating": 2,
+      "timestamp": "2025-10-14 20:41:23",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.993547260761261
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.953877329826355
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9109606742858887
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.8839303255081177
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.8039141893386841
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.5062476396560669
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.3013492226600647
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.7277544140815735
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.7353355884552002
+      }
+    },
+    {
+      "id": "68ee524edbe1d5d6fce2005a",
+      "text": "Setting up my new phone was a pleasure with Cora .  She was helpful, kind, and had a lot of knowledge.  She also answered the other employees questions in between setting up my phone with a lot of patience.  She is definitely a big plus to TMobile and the company!!!",
+      "rating": 5,
+      "timestamp": "2025-10-14 15:38:22",
+      "issues": [
+        {
+          "label": "device and technical issues",
+          "score": 0.8778278231620789
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5424878597259521
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.9902997612953186
+      },
+      "sentiment": {
+        "label": "extremely positive and grateful",
+        "score": 0.5752803087234497
+      }
+    },
+    {
+      "id": "68ed2b007a207d81553a4545",
+      "text": "They'll sell you \"5G\" internet that constantly disappears, throttles your connection, and constantly switches back to 2.4kHz speeds. \n\n100% fraudulent advertising.",
+      "rating": 1,
+      "timestamp": "2025-10-13 18:38:24",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9991844296455383
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9606207609176636
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9253888130187988
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9032461643218994
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5502881407737732
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8308886289596558
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.4980895519256592
+      }
+    },
+    {
+      "id": "68e99ea7c79e8c19295afcba",
+      "text": "Complaint Details\nWe joined t mobile over a year and a half ago and at that time as new customers we were given $3,200 to use towards a new phone. Every month we called your customer service and they said we have $3,200 available. We recently spoke with a customer service representative and they said now we have a $1,000 credit. We than went to your store in person and they said we have no money available. We have been lied to and we are getting different information every time we contact customer service. We have never made late payments and we were told the $3,200 never expires. This is bad business and we are requesting the $3,200 credit to be put back on our account. When we spoke to a representative they said our account was notated and that we could use the $3,200 credit towards a new phone. Now they it is a zero balance available. If need be we will contact federal comition and file small claims court. We have been scammed\nDesired Outcome/Settlement\nDesired Settlement: Store Credit None Provided\nMessage to the Consumer on Thursday, October 9, 2025\nGlenn Menke\n\nPhoenix, AZ,",
+      "rating": 1,
+      "timestamp": "2025-10-11 02:02:47",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9985396862030029
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9983236789703369
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9517282247543335
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.5873868465423584
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8494338393211365
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5982881188392639
+      }
+    },
+    {
+      "id": "68e7eba9ca8d1c46c8b6539b",
+      "text": "I've been a t mobile customer for almost 3 years now im here to leave a review about there home internet i started with the white router from 2023 I had all kinds of issues with it but they released a new one in 2025 its an updated router with improved internal antennas and improved 5G chipset also has wifi 7 as well thats a plus, they got it right with this router its literally like I have cable internet again super fast download speeds and decent upload speed surprisingly the download test was 836mbps and the upload was 81.6mbps so as you see those numbers are good. But yes it is now very good for gaming and streaming.",
+      "rating": 5,
+      "timestamp": "2025-10-09 19:06:49",
+      "issues": [
+        {
+          "label": "device and technical issues",
+          "score": 0.9519259333610535
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.7114291787147522
+      },
+      "sentiment": {
+        "label": "satisfied and happy",
+        "score": 0.44644099473953247
+      }
+    },
+    {
+      "id": "68e71118e359cadbddb38177",
+      "text": "Just don’t do it. They are horrific. Spent 5 hours, yes 5 hours, trying to transfer my cell phones. Still couldn’t get it done. Then I tried their Internet service, which didn’t work at all and return that within a week and I’m still getting billed for something. They have a return policy. I’ve spent eight hours trying to get my bill fixed but the incompetence just can’t make it happen it will send me to collections and I will dispute collections I was very patient with them over trying to get the Internet to work and spend a lot of time between the Internet, trying to get my bill fixed. What a total and complete joke. Ignorance on the highest level. I give up.",
+      "rating": 1,
+      "timestamp": "2025-10-09 03:34:16",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9976963400840759
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.979944109916687
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9644164443016052
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9028413891792297
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.5135767459869385
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.35801541805267334
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8821451663970947
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6807725429534912
+      }
+    },
+    {
+      "id": "68e6a7145135f5faf2a204ed",
+      "text": "Meine Gesprächspartner verstehen nichts, nur abgehackt wortfetzen. Ich höre den anderen Teilnehmern hingegen top, der sagt aber andauernd nur: was ? Hä? Das hab ich nicht verstanden!\nKann denn kein Provider mehr eine akzeptable Gesprächsverbindung aufbauen?",
+      "rating": 1,
+      "timestamp": "2025-10-08 20:01:56",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9419199228286743
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.8628817200660706
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.803419291973114
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.47488051652908325
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.46269991993904114
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.6140143275260925
+      },
+      "sentiment": {
+        "label": "disappointed but calm",
+        "score": 0.5602444410324097
+      }
+    },
+    {
+      "id": "68e66d8ceabbb308b736cc45",
+      "text": "Do not trust tmobile they stole 1500$ from me an employee went on my account bought a phone and they never researched or refunded me and kept playing around. Horrible I refuse to get services from them ever again. And they will put you in dept",
+      "rating": 1,
+      "timestamp": "2025-10-08 15:56:28",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9976663589477539
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9844920635223389
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.6184952855110168
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.5309723615646362
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.4249267578125
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.3473101258277893
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9804417490959167
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8597474694252014
+      }
+    },
+    {
+      "id": "68e65ee0b00dd3060114a84d",
+      "text": "Watch yourself when you're upgrading they use double talk to push your bill up they bombard you with emails. Upgrade for free. Like everything else in his life, nothing is free",
+      "rating": 1,
+      "timestamp": "2025-10-08 14:53:52",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9980324506759644
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.977116048336029
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9560367465019226
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.35735535621643066
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.5191324353218079
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5272610783576965
+      }
+    },
+    {
+      "id": "68e5d45d45532a895930cb8e",
+      "text": "Three weeks ago, I switched from Speckroom to T-Mobile. I specifically asked not to change my phone number and transferred my existing number. However, since the process was interrupted online, they redirected me to a store.\n\nAt the store, despite clearly saying I did not want a new line — and probably because my English is not very strong — they added a new line without my consent.\n\nLater, we agreed on a plan for $70/month, but I was charged $149. I thought there might be a reason and paid it without objection. But today, I was shocked to see another $300 bill for the canceled line — a line I never asked for in the first place.\n\nThe store admitted their mistake and apologized several times, but they still expect me to pay this $300 bill.\n\nIn short, I believe T-Mobile is the biggest scam in America. I am currently using their service, but I absolutely do not recommend it to anyone. Believe me, in total, I have spent over 10 hours on the phone in just three weeks trying to fix their mistakes.",
+      "rating": 1,
+      "timestamp": "2025-10-08 05:02:53",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9959560036659241
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9926097393035889
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9710127711296082
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9598349332809448
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.5737025737762451
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5026846528053284
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.38422971963882446
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9444239735603333
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6687846183776855
+      }
+    },
+    {
+      "id": "68e525182464875d710cbdd0",
+      "text": "T-Mobile customer service used to be so good!\nI don't know what happened. I use their pre-paid service and generally enjoy it, but making changes to accounts is literally impossible. Like, it can't be done. I use their website to submit payments--and believe me, that always works--, but when it comes time to change plans, add data, etc. the customer service representatives on the phone have no ability to do anything. And meanwhile you have to verify your identity multiple times through texts to your number. You spend so much time explaining simple things over and over, and in the end, they have no power to do anything. I can't even change my wife's name that's misspelled! The website isn't any better. Changes don't work, and navigation is horrible.",
+      "rating": 1,
+      "timestamp": "2025-10-07 16:35:04",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9895249605178833
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.769062876701355
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.6394912004470825
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.5957364439964294
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.5353819131851196
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5264106392860413
+      }
+    },
+    {
+      "id": "68e4142f8ee82baa64f7dda5",
+      "text": "I was a loyal T-Mobile customer for about seven years. I only cancelled because the service at my home had gotten so poor — dropped calls, barely any data signal — that it just wasn’t usable anymore.\n\nWhen I cancelled, I was told everything was taken care of. The phone line was turned off, and I stopped receiving any bills. Then, about three months later, I suddenly got a bill for over $300 — supposedly for a tablet and a watch line that I believed had been cancelled at the same time. The bill was actually more than what I used to pay when I had my full service active, which made no sense.\n\nThere was zero usage on either device, and when I called customer service, I was basically told that it didn’t matter — I’d have to pay it or it would go to collections. I offered to mail a check for part of the amount while we sorted it out, but just a few days later, they sent the entire balance to collections anyway, even though my payment was already in the mail.\n\nAfter several calls, I was told “tough luck.” That’s not how a company should treat a long-time customer. I’m extremely frustrated and disappointed with how T-Mobile handled this, especially after years of loyalty.\n\nI would strongly caution anyone considering switching to T-Mobile to keep very close track of your account and confirm in writing that all lines and devices are truly cancelled. This experience has been a mess from start to finish.",
+      "rating": 1,
+      "timestamp": "2025-10-06 21:10:39",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9954362511634827
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9949431419372559
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9871140122413635
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9662297964096069
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.925092339515686
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9012224674224854
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5064347386360168
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9634204506874084
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.41454899311065674
+      }
+    },
+    {
+      "id": "68e3feb25187572f7a806e22",
+      "text": "I’ve tried to unlock my device for 2 months straight and every time I call back the date of unlock is pushed a further and further back. It’s now 2 months later and I’ve had to explain my situation to about 20 CS agents and none of them can help me without me begging them to look at my notes on my account!!!! Still no unlock.",
+      "rating": 1,
+      "timestamp": "2025-10-06 19:38:59",
+      "issues": [
+        {
+          "label": "device and technical issues",
+          "score": 0.9969395995140076
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9926108717918396
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.984534502029419
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.6703553795814514
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8003920316696167
+      }
+    },
+    {
+      "id": "68e3f73d52f067a56f87ed04",
+      "text": "They sell you a service that is cheaper until you get any other products, the free watch is not free and we didn't see you only have 2 weeks to return so now we are stuck with a service charge for 3 years on something we won't use",
+      "rating": 1,
+      "timestamp": "2025-10-06 19:07:09",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9988300800323486
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9968433976173401
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9961111545562744
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9881158471107483
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.6712933778762817
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.90300053358078
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5756145119667053
+      }
+    },
+    {
+      "id": "68e3f3a365c8532a7b9efc0c",
+      "text": "Dishonest company with worst customer service!!!\nHave T-mobile account for 8 years for 8 business lines. Three years ago called and closed one line and it appears to be active on my account after cancellation. Called to cancel this line and one more line and its total nightmare. There is no US customer service and after talking to someone who barely speaks English I was assured that lines are cancelled. \nOne week later and lines are still on my account and after waiting for 40 minutes on hold I finally manage to speak with someone from India and was told that those lines will be closed some day soon. \nI have checked my Verizon business account and it make sense to port rest of my numbers back to Verizon. Price is cheaper, coverage is better and US customer service that handles everything  as smooth as possible. \nBTW, all changes can be made in person at any Verizon location.",
+      "rating": 1,
+      "timestamp": "2025-10-06 18:51:47",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.996895432472229
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9802873730659485
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9010520577430725
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5866684913635254
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.5115543007850647
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9898360967636108
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8271123170852661
+      }
+    },
+    {
+      "id": "68e3cddb286b418ca299873e",
+      "text": "Our local store has been great for 3 years until recently. My phone suddenly died, was in warranty and a replacement was ordered. 2.5 weeks later still no phone. Something was very fishy in the store. Between going there repeatedly and calling CC during that time I got the run around, was told my phone had not arrived yet had been signed for 5 days after the order at the store but they claimed it never came. One employee basically kicked me out for getting upset at not having a phone for 13 days and offered no help in a solution. My phone is a medical device for my hearing aids so it’s not just a typical phone. \n\nFinally call CC, got a replacement phone in 4 days and the agent initiated an investigation. However the treatment given to me was unacceptable. Contacting corporate with a complaint they finally responded with calling CC again. Obviously they couldn’t care less about my situation. Very bad CS.",
+      "rating": 1,
+      "timestamp": "2025-10-06 16:10:36",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9971870183944702
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.8346458673477173
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.6238604187965393
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8471158742904663
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5626394748687744
+      }
+    },
+    {
+      "id": "68e312095862bea1a42c75d5",
+      "text": "Tried T-Mobile for 3 days. Bought their highest premium mobile service plan, after making them show me on their T-Mobile website while at the retail store that my property was squarely in their highest tier of 5G+ service before my purchase, and they assured me I was. I went home and had no service for 3 days. Even when I spoke with the second tier of support service at T-Mobile, they said that there is negligible or no coverage at my property address regardless of what they promised me at the retail store. On the first day when I got home and had no service, I tried to call the store and the call dropped and I couldn't even complete one. So I drove back to the store, and they looked at some kind of screen to see if there was any trouble reported in my area and they said there were several trouble tickets made in the last few days. So I went back home and had no service all night. \nNext day, still no service. So I called technical support at T-Mobile. If you replay my recording of that conversation with that second tier of support, which took me quite a bit of effort to get to, you will hear her tell me when I asked her \"So that's just false advertising and they lied to me at the retail store when they showed me on the map that my property is in your highest coverage area?\" you will hear her say yes. \nThird Day still no service. So I returned to T-Mobile the brand new Pixel 10 Pro XL I had purchased and the staff still insisted on charging me a $70 restocking fee. This despite the fact that I met all return criteria, the phone was like brand, new still had the box and everything that came with it. No hardware or software alterations. According to their return policy it says they MAY,  not that they will, charge a restocking fee, so obviously it was at their discretion whether to charge one.  Do you think that they were apologetic that the service they promised me had never materialized? Or felt bad because of all the time and fuel I wasted on calls to customer support and trips back to the store I had to make in 3 days because what they promised had been a lie? It was certainly not in the interest of best business practice not to try to salvage any future relationship with me, as they went ahead and charged me $70 restocking fee anyway. I never got an apology from any of the staff, they never even ACTED sorry; rather, they treated me as if I MYSELF was the problem, despite the fact that I had been patient and cooperative even though I had had no service at my address as they promised me that I would. I will never ever buy anything from T-Mobile again. I do not recommend to anyone a store that lies as store policy, deliberately does not fact check their coverage maps so as not to miss a chance to sell someone a service that doesn't really exist, and couldn't care less about the customer and their experience. False advertising is against the law in all 50 states. I'm a 66 year old retired computer professional and I do understand a great deal about cellular data transmission and how their systems work. I guess they just assumed I was stupid. Please don't give this company your business, they won't do anything to earn it and they don't deserve it after the sale. Shame on T-Mobile. Correct your freaking maps and be truthful with your customers, and you won't create so much ill will.",
+      "rating": 1,
+      "timestamp": "2025-10-06 02:49:13",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9967241287231445
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9961761236190796
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9813037514686584
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9767935276031494
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.664061963558197
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.6100643277168274
+      }
+    },
+    {
+      "id": "68e304d24fa68b8360364c9c",
+      "text": "T-Mobile has customer service agents that will willingly lie to you on the phone while they're being recorded. I never thought something like that could happen the T-Mobile agent lied to me on the phone call while the phone call was being recorded. She told me as a courtesy to me she would turn my phone back on for the day because they turned it off at 11:59 on the 29th my bills due on the 30th and the 30th remains all day the 30th doesn't end when the clocks strikes 12. After she said she would turn it back on as a courtesy she told me that I would have to pay for the courtesy and I said that's not what you said you said as a courtesy to me for being a loyal customer you were going to turn my phone back on and I would have the rest of the day to pay for it and then you turned around and ask for money to do it. So don't try to trick me when you just sat there and blatantly lied I know if I would have made a payment right then and there you would have to turn my phone on because that's what you're supposed to do. Not promise me to turn my phone on and don't do it. So after 17 years I will be finding another phone company because when I even told a manager about this representative lying to me he's just said okay too bad you have to go. And another thing now they want you to have the T-Mobile app installed on your phone and it's not by choice you have to cuz they want you to do everything through the app now.",
+      "rating": 1,
+      "timestamp": "2025-10-06 01:52:50",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.998359739780426
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9816861152648926
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.7122688889503479
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.49599000811576843
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.6599587798118591
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6691746711730957
+      }
+    },
+    {
+      "id": "68e2ebda56635f5e0dd1ac5c",
+      "text": "false advertising - need a inexpensive plan for basic internet = however, all come with bundles that wasn't mentioned in promo for a senior plan.",
+      "rating": 1,
+      "timestamp": "2025-10-06 00:06:18",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9987208247184753
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9589730501174927
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.8197055459022522
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.35085630416870117
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.6034693717956543
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.6500422358512878
+      }
+    },
+    {
+      "id": "68e1d295421149b342f757f6",
+      "text": "When dealing with all these cell phone companies you need to start video taping your visit They tell you if you change over your service they will pay off your other phone company Well most people would think okay let's do it but the real is you have to pay off the other phone company and then they might give you a Visa prepaid card but I wouldn't hold my breath each company got a scamish way of lying and tricking you Biggest scam is you add a line and the scam is if you would have brought the phone within 7 days of your service you wouldn't have to pay a $35 fee buying a phone from them with cash should have waved the $35 fee All scams!!!!",
+      "rating": 1,
+      "timestamp": "2025-10-05 04:06:13",
+      "issues": [
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9994586706161499
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9951717853546143
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9029902219772339
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.729796826839447
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5865572094917297
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.990947961807251
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.41259104013442993
+      }
+    },
+    {
+      "id": "68e18b429aae7554cdee333c",
+      "text": "Cliente por 4años , casi 5 en serio , cancele el servicio el jueves tuve esperas largas en lo que atendían las llamadas.  En si nunca lo hicieron no cancelaron la línea y dijeron mañana viernes esta cancelada a la media noche.. fue una mentira hoy 4 de octubre me dedujeron $180 de mi cuenta y no me lo quieren devolver dicen es un postpago  de que si ya no seré más su cliente .",
+      "rating": 1,
+      "timestamp": "2025-10-04 23:01:54",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9967745542526245
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.990747332572937
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9692540764808655
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9609083533287048
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.7543209791183472
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.7458878755569458
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.6975448131561279
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9924061298370361
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.3790411055088043
+      }
+    },
+    {
+      "id": "68e176247afcd84490b660a4",
+      "text": "1. I ordered T-mobile small business internet for $60 a month. \n2. Nothing but problems with their billing practices. Takes an hour to try to resolve anything with them. \n3. As a business owner I have 2 offices. I use Tmobile for 1, where I am in office 1 DAY a week. But other renters also use it. \n4. T-Mobile will not let me talk to them about my account when I have time, rather they DEMAND I BE IN FRONT OF THE BOX OR THEY WILL NOT TALK TO ME ABOUT MY ACCOUNT, even though I have given them, my name, their box telephone #, their \"pin\" number AND my business phone line  (Verizon) is connected with my  T-Mobile account.  this is 4 types of verification that prove it is my account. There is absolutely no reasonable reason I should have to be physically in front of the darn box!!\n5) I am at that office 1 day a week, scheduled with clients from 9am to 5pm, then need to go home to my family. I have had to call them at least 10 times over a 3 month period! at an hour each time that is 10 wasted hours which cost me $2250 in the inability to get paid by clients. \nThis is a ridiculous scam/thief of a company.",
+      "rating": 1,
+      "timestamp": "2025-10-04 21:31:48",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9911636710166931
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9196805357933044
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.829370379447937
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.6211986541748047
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.673072099685669
+      }
+    },
+    {
+      "id": "68e164f09ccb1604573af400",
+      "text": "What a headache!\nThis review is solely directed to their Fiber Intent.\nI have had their Fiber internet service for about 10 weeks now.\nFirst issue. Scheduled installation. Day here all day waiting. Never happened. Had to call in and reschedule. When the tech arrived, he informed me that he was indeed here the previous day for installation. When I asked him if this was the case, how is it he didn't appear on any of my monitors and certainly not on my ring doorbell. Hhhmmm couldn't explain that one.\nSince installation, the same tech had been out twice and another tech once. My internet would go out for more than 24 hours. Strangely, each time the techs were being dispatched, my internet would suddenly come back online. Techs check the signal, \"oh, look at these numbers.\" You have GREAT service.\"\nExplaining that this keeps happening along with the router not providing accurate information doesn't seem to matter. Their equipment showed amazing numbers and I should be happy. This morning's tech informed me that \"could replace the router and cover cable, but, won't change anything.\" I had to ask for clarification. If I understood this statement, it translates to: this issues you are experimenting aren't for to the router Sir, it's the overall service. It's newer and still has bugs. Hhhmmm, what does that say. Now, to his credit, he would not validate my translation, he simply responded that the issue is not the router. Hearing that on top of excuses provided during the visit resulted in my asking him to leave.so, after waiting more than a day on weekdays, not weekends, to get service only to have them show up and do nothing more than show me the numbers, what's the point in even calling? \nI did call in after dismissing the tech just to have my concerns noted. The agent, truly amazing and skilled wanted to do more than leave it at noting the account. I should be hearing from a tech between Monday and Wednesday to get a new router. I will certainly update this with the status. If this doesn't resolve the issue, I'll be forced to cancel as they have no way to isolate where the issue is actually happening. Not like they are going to come out and start digging up cable to backtrack where the issue is. \nThis being said, consider the following. Are you a work from home individual? If yes, this service, in its current state, could cost you your job. If you need it for security, again, in its corny state, not a good choice.\nUPDATE\nIt's now Wednesday 10/8. I was supposed to receive a call back today. Never happened. I was without service AGAIN from Saturday until around 3:30 today. More interestingly, I received a text confirming my tech support visit for Friday. Um, I didn't schedule an appointment, but, would have been nice to have them out on Monday when service was out.",
+      "rating": 1,
+      "timestamp": "2025-10-04 20:18:24",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9411253929138184
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9216275811195374
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.7280924916267395
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.3888842761516571
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.5126844048500061
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.4698469638824463
+      }
+    },
+    {
+      "id": "68e055161c529960d464b9be",
+      "text": "After multiple phone calls to verify my identity so that I can pay my bill and get my account balance, I'm still on hold with them. The worst customer service.",
+      "rating": 1,
+      "timestamp": "2025-10-04 00:58:30",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9993705153465271
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.996397852897644
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.959868311882019
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.5847440361976624
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.3468815088272095
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.323924720287323
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.5291776657104492
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.7512511014938354
+      }
+    },
+    {
+      "id": "68e0393f00aada513a5cd160",
+      "text": "So I left my job and my past employer let me keep my work mobile number that I had brought there with me when I started there.  they gave me the info I needed to port it to my service provider (T-mobile).  I went to the T-mobile store in Ellisville MO and I told them I want to port over my work cell phone number and have both phone numbers on my T-mobile device. They said no problem just call \"611\" and they will take care of it for you.  So I called 611 and an automated menu ended up sending me a link for porting my number over.  Followed the instructions and it ported.  Turns out that it actually REPLACED my current number and they deleted it.  I ended up spending over an hour on the phone with T-mobile customer service trying to get it rectified.  And they wanted to double my phone bill for having two phone numbers on one device.  Insane.  So they mailed me a physical sim card to setup the second number and have both.  I received it and installed it.  Spent another 30 minutes talking to multiple different people in customer service who said they couldn't make it happen they would have to transfer me to someone else.  I give up.  Time shop for a new carrier.  This is absolutely ridiculous.",
+      "rating": 1,
+      "timestamp": "2025-10-03 22:59:43",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.993100643157959
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9746432900428772
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9530911445617676
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9306817054748535
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.4317324757575989
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9409112334251404
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5510064363479614
+      }
+    },
+    {
+      "id": "68dfe985bcbdaf8d808a38c0",
+      "text": "Worst cell phone company. Employees lie about the promises. Customer service is very bad. They never call back. They never give their phone numbers or emails for a follow-up. Billing is horrible.",
+      "rating": 1,
+      "timestamp": "2025-10-03 17:19:33",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9991691708564758
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9758957028388977
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9411826729774475
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.5298182964324951
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.44938069581985474
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.7068756818771362
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.43589305877685547
+      }
+    },
+    {
+      "id": "68df04753da50c77ab6577ec",
+      "text": "🚨 Warning about T-Mobile 🚨\nWatch out, people! T-Mobile adds charges and even extra lines to accounts without consent. I was billed for 18 months for two lines I never requested. When I raised the issue, customer service was rude, unprofessional, and blamed me instead of taking responsibility. They refused to issue credits for their mistake. This is fraud and terrible customer service—protect yourself and double-check your bills!",
+      "rating": 1,
+      "timestamp": "2025-10-03 01:02:13",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9994134902954102
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9948469996452332
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9470509886741638
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.795711100101471
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5433907508850098
+      }
+    },
+    {
+      "id": "68dd9abcc63aa4149fde3eef",
+      "text": "they have THE worst customer service of any carrier I've had around the world",
+      "rating": 1,
+      "timestamp": "2025-10-01 23:18:52",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9966913461685181
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.359011173248291
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.3438456356525421
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.3393772840499878
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.7154610753059387
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5282233357429504
+      }
+    },
+    {
+      "id": "68dd53d5f2a7c13154aafa77",
+      "text": "I've been a faithful customer at TMobile for 23 years. My mom just died and I had to make a  payment at the funeral home, so I called TMobile Customer Svc., to set up a payment arrangement, which they confirmed. This morning, I checked my Bank and TMobile still took out their payment, putting my account in the Red. The problem is, TMobile has sold out to foreigners outside America, who did not disclose important information to me at that time, which put my account in the Red. When I called to tell them what \"They\" did, they charged me $10 fee! All that I can say right now is, I will pay my final bill Goodbye Tmobile, and Hello Verison. Stephanie Harris-Beecher.",
+      "rating": 1,
+      "timestamp": "2025-10-01 18:16:21",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9948825836181641
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9772324562072754
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9336135387420654
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.7433672547340393
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9387916326522827
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.45724084973335266
+      }
+    },
+    {
+      "id": "68dcb4aff89d772a8ee0fee6",
+      "text": "We have been customer's with TMobile for over a decade. I must say up until recently I would have recommended this company to people. However in this last week my husband and I have been very disappointed. At no fault of our own, the software update caused our phone's to faulter completely. This company has not been able to repair the problem. On top of that when a ticket was opened to respond to the incident we found out 2 days later that someone just closed the ticket without any investigation into the error or contacting us. They did give us replacement phones which still had the same problem.  They have tried to con us into purchasing new phones (ours are not old). They have suggested I go to walmart to purchase new phone's. No this error is not our error. We should have a full refund of the cost of the phone they have damaged. We are now going to change to a new phone company.",
+      "rating": 1,
+      "timestamp": "2025-10-01 06:57:19",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9931380152702332
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9813692569732666
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.6067735552787781
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9128758311271667
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5736364722251892
+      }
+    },
+    {
+      "id": "68dc8c8e3ce2b8a7ee874c43",
+      "text": "It was truly amazing people were so nice and helpful thank you guys!",
+      "rating": 5,
+      "timestamp": "2025-10-01 04:06:06",
+      "issues": [
+        {
+          "label": "device and technical issues",
+          "score": 0.3247992694377899
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.3239805996417999
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.31137052178382874
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.9862766265869141
+      },
+      "sentiment": {
+        "label": "extremely positive and grateful",
+        "score": 0.8382485508918762
+      }
+    },
+    {
+      "id": "68dc500c25ee40e884a78374",
+      "text": "The internet service was OK. However, when we no longer needed to use wireless 5G, we cancelled the service. I followed the instructions to return the gateway via UPS. I was warned by the UPS store owner to make sure I hold onto the return receipt. I am glad I did. They billed me a month later for an unreturned gateway. When I called to clarify and shared the receipts, they acknowledged the UPS tracking showed delivery, and they said they would take care of it. One month later, another bill and a notification that it had been sent to collections. Another call and acknowledgement that the UPS tracking showed delivery, but no assurances that my account would be credited. They insisted that they needed to locate the returned box before that could happen. They turned their internal inventory problem into my problem.",
+      "rating": 1,
+      "timestamp": "2025-09-30 23:47:56",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.989815890789032
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9808469414710999
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9755464792251587
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.8911012411117554
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.8872398138046265
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.7342109084129333
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.7007596492767334
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9533131122589111
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.6933633089065552
+      }
+    },
+    {
+      "id": "68dc036f36c9e5830fcd2f21",
+      "text": "I would like to say T-Mobile is not a good company please do not transfer to them. All Metro by T-Mobile are trying to transfer their customers to T-Mobile because they get a bonus for everyone they transfer. With promises. They got me for sure they promised me 4 Samsung S25's and an iPhone 15 (I would make payment on this phone) but once they transferred my numbers they only provided me with 2 Samsung phones and I get nothing else. Day later my poor granddaughter has not phone as Metro by T-Mobile has it locked so I NEED to BUY a phone so she can have a phone. This is such bad customer service DO NOT GO TO T-MOBILE",
+      "rating": 1,
+      "timestamp": "2025-09-30 18:21:04",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9993571639060974
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9956248998641968
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.6158918738365173
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.525647759437561
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5155196189880371
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.4032348096370697
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.31800535321235657
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9605430364608765
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.7139089107513428
+      }
+    },
+    {
+      "id": "68daa03b07b39bff5a48d6a4",
+      "text": "Company employees and higher should ware a mask like the old time train robbers.  I was charge for lines that were never used and still 3 month after cancellation they keep on billing me even if I call, went to their office wrote to the BBB. Lost faith on both BBB and Tmobile never again be  a customer. They lost a customer after eight years member.  Stay away from this unscrupulous company.",
+      "rating": 1,
+      "timestamp": "2025-09-29 17:05:31",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9989462494850159
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9988139867782593
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9914128184318542
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.901497483253479
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.7705132961273193
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.5794594287872314
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.985573947429657
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.796675443649292
+      }
+    },
+    {
+      "id": "68d846d3d7935f272897c9fe",
+      "text": "Terrible service. Internet is so slow. Had to switch back to Verizon",
+      "rating": 1,
+      "timestamp": "2025-09-27 22:19:31",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9985240697860718
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9769977927207947
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9329756498336792
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.4047568738460541
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8688004612922668
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5035161972045898
+      }
+    },
+    {
+      "id": "68d7779f8aaa3f43bb352198",
+      "text": "From the REAL providers ( i am not talking about the numerous MVNOs) they are certainly the best in pricing and in 5 G internet for your cell phone. Coverage wise they are still behind Verizon in remote rural areas but that's not where Ii live. they got worse in recent years in customer service and with jacking up \"lifetime guaranteed\" prices.  All these people who give those one star ratings should realize what else is out there and that's depressing.\nCustomer since 2007",
+      "rating": 4,
+      "timestamp": "2025-09-27 07:35:27",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9124959111213684
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.6687203645706177
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.5073969960212708
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.516283392906189
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.6255603432655334
+      }
+    },
+    {
+      "id": "68d678c1a5bc1feab8cc20a5",
+      "text": "Wish i never worked for this company and regret being a customer look up their breaches last known security breach was may 2023 and many still impacted by identity theft. Tmobile offered a year free of mcafee. Careless solutions and also even more careless for employee unsafe environment and much retaliation tactics",
+      "rating": 1,
+      "timestamp": "2025-09-26 13:28:01",
+      "issues": [
+        {
+          "label": "account and security issues",
+          "score": 0.9871829152107239
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.982992947101593
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.8286349773406982
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9242700338363647
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.853755533695221
+      }
+    },
+    {
+      "id": "68d4d48a7dd7d5c77711cad6",
+      "text": "I am with Tmobile and am very disapointed with a few things. #1 they offered a family freedom plan when I signed up and after many attempts to get my reinbursment for one of my phones and after many months I am still waiting. The last attemt I was told it was in the works, the same day I got a text saying it failed. If I was not commited to their co. I would switch.  I was with them before and had a good expierence but this time has been very trying. #2 My bill is the same as it was last time only then I had three lines of service. Do your homework and check out TMobile real good if you decide to go with them, hopefully you will have a better expierence. M. Nance",
+      "rating": 2,
+      "timestamp": "2025-09-25 07:35:07",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9922861456871033
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9481329321861267
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.8404446840286255
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.7705647945404053
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.5264631509780884
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9033536911010742
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5093696117401123
+      }
+    },
+    {
+      "id": "68d4737d86efbce45ece449d",
+      "text": "If I could give zero stars..... or give them a negative rating.  Terrible migration experience from Verizon. I am being billed every month for phones that were supposed to be free. They owe $360 in credits and I am tired of calling trying to find out where my money is. Don't do it no matter what they promise you will have nothing but regret.",
+      "rating": 1,
+      "timestamp": "2025-09-25 00:41:01",
+      "issues": [
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9980414509773254
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9978875517845154
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9933516383171082
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.8456209301948547
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.36381658911705017
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.3356015086174011
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9748421907424927
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6325889825820923
+      }
+    },
+    {
+      "id": "68d345349550ba7c41364dd3",
+      "text": "I’ve been with T-Mobile for 11 years, and the service has gone downhill so badly that I finally decided to switch carriers. I even paid off my phone in full, yet they still refuse to unlock it. Save yourself the headache—switch to a different carrier. You’ll get far better service at a much better price.",
+      "rating": 1,
+      "timestamp": "2025-09-24 03:11:16",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9960928559303284
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9024889469146729
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.716916024684906
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.6859692931175232
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.6848632097244263
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.6210692524909973
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9917835593223572
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.49803227186203003
+      }
+    },
+    {
+      "id": "68d3290a7449eadecffe4660",
+      "text": "Scam company charged me equipment non return fee because the imei number didn’t match to what they had in their system.",
+      "rating": 1,
+      "timestamp": "2025-09-24 01:11:06",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9960789680480957
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9817929863929749
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9810872077941895
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9677309393882751
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.7627411484718323
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.7508997321128845
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9602419137954712
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.4865390956401825
+      }
+    },
+    {
+      "id": "68d322f1662e818c023654f5",
+      "text": "Worst internet connection I've ever seen\n   People with straight talk from Verizon can play on the internet but not t mobile customers.  We can only have internet of w are close proximity to our home internet which is quite odd.  What am I actually paying for.  I'd just use messenger for free",
+      "rating": 1,
+      "timestamp": "2025-09-24 00:45:05",
+      "issues": [
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9953767657279968
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.8530365824699402
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.7572754621505737
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.788164496421814
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.40393611788749695
+      }
+    },
+    {
+      "id": "68d1f4d6f3815f59f69e8742",
+      "text": "Es un pésimo servicio cobran por cosas que no utilizan jamás la recomendaría me cortaron la línea y me quieren cobrar demás malísimo servicio",
+      "rating": 1,
+      "timestamp": "2025-09-23 03:16:06",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9956825375556946
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9869015216827393
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9784611463546753
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9542685151100159
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9246445894241333
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.7089477181434631
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.47049346566200256
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9973779916763306
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5458037257194519
+      }
+    },
+    {
+      "id": "68d184093c8ec4e5378f2c8c",
+      "text": "On May 10, 2025 I signed up for a 15 day free trial of home internet. On May 14th I returned the equipment to a T-Mobile store and told them I wanted to cancel and asked if I needed to do anything else. They took the equipment and said that’s it. \n\nUnfortunately, I signed up for auto pay so on June 4th I was charged $65! I’ve been back and forth between phone calls and visits to the store and just today September 22nd I’m being told the account wasn’t canceled until some time in June. Now T-Mobile says I can’t get my $65 back!!\n\nWTH!?! I have to pay $65 for service I didn’t have because an employee didn’t do their job correctly. \n\nWill never deal with T-Mobile again, EVER!!",
+      "rating": 1,
+      "timestamp": "2025-09-22 19:14:49",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9971480369567871
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9860039949417114
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9817090630531311
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.6697762608528137
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.6652976870536804
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.4651910960674286
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9630962610244751
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8555150628089905
+      }
+    },
+    {
+      "id": "68d16abe7b388990438eac4c",
+      "text": "T-mobile customer service sucks. They never answer the phone. When do answer. The first thing they ask if you want to make a payment. Even though my bill is in good standing order. However once you ask them a question. They'll transfer you over. Basically put you on hold and never unhold nor call you back.  T-mobile don't customer service doesn't care about the customer only about our money.  They also don't know what they are doing! So upset with T-mobile customer service.. They don't care about us",
+      "rating": 1,
+      "timestamp": "2025-09-22 17:26:54",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9987605214118958
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.7976042628288269
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.5312155485153198
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.4101618230342865
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.36858341097831726
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.35673952102661133
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.5766323208808899
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.7656015157699585
+      }
+    },
+    {
+      "id": "68d12907f57d8bffe1918362",
+      "text": "T-Mobile has been a nightmare and after 10 years I'm done for the following reasons\n(1) For the last few years my monthly bill has been all over the place from $228 to $338\n(2) They have been charging me $18 a month for over 2 years when it came free with the plan I was on.\n(3) And after being with them for over 10 years they offered me a free phone when they couldn't figure out what was wrong with mine only to find out 6 months later they went back in and started charging me and tried to lock me into a 2 year contract.",
+      "rating": 1,
+      "timestamp": "2025-09-22 12:46:31",
+      "issues": [
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9993268251419067
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.998871922492981
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9960845708847046
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9773044586181641
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9538906812667847
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.599249541759491
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.41580554842948914
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9930843710899353
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.8123636245727539
+      }
+    },
+    {
+      "id": "68d0c0b19c1fcc8000ebf66b",
+      "text": "USING THE VOICELINE SIM IN A HOTSPOT DEVICE\n(INCLUDES ANY MVNO that also runs on TMOBILE)\n \none thing that is good about tmobile, that lot of people is unaware are,, any VOICE LINE with hotspot data will work in a HOTSPOT ONLY DEVICE..\nThis includes BUSINESS LINES to regular line.s\nThe same goes for ALL THE MVNO PROVIDER that run on tmobile.\nThe sim cards wil work in hotspots up to the HOTSPOT ALLOWLANCE. \n\nTmobile prices could be better, but they are comparable to most MVNO..... \n\none thing that is most valuable PART of TMOBILE, is that their sim cards are really FLEXIBLE. meaning if you can choose either one, USING A VOICE EITHER IN A sellfone or HOTSPOT.\n\nYOU ARE A PAYING CUSTOMER, YOU SHOULD HAVE THE RIGHT AS YOU PLEASE to do WITH THE SIM.\n\nATT is more stubborn, they hardly allow any non att device on their network.......\nATT will not allow this period with their voice lines. they consider it abuse or something, OR NEITHER WILL IT WORK ANY MVNO that also runs on ATT NETWORK.....\n\nTMOBILE doesnt mind what you do with the sim.\n\nThey will not turn you off if you use only the data portion of the VOICE LINE...  \n\nThis is of my own verification since being around tmobile for 10 years & experimenting with the simcards in different devices...",
+      "rating": 5,
+      "timestamp": "2025-09-22 05:21:21",
+      "issues": [
+        {
+          "label": "device and technical issues",
+          "score": 0.4544699788093567
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.37977084517478943
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.3750973641872406
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.36433231830596924
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.3322353661060333
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.5212509036064148
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.49367377161979675
+      }
+    },
+    {
+      "id": "68d0811a0fd241bef0571f9e",
+      "text": "On August 16th 2025I visited a T-Mobile store to purchase a new phone right away. The salesperson tried to upsell me on a promotion for a smartwatch but only if I change my plan, I decline making it clear. I only wanted a new phone and to keep my existing plan, which I've had since 1998. The salesperson then walked me through the phone options, and I selected one. He asked if I wanted to trade in my old phone and I agreed at no point, did he disclose that the trading in my phone would automatically switch me to a different plan. I only realized my plan had changed when I received my bill. It was over a $100 more than usual. I felt deceived. I never agreed to a plan change. And the lack of transparency was unacceptable. Thankfully, when I called T-Mobile, a representative named Kirk was incredibly helpful and patient. As I explained the situation lesson learned, always double-check. What any change to your account might mean? Ask direct questions and get clear answers. Don't let yourself be misled like I was.",
+      "rating": 1,
+      "timestamp": "2025-09-22 00:50:02",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9958767890930176
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9905490875244141
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.8811438083648682
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.8387603759765625
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.48440900444984436
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.35895654559135437
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.30720287561416626
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8678025603294373
+      },
+      "sentiment": {
+        "label": "disappointed but calm",
+        "score": 0.35594072937965393
+      }
+    },
+    {
+      "id": "68cf8a9f01bb575a7f92b8bd",
+      "text": "Went Japan. T-Mobile service is worse than third world. No way to contact them with a bricked phone. What a disaster.",
+      "rating": 1,
+      "timestamp": "2025-09-21 07:18:23",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.99695885181427
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9920135736465454
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9849360585212708
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.3413240909576416
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9002296924591064
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5038520693778992
+      }
+    },
+    {
+      "id": "68cec7be58bf3323cdde3c7c",
+      "text": "T-Mobile customer service is a joke. They pull you in with lies upon lies and then when you get your bill the truth comes out. Then when you try to get answers they ignore you. You call customer service and they tell you you have to go to the store because that's where the lies started. You go to the store and they tell you that you need to call customer service. It's absolutely horrible. I work for one of the biggest insurance companies and if our customer service was like this, we would lose so many customers.",
+      "rating": 1,
+      "timestamp": "2025-09-20 17:26:54",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9977573156356812
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.8615782260894775
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.7879831194877625
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.36748677492141724
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.3421444892883301
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.324651300907135
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.7505369186401367
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6572613716125488
+      }
+    },
+    {
+      "id": "68ce23c52836925e22c8ddc3",
+      "text": "i prepaid 159+ for their basic $15 a month. they processed my credit card, sent sim card, they emailed the order # confirmation. after 3 agents and 1 supervsior they still could not find my account  and told me since i will not drive 2 hrs to a store it was ok to cancel my payment and keep what they sent.",
+      "rating": 1,
+      "timestamp": "2025-09-20 05:47:17",
+      "issues": [
+        {
+          "label": "account and security issues",
+          "score": 0.9943237900733948
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9915995001792908
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9847685098648071
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9418854713439941
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9044607877731323
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.8183971643447876
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9813703298568726
+      },
+      "sentiment": {
+        "label": "disappointed but calm",
+        "score": 0.4037817716598511
+      }
+    },
+    {
+      "id": "68cb3278e06a08c57490662f",
+      "text": "Horrible. Customer service is awful. They don’t give correct information to customers. Also, they keep put you on hold for so many times and so long and they can’t solve the problem. I changed the responsibility and they didn’t notify me that I can’t transfer all my 7 lines to other accounts. Now I ended up have to pay 2 bills. I have been calling since February and they still didn’t fix my issue. One of customer service agent told me that I don’t have to pay any money. They will adjust the amount. I told them that I didn’t pay the phone yet but they keep saying No No you don’t have to pay. We will take care of it. Now I got the bill for my equipment but I have to pay full price. When I got the phone that was a promotion and now they don’t give me promotion. I am not satisfied with customer service at all.",
+      "rating": 1,
+      "timestamp": "2025-09-18 00:13:12",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9986944198608398
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9825892448425293
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9612289667129517
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9206997156143188
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.8261674642562866
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.6606125235557556
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.4875824749469757
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.5286297798156738
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6639870405197144
+      }
+    },
+    {
+      "id": "68cb115d768edcd222baac38",
+      "text": "Terrible reception everywhere, even though I have 5G, Technical support takes so much of my time with protocol talking and doesn't solve the problem.  They apply international charges from Canada to the US when they say they don't, when I called for information. Don't get T-Mobile. I have been too lazy to change companies, but I will have to.",
+      "rating": 1,
+      "timestamp": "2025-09-17 21:51:57",
+      "issues": [
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9994377493858337
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9975160956382751
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9966287016868591
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9207654595375061
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.8825785517692566
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.608052134513855
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.5902353525161743
+      }
+    },
+    {
+      "id": "68ca4011d4325fba38c4d5d7",
+      "text": "Been with tmobile 8 plus year, so, so coverage & rate hikes, but worst of all when I transfer my lines to another carrier early this year & try to cancel theirs multiple ways, but I’m told I can do nothing w/o a 4 digit code that sent to their old line with that no longer exist to get it. Stuck paying $200 bill monthly with no way out even tho I pay the new carrier for the same transferred lines for many months now. W/o the code they say I have no authority over the account, but I’m still liable to the bill on service not provided. This security tactic bondage scam is sickening. Thieves, I’ll have to take to court to make bills stop & recoup $1000’s it’s looking like",
+      "rating": 1,
+      "timestamp": "2025-09-17 06:58:57",
+      "issues": [
+        {
+          "label": "account and security issues",
+          "score": 0.9977635145187378
+        },
+        {
+          "label": "bad customer service experience",
+          "score": 0.9963385462760925
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.9952424764633179
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.9767718315124512
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.4819362163543701
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9953864216804504
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.7172960638999939
+      }
+    },
+    {
+      "id": "68c9e9056f016c87c6eb081b",
+      "text": "I have been a T Mobile customer for 30 years and there has been a view bumps along the way. However, I  currently have Z Fold 5, which started showing the manufacturer defect. They make it appear it's the customer problem as they sent more around the to fix the issue. I owed $5 and they wouldn't simply add it to my account after forcing me to get insurance. The oh well attitude from the employee was horrible. I can go on but you get the point. I'm simply not pleased with at all right now. Yet they call me a loyal customer.",
+      "rating": 2,
+      "timestamp": "2025-09-17 00:47:33",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9809758067131042
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9620320200920105
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.38872095942497253
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.38786154985427856
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer is satisfied and staying",
+        "score": 0.5589200258255005
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5697060227394104
+      }
+    },
+    {
+      "id": "68c9933c364b57cc089b5de9",
+      "text": "Terrible customer service and deceitful. We signed up over the phone through an account representative and were planning on getting new phones and bringing over our two phone lines. We discovered not only did she create temporary lines for us (which we did not ask for), but she also falsified how much our plan would be and created a temporary PIN that was not the one we provided. The day we received our phones, we discovered the discrepancy in the plan and we attempted to call T-Mobile to cancel our lines and return the phones. They refused to help us since we could not provide them with a correct PIN (a pin that we never created) and we did not have any access to our Tmobile account. We then had to go into the store and have a manager assist us in cancelling not only the lines that were created without our permission but also to return the phones that were not even opened from the box. We spent 3 HOURS in the store with the manager and on the phone with customer service. FINALLY, we received confirmation that our phone lines were canceled, and we were sent a return label for the phones. A month later, we received a phone bill from Tmobile for the 2 lines that we had canceled a month ago and never used! We called customer service and they informed us that the bill would be taken care of. We just received ANOTHER bill today for late fees from the phone bill from the previous month of services that we never used or activated. As we are the one phone with them now, the customer service representative is completely ignoring us and is refusing to send us to her supervisor and give us her name/ID information.",
+      "rating": 1,
+      "timestamp": "2025-09-16 18:41:32",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9991776943206787
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.979546070098877
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.9742350578308105
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9438464045524597
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.7623099088668823
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.5531297922134399
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.9684439897537231
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.6092983484268188
+      }
+    },
+    {
+      "id": "68c98d8246d1e89fd9545e8d",
+      "text": "Store manager at 22560 Tomball Pkwy Ste 300, Houston, TX 77070, told me I could get a new and faster home internet unit for free, did not tell me the service itself would be more expensive. I returned the unit next day, same manager took my return, but the input was incorrect, I had to drive to the store again, 15 minutes each way, 1.5 hours all three times, so she could correct her errors.",
+      "rating": 1,
+      "timestamp": "2025-09-16 18:17:06",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9949284791946411
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.9931106567382812
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9886614084243774
+        },
+        {
+          "label": "billing and pricing problems",
+          "score": 0.968868613243103
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.8622827529907227
+        },
+        {
+          "label": "contract and cancellation problems",
+          "score": 0.8129714131355286
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.33352401852607727
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.8635994791984558
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.5658061504364014
+      }
+    },
+    {
+      "id": "68c84092b046624a881ac3f2",
+      "text": "Worse customer service by fair,! U won’t get any sales with a handful of ur staff. Nothing accomplished in 3 hrs with multiple agents. U need ppl who can make ur company money not bullshit them lie and take long for nothing to get done.Do you guys need help with hiring ppl that know what they’re doing? You’ll lose money more then make money.",
+      "rating": 1,
+      "timestamp": "2025-09-15 18:36:34",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.997867226600647
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.6284595131874084
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.6957406401634216
+      },
+      "sentiment": {
+        "label": "neutral or mixed feelings",
+        "score": 0.39298009872436523
+      }
+    },
+    {
+      "id": "68c779552cd80f7f30225646",
+      "text": "I have 5G Home Internet. It hasn't worked for the last 1 week. I reached out support and told everything which I did. And finally I tried factory reset. But the network name of the mobile router doesn't shown in the WIFI connection options something like TMOBILE-7D1F etc. They asking me that can I open websites :) They don't listen they don't help. Stay away. I'm paying them but I can't use the service.",
+      "rating": 1,
+      "timestamp": "2025-09-15 04:26:29",
+      "issues": [
+        {
+          "label": "bad customer service experience",
+          "score": 0.9965234398841858
+        },
+        {
+          "label": "device and technical issues",
+          "score": 0.9953131675720215
+        },
+        {
+          "label": "poor network coverage and connectivity",
+          "score": 0.9620250463485718
+        },
+        {
+          "label": "misleading promotions and false advertising",
+          "score": 0.5796015858650208
+        },
+        {
+          "label": "account and security issues",
+          "score": 0.3526853919029236
+        }
+      ],
+      "churn_prediction": {
+        "label": "customer wants to leave or cancel service",
+        "score": 0.7769466042518616
+      },
+      "sentiment": {
+        "label": "very frustrated and angry",
+        "score": 0.4980238378047943
+      }
+    }
+  ]
+}

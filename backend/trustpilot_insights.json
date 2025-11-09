@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "total_reviews": 200,
+    "trustscore": 1.4,
+    "analysis_timestamp": "2025-11-09T07:21:13.827070",
+    "source": "Trustpilot"
+  },
+  "churn_analysis": {
+    "risk_score": 100,
+    "risk_percentage": 54.5,
+    "at_risk_customers": 109,
+    "high_value_churners": 9,
+    "top_churn_signals": {
+      "competitors": 59,
+      "legal": 48,
+      "canceling": 47,
+      "fed_up": 27,
+      "long_term_customer": 11
+    },
+    "competitor_mentions": {
+      "att": 22,
+      "verizon": 20,
+      "metro": 7,
+      "at&t": 6,
+      "mint mobile": 2
+    }
+  },
+  "issue_analysis": {
+    "top_issues": {
+      "Network & Coverage": 146,
+      "Customer Service": 121,
+      "Billing & Hidden Charges": 121,
+      "Phone & Equipment": 119,
+      "Account Management": 94,
+      "False Promises & Misleading": 77,
+      "Store Experience": 75,
+      "International Service": 7
+    },
+    "issue_percentages": {
+      "Account Management": 47.0,
+      "False Promises & Misleading": 38.5,
+      "Store Experience": 37.5,
+      "Customer Service": 60.5,
+      "Network & Coverage": 73.0,
+      "Phone & Equipment": 59.5,
+      "Billing & Hidden Charges": 60.5,
+      "International Service": 3.5
+    },
+    "top_keywords": {
+      "service": 125,
+      "phone": 106,
+      "customer service": 69,
+      "bill": 62,
+      "account": 55,
+      "rep": 52,
+      "store": 50,
+      "lie": 44,
+      "told me": 40,
+      "charge": 38,
+      "cancel": 35,
+      "internet": 33,
+      "fee": 28,
+      "pin": 26,
+      "cost": 22,
+      "support": 20,
+      "scam": 19,
+      "return": 19,
+      "promised": 18,
+      "close": 17
+    }
+  },
+  "sentiment_analysis": {
+    "average_rating": 1.42,
+    "negative_percentage": 90.0,
+    "rating_distribution": {
+      "1": 168,
+      "5": 14,
+      "3": 3,
+      "2": 12,
+      "4": 3
+    }
+  },
+  "actionable_insights": [
+    {
+      "title": "High Churn Risk Detected",
+      "severity": "critical",
+      "metric": "54.5%",
+      "description": "109 customers showing intent to leave",
+      "action": "Implement retention campaign targeting at-risk customers",
+      "impact": "High",
+      "priority": 1
+    },
+    {
+      "title": "Losing Long-Term Customers",
+      "severity": "critical",
+      "metric": "9 customers",
+      "description": "Average 15.4 years of loyalty being lost",
+      "action": "Create VIP retention program for customers with 5+ years tenure",
+      "impact": "Very High",
+      "priority": 2
+    },
+    {
+      "title": "Critical Issue: Network & Coverage",
+      "severity": "high",
+      "metric": "73.0%",
+      "description": "146 reviews mention network & coverage",
+      "action": "Audit and improve network & coverage processes",
+      "impact": "High",
+      "priority": 3
+    },
+    {
+      "title": "Customer Sentiment Crisis",
+      "severity": "critical",
+      "metric": "90.0%",
+      "description": "Average rating: 1.42/5",
+      "action": "Launch immediate customer satisfaction improvement initiative",
+      "impact": "Very High",
+      "priority": 4
+    },
+    {
+      "title": "Competitor Threat: Att",
+      "severity": "medium",
+      "metric": "22 mentions",
+      "description": "Customers actively comparing with competitors",
+      "action": "Competitive analysis and price/feature comparison needed",
+      "impact": "Medium",
+      "priority": 5
+    }
+  ]
+}

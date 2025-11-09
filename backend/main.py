@@ -6,8 +6,8 @@ import os
 # from routes.chat_routes import chat_router
 from routes.outage_routes import outage_router
 from routes.reddit_routes import reddit_router, dashboard_router
-from routes.facebook_routes import facebook_router
 from routes.twitter_routes import twitter_router
+from routes.insights_routes import router as insights_router
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -49,8 +49,8 @@ app.add_middleware(
 app.include_router(outage_router)
 app.include_router(reddit_router)
 app.include_router(dashboard_router)
-app.include_router(facebook_router)
 app.include_router(twitter_router)
+app.include_router(insights_router)
 
 
 

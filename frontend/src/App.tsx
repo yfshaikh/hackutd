@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Layout } from './components/layout/Layout'
 import { NetworkMap } from './pages/NetworkMap'
 import { Dashboard } from './pages/Dashboard'
+import InsightsPage from './pages/InsightsPage'
 
 // Create a client
 const queryClient = new QueryClient({
@@ -26,6 +27,7 @@ function App() {
             <Route index element={<NetworkMap />} />
             <Route path="network-map" element={<NetworkMap />} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="insights" element={<InsightsPage />} />
           </Route>
         </Routes>
       </Router>

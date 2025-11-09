@@ -243,58 +243,45 @@ def scrape_trustpilot_reviews(max_pages=5):
             print(f"Rating Distribution: {stats['rating_distribution']}")
         print()
         
+        # Track first review to detect if we're stuck on same page
+        previous_first_review = None
+        
         # Scrape reviews from multiple pages
         for page_num in range(1, max_pages + 1):
             print(f"\n📖 Scraping page {page_num}...")
             
+            # Navigate to the specific page URL directly (more reliable)
+            if page_num > 1:
+                page_url = f"{base_url}?page={page_num}"
+                print(f"➡️  Navigating to: {page_url}")
+                driver.get(page_url)
+                time.sleep(3)  # Wait for page to load
+            
             # Extract reviews from current page
             page_reviews = extract_reviews_from_page(driver)
-            all_reviews.extend(page_reviews)
             
+            # Check if we got the same reviews as before (pagination failed)
+            if page_reviews and previous_first_review:
+                current_first_review = page_reviews[0].get('review_text', '')[:100]
+                if current_first_review == previous_first_review:
+                    print("⚠️  Detected same reviews as previous page - stopping pagination")
+                    break
+            
+            # Store first review for next iteration check
+            if page_reviews:
+                previous_first_review = page_reviews[0].get('review_text', '')[:100]
+            
+            # Check if we got any reviews
+            if not page_reviews:
+                print("⚠️  No reviews found on this page - stopping pagination")
+                break
+            
+            all_reviews.extend(page_reviews)
             print(f"Total reviews collected so far: {len(all_reviews)}")
             
-            # Try to navigate to next page
+            # Small delay between pages to be respectful
             if page_num < max_pages:
-                try:
-                    # Look for next page button
-                    next_button = None
-                    
-                    # Try different selectors for pagination
-                    selectors = [
-                        "a[name='pagination-button-next']",
-                        "a[data-pagination-button-next]",
-                        "//a[contains(@class, 'pagination') and contains(., 'Next')]",
-                        "//button[contains(., 'Next')]",
-                        "//a[@aria-label='Next page']",
-                    ]
-                    
-                    for selector in selectors:
-                        try:
-                            if selector.startswith("//"):
-                                next_button = driver.find_element(By.XPATH, selector)
-                            else:
-                                next_button = driver.find_element(By.CSS_SELECTOR, selector)
-                            
-                            if next_button and next_button.is_displayed() and next_button.is_enabled():
-                                print(f"➡️  Found next button with selector: {selector}")
-                                driver.execute_script("arguments[0].scrollIntoView(true);", next_button)
-                                time.sleep(1)
-                                next_button.click()
-                                time.sleep(3)  # Wait for page to load
-                                break
-                        except (NoSuchElementException, Exception):
-                            continue
-                    
-                    if not next_button:
-                        # Try direct URL navigation
-                        next_page_url = f"{base_url}?page={page_num + 1}"
-                        print(f"➡️  Navigating to: {next_page_url}")
-                        driver.get(next_page_url)
-                        time.sleep(3)
-                        
-                except Exception as e:
-                    print(f"Error navigating to next page: {e}")
-                    break
+                time.sleep(2)
         
         # Create structured data
         structured_data = {
@@ -329,5 +316,5 @@ def scrape_trustpilot_reviews(max_pages=5):
 
 if __name__ == "__main__":
     # Scrape reviews from Trustpilot (adjust max_pages as needed)
-    scrape_trustpilot_reviews(max_pages=5)
+    scrape_trustpilot_reviews(max_pages=50)
 
