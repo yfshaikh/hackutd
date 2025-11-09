@@ -218,5 +218,5 @@ def scrape_trustpilot_reviews_simple(max_pages=3):
 
 if __name__ == "__main__":
     # Scrape reviews (adjust max_pages as needed)
-    scrape_trustpilot_reviews_simple(max_pages=3)
+    scrape_trustpilot_reviews_simple(max_pages=20)
 
