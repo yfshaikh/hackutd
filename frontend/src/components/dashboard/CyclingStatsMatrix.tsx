@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useRef } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { Matrix, digits, type Frame } from '@/components/ui/matrix'
 import { useQuickStats } from '@/hooks/useDashboard'
 import { Card, CardContent } from '@/components/ui/card'
@@ -10,11 +10,9 @@ interface StatDisplay {
 
 export function CyclingStatsMatrix() {
   const quickStats = useQuickStats()
-  const [displayedStatIndex, setDisplayedStatIndex] = useState(0) // What's currently shown
-  const [targetStatIndex, setTargetStatIndex] = useState(0) // What we're animating to
+  const [currentStatIndex, setCurrentStatIndex] = useState(0)
   const [animationFrame, setAnimationFrame] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
-  const currentIndexRef = useRef(0) // Track the actual current index
 
   // T-Mobile pink color
   const tmobilePink = '#E20074'
@@ -66,13 +64,11 @@ export function CyclingStatsMatrix() {
     return combinedFrame
   }
 
-  const currentFrame = useMemo(() => createCombinedFrame(stats[displayedStatIndex].value), [stats, displayedStatIndex, quickStats.isLoading])
-  const nextFrame = useMemo(() => createCombinedFrame(stats[targetStatIndex].value), [stats, targetStatIndex, quickStats.isLoading])
+  const currentFrame = useMemo(() => createCombinedFrame(stats[currentStatIndex].value), [stats, currentStatIndex, quickStats.isLoading])
+  const nextFrame = useMemo(() => createCombinedFrame(stats[(currentStatIndex + 1) % stats.length].value), [stats, currentStatIndex, quickStats.isLoading])
 
   // Create animated transition frame
   const getTransitionFrame = (): Frame => {
-    // After animation completes, keep showing the frame we animated to
-    if (!isAnimating && animationFrame >= 40) return nextFrame
     if (!isAnimating) return currentFrame
     
     const transitionFrame: Frame = Array(9).fill(0).map(() => Array(14).fill(0))
@@ -122,13 +118,10 @@ export function CyclingStatsMatrix() {
   useEffect(() => {
     let cycleInterval: ReturnType<typeof setInterval>
     let animationInterval: ReturnType<typeof setInterval>
+    let displayTimeout: ReturnType<typeof setTimeout>
     
     const runCycle = () => {
-      // Phase 1: Prepare to animate to the next stat using the ref
-      const nextIndex = (currentIndexRef.current + 1) % stats.length
-      currentIndexRef.current = nextIndex
-      
-      setTargetStatIndex(nextIndex)
+      // Phase 1: Start animation
       setIsAnimating(true)
       setAnimationFrame(0)
       
@@ -142,29 +135,28 @@ export function CyclingStatsMatrix() {
           clearInterval(animationInterval)
           setIsAnimating(false)
           
-          // Phase 3: Animation complete - update displayed to match target
-          setDisplayedStatIndex(nextIndex)
+          // Phase 3: Display completed number for 2 seconds, then move to next
+          displayTimeout = setTimeout(() => {
+            setCurrentStatIndex(curr => (curr + 1) % stats.length)
+          }, 2000)
         }
       }, 50) // 50ms per frame
     }
     
-    // Wait 2 seconds before starting first animation (show initial stat)
-    const initialTimeout = setTimeout(() => {
-      runCycle()
-      
-      // Then repeat every 4 seconds (2s animation + 2s display)
-      cycleInterval = setInterval(runCycle, 4000)
-    }, 2000)
+    // Start first cycle immediately
+    runCycle()
+    
+    // Then repeat every 4 seconds (2s animation + 2s display)
+    cycleInterval = setInterval(runCycle, 4000)
     
     return () => {
-      clearTimeout(initialTimeout)
       clearInterval(cycleInterval)
       clearInterval(animationInterval)
+      clearTimeout(displayTimeout)
     }
   }, [stats.length])
 
-  // Show the label for what's actually displayed
-  const currentStat = stats[targetStatIndex]
+  const currentStat = stats[currentStatIndex]
 
   return (
     <Card className="col-span-3 card-matte w-fit mx-auto">
