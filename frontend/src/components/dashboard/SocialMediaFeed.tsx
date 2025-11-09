@@ -115,7 +115,7 @@ export function SocialMediaFeed() {
       <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-card to-transparent z-10 pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
       
-      <div className="animate-scroll-posts group-hover:animation-paused">
+      <div className="animate-scroll-posts group-hover:[animation-play-state:paused]">
         {posts.map((post, index) => (
           <PostCard key={`${post.id}-${index}`} post={post} index={index} />
         ))}
