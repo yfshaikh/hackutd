@@ -2,6 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { useDashboard, useQuickStats } from '@/hooks/useDashboard'
 import { RefreshCw, TrendingUp, TrendingDown, Activity } from 'lucide-react'
 import { SentimentChart } from '@/components/charts/SentimentChart'
+import { CyclingStatsMatrix } from '@/components/dashboard/CyclingStatsMatrix'
 
 export function Dashboard() {
   const { dashboardSummary, isLoading, isError, refetchAll, isFetching } = useDashboard()
@@ -130,39 +131,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
         
-        <Card className="col-span-3 card-matte">
-          <CardHeader>
-            <CardTitle>Quick Stats</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Positive Posts</span>
-                <span className="text-sm font-medium text-[hsl(var(--sentiment-positive))]">
-                  {isLoading ? '--' : quickStats.positivePosts}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Negative Posts</span>
-                <span className="text-sm font-medium text-[hsl(var(--sentiment-negative))]">
-                  {isLoading ? '--' : quickStats.negativePosts}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Sentiment Score</span>
-                <span className={`text-sm font-medium ${sentimentDisplay.color}`}>
-                  {isLoading ? '--' : (dashboardSummary.overallSentiment?.score.toFixed(2) || '--')}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Last Updated</span>
-                <span className="text-xs text-muted-foreground">
-                  {new Date().toLocaleTimeString()}
-                </span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <CyclingStatsMatrix />
       </div>
     </div>
   )
