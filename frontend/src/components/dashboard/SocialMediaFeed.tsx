@@ -40,6 +40,9 @@ const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
     return cleanText.substring(0, 150) + '...'
   }
 
+  // Get platform display name
+  const platformName = post.platform === 'twitter' ? '𝕏' : 'Reddit'
+
   return (
     <Card
       className="cursor-pointer transition-all duration-300 relative overflow-hidden mb-3 hover:scale-[1.02] hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20"
@@ -62,7 +65,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, index }) => {
               {post.author}
             </p>
             <p className="text-xs text-muted-foreground">
-              Reddit • {getTimeAgo(post.created_utc)}
+              {platformName} • {getTimeAgo(post.created_utc)}
             </p>
           </div>
         </div>

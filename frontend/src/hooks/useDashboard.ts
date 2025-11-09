@@ -124,13 +124,13 @@ export function useHealthCheck(): UseQueryResult<{ status: string; timestamp: st
 }
 
 /**
- * Hook for recent social media posts
+ * Hook for recent social media posts from both Reddit and Twitter
  * Updates every 5 minutes for real-time social feed
  */
 export function useRecentPosts(): UseQueryResult<RecentPostsResponse, Error> {
   return useQuery({
     queryKey: dashboardQueryKeys.recentPosts(),
-    queryFn: () => dashboardApi.getRecentPosts(10),
+    queryFn: () => dashboardApi.getCombinedRecentPostsFromBackend(10),
     staleTime: STALE_TIMES.realtime,
     gcTime: STALE_TIMES.realtime * 2,
     retry: 2,

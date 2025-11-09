@@ -5,6 +5,9 @@ from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass, asdict
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 @dataclass
 class TwitterPost:
