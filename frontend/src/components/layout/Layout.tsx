@@ -1,9 +1,10 @@
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { Map, BarChart3, Brain } from 'lucide-react'
+import { Map, BarChart3, Brain, Home } from 'lucide-react'
 
 const navigation = [
+  { name: 'Home', href: '/', icon: Home },
   { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
-  { name: 'Network Map', href: '/', icon: Map },
+  { name: 'Network Map', href: '/network-map', icon: Map },
   { name: 'AI Insights', href: '/insights', icon: Brain },
 ]
 

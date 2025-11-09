@@ -293,3 +293,8 @@
     max-width: 1536px;
   }
 }
+
+
+.react-flow__handle {
+  opacity: 0;
+}

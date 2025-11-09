@@ -5,6 +5,7 @@ import { Layout } from './components/layout/Layout'
 import { NetworkMap } from './pages/NetworkMap'
 import { Dashboard } from './pages/Dashboard'
 import InsightsPage from './pages/InsightsPage'
+import { LandingPage } from './pages/landing/LandingPage'
 
 // Create a client
 const queryClient = new QueryClient({
@@ -23,8 +24,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<NetworkMap />} />
+          {/* Landing page without layout/sidebar */}
+          <Route path="/" element={<LandingPage />} />
+          
+          {/* All other routes with layout/sidebar */}
+          <Route element={<Layout />}>
             <Route path="network-map" element={<NetworkMap />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="insights" element={<InsightsPage />} />
