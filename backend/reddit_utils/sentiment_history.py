@@ -23,7 +23,8 @@ class RedditSentimentHistory:
         self.reddit = praw.Reddit(
             client_id=os.getenv('REDDIT_CLIENT_ID', 'your_client_id'),
             client_secret=os.getenv('REDDIT_CLIENT_SECRET', 'your_client_secret'),
-            user_agent=os.getenv('REDDIT_USER_AGENT', 'sentiment_history/1.0 by OkCommunication9478')
+            user_agent=os.getenv('REDDIT_USER_AGENT', 'sentiment_history/1.0 by OkCommunication9478'),
+            check_for_async=False  # Disable async environment check as recommended for FastAPI
         )
         
         # T-Mobile focused subreddits
