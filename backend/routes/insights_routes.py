@@ -104,6 +104,9 @@ async def get_insights() -> Dict[str, Any]:
             )
         
         logger.info(f"📂 Loading insights from: {insights_file.name}")
+        logger.info(f"📂 Full path: {insights_file}")
+        logger.info(f"📂 Zero-shot file exists: {ZEROSHOT_INSIGHTS_FILE.exists()}")
+        logger.info(f"📂 Keyword file exists: {KEYWORD_INSIGHTS_FILE.exists()}")
         
         with open(insights_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -128,12 +131,36 @@ async def get_insights() -> Dict[str, Any]:
             else:
                 logger.warning("⚠️  No detailed_reviews found, using empty rating distribution")
             
+            # Try to load churn signals from keyword-based file if available
+            top_churn_signals = {}
+            high_value_churners = 0
+            keyword_data = None
+            
+            if KEYWORD_INSIGHTS_FILE.exists():
+                logger.info(f"📊 Loading churn signals from keyword-based file: {KEYWORD_INSIGHTS_FILE}")
+                try:
+                    with open(KEYWORD_INSIGHTS_FILE, 'r', encoding='utf-8') as kf:
+                        keyword_data = json.load(kf)
+                        if 'churn_analysis' in keyword_data:
+                            if 'top_churn_signals' in keyword_data['churn_analysis']:
+                                top_churn_signals = keyword_data['churn_analysis']['top_churn_signals']
+                                logger.info(f"✅ Loaded churn signals: {top_churn_signals}")
+                            if 'high_value_churners' in keyword_data['churn_analysis']:
+                                high_value_churners = keyword_data['churn_analysis']['high_value_churners']
+                        else:
+                            logger.warning("⚠️  No churn_analysis found in keyword file")
+                except Exception as e:
+                    logger.error(f"❌ Error loading churn signals from keyword file: {e}")
+            else:
+                logger.warning("⚠️  Keyword insights file not found, churn signals will be empty")
+            
             response_data = {
                 "churn_analysis": {
                     "risk_score": data['metrics']['churn_risk_score'],
                     "at_risk_customers": data['metrics']['at_risk_customers'],
                     "risk_percentage": round((data['metrics']['at_risk_customers'] / data['summary']['total_reviews_analyzed']) * 100, 1),
-                    "top_churn_signals": {}  # Zero-shot doesn't track individual signals
+                    "top_churn_signals": top_churn_signals,
+                    "high_value_churners": high_value_churners
                 },
                 "sentiment_analysis": {
                     "average_rating": data['metrics']['average_rating'],
@@ -142,23 +169,34 @@ async def get_insights() -> Dict[str, Any]:
                 },
                 "issue_analysis": {
                     "top_issues": top_issues_dict,
-                    "issue_percentages": issue_percentages
+                    "issue_percentages": issue_percentages,
+                    "top_keywords": keyword_data.get('issue_analysis', {}).get('top_keywords', {}) if keyword_data else {}
                 },
                 "actionable_insights": data.get('actionable_insights', []),
                 "metadata": {
                     "total_reviews": data['summary']['total_reviews_analyzed'],
-                    "analysis_method": data['summary'].get('analysis_method', 'zero-shot-classification'),
-                    "timestamp": data['summary'].get('timestamp')
+                    "trustscore": data['metrics'].get('average_rating', 0),
+                    "analysis_timestamp": data['summary'].get('timestamp', ''),
+                    "analysis_method": data['summary'].get('analysis_method', 'zero-shot-classification')
                 }
             }
             
             logger.info(f"✅ Successfully processed {response_data['metadata']['total_reviews']} reviews")
             logger.info(f"🎯 Churn Risk Score: {response_data['churn_analysis']['risk_score']}/100")
+            logger.info(f"📊 Churn Signals Count: {len(response_data['churn_analysis']['top_churn_signals'])}")
+            logger.info(f"📊 Churn Signals Data: {response_data['churn_analysis']['top_churn_signals']}")
             
             return response_data
         
         # Keyword format - already in correct structure
         logger.info("🔤 Processing keyword-based format")
+        
+        # Log the churn signals from keyword format
+        if 'churn_analysis' in data and 'top_churn_signals' in data['churn_analysis']:
+            logger.info(f"📊 Keyword format churn signals: {data['churn_analysis']['top_churn_signals']}")
+        else:
+            logger.warning("⚠️  No churn signals in keyword format!")
+        
         logger.info(f"✅ Successfully loaded keyword-based insights")
         return data
     

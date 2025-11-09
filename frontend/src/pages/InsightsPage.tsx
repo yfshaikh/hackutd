@@ -1,165 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
-import { AlertCircle, TrendingDown, Users, AlertTriangle, BarChart3 } from 'lucide-react';
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
-import type {
-  InsightsResponse,
-  safeGetRatingDistribution,
-  safeGetTopChurnSignals,
-  safeGetTopIssues,
-  isValidInsightsResponse
-} from '@/types/insights';
-
-interface ChurnAnalysis {
-  risk_score: number;
-  risk_percentage: number;
-  at_risk_customers: number;
-  high_value_churners?: number;
-  top_churn_signals?: Record<string, number>;
-  competitor_mentions?: Record<string, number>;
-}
-
-interface IssueAnalysis {
-  top_issues: Record<string, number>;
-  issue_percentages: Record<string, number>;
-  top_keywords: Record<string, number>;
-}
-
-interface SentimentAnalysis {
-  average_rating: number;
-  negative_percentage: number;
-  rating_distribution: Record<string, number>;
-}
-
-interface ActionableInsight {
-  title: string;
-  severity: 'critical' | 'high' | 'medium' | 'low';
-  metric: string;
-  description: string;
-  action: string;
-  impact: string;
-  priority: number;
-}
-
-interface InsightsData {
-  metadata: {
-    total_reviews: number;
-    trustscore: number;
-    analysis_timestamp: string;
-  };
-  churn_analysis: ChurnAnalysis;
-  issue_analysis: IssueAnalysis;
-  sentiment_analysis: SentimentAnalysis;
-  actionable_insights: ActionableInsight[];
-}
+import { AlertCircle, TrendingDown, Users, AlertTriangle, BarChart3, RefreshCw } from 'lucide-react';
+import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
+import { useInsights } from '@/hooks/useInsights';
+import { AnimatedNumber } from '@/components/ui/animated-number';
 
 const InsightsPage = () => {
-  const [insights, setInsights] = useState<InsightsData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: insights, isLoading, isError, error, refetch, isFetching } = useInsights();
+  const [animateBars, setAnimateBars] = useState(false);
 
+  // Trigger bar animations after component mounts
   useEffect(() => {
-    fetchInsights();
-  }, []);
-
-  const fetchInsights = async () => {
-    try {
-      console.log('📊 Fetching insights from API...');
-      const response = await fetch('http://localhost:8000/insights');
-      
-      if (!response.ok) {
-        throw new Error(`API error: ${response.status} ${response.statusText}`);
-      }
-      
-      const data = await response.json();
-      console.log('✅ Insights data received:', data);
-      
-      // Validate data structure
-      if (!data.churn_analysis || !data.sentiment_analysis || !data.issue_analysis) {
-        console.error('❌ Invalid data structure:', data);
-        throw new Error('Invalid insights data structure');
-      }
-      
-      // Ensure nested objects exist with defaults
-      const validatedData = {
-        ...data,
-        churn_analysis: {
-          ...data.churn_analysis,
-          top_churn_signals: data.churn_analysis?.top_churn_signals || {}
-        },
-        sentiment_analysis: {
-          ...data.sentiment_analysis,
-          rating_distribution: data.sentiment_analysis?.rating_distribution || {}
-        }
-      };
-      
-      console.log('✅ Data validated and set');
-      setInsights(validatedData);
-    } catch (err) {
-      console.error('❌ Error fetching insights:', err);
-      setError(err instanceof Error ? err.message : 'Failed to load insights');
-    } finally {
-      setLoading(false);
+    if (insights) {
+      // Small delay to ensure DOM is ready
+      const timer = setTimeout(() => setAnimateBars(true), 100);
+      return () => clearTimeout(timer);
     }
+  }, [insights]);
+
+  const getRiskColor = (score: number) => {
+    if (score >= 80) return 'text-[hsl(var(--destructive))]';
+    if (score >= 50) return 'text-orange-500';
+    return 'text-yellow-500';
   };
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Analyzing customer insights...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error || !insights) {
-    return (
-      <div className="container mx-auto p-6">
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{error || 'No data available'}</AlertDescription>
-        </Alert>
-      </div>
-    );
-  }
-
-  // Prepare chart data
-  const issuesChartData = Object.entries(insights.issue_analysis.top_issues).slice(0, 8).map(([name, value]) => ({
-    name: name.replace(' & ', '\n'),
-    count: value,
-    percentage: insights.issue_analysis.issue_percentages[name],
-  }));
-
-  // Safe data extraction with fallbacks to prevent crashes
-  const ratingDistribution = insights?.sentiment_analysis?.rating_distribution || {};
-  const sentimentChartData = Object.entries(ratingDistribution).map(([stars, count]) => ({
-    name: `${stars} Star${stars === '1' ? '' : 's'}`,
-    value: count,
-    fill: stars === '1' ? '#ef4444' : stars === '2' ? '#f97316' : stars === '3' ? '#eab308' : stars === '4' ? '#84cc16' : '#22c55e',
-  }));
-
-  const topChurnSignals = insights?.churn_analysis?.top_churn_signals || {};
-  const churnSignalsData = Object.entries(topChurnSignals).map(([name, value]) => ({
-    name: name.charAt(0).toUpperCase() + name.slice(1),
-    count: value,
-  }));
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
@@ -174,212 +39,234 @@ const InsightsPage = () => {
     }
   };
 
-  const getRiskColor = (score: number) => {
-    if (score >= 80) return 'text-red-500';
-    if (score >= 50) return 'text-orange-500';
-    return 'text-yellow-500';
-  };
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center">
+          <RefreshCw className="h-12 w-12 animate-spin mx-auto text-primary" />
+          <p className="mt-4 text-muted-foreground">Analyzing customer insights...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isError || !insights) {
+    return (
+      <div className="container mx-auto p-6">
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>
+            {error instanceof Error ? error.message : 'No data available'}
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
+
+  // Churn Risk Pie Chart Data
+  const churnRiskData = [
+    {
+      name: 'At Risk',
+      value: insights.churn_analysis.risk_score,
+      fill: insights.churn_analysis.risk_score >= 80 ? '#ef4444' : insights.churn_analysis.risk_score >= 50 ? '#f97316' : '#eab308',
+    },
+    {
+      name: 'Safe',
+      value: 100 - insights.churn_analysis.risk_score,
+      fill: '#1F1F1F',
+    },
+  ];
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
       {/* Header */}
-      <div>
-        <h1 className="text-4xl font-bold mb-2">Customer Insights Dashboard</h1>
-        <p className="text-muted-foreground">
-          AI-powered analysis of {insights.metadata.total_reviews} Trustpilot reviews • TrustScore: {insights.metadata.trustscore}/5
-        </p>
+      <div className="flex items-center justify-between space-y-2">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">Customer Insights</h2>
+          <p className="text-muted-foreground text-sm">
+            AI-powered analysis of {insights.metadata.total_reviews.toLocaleString()} Trustpilot reviews • TrustScore: {insights.metadata.trustscore}/5
+          </p>
+        </div>
+        <button
+          onClick={() => refetch()}
+          disabled={isFetching}
+          className="flex items-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/80 disabled:opacity-50 tmobile-glow-matte transition-all duration-200"
+        >
+          <RefreshCw className={`h-4 w-4 ${isFetching ? 'animate-spin' : ''}`} />
+          Refresh
+        </button>
       </div>
 
-      {/* Key Metrics */}
+      {/* Key Metrics - More Compact */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        {/* Churn Risk with Animated Pie Chart */}
+        <Card className="card-matte">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 pt-4">
             <CardTitle className="text-sm font-medium">Churn Risk Score</CardTitle>
-            <AlertTriangle className="h-4 w-4 text-red-500" />
+            <AlertTriangle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className={`text-3xl font-bold ${getRiskColor(insights.churn_analysis.risk_score)}`}>
-              {insights.churn_analysis.risk_score}/100
+          <CardContent className="py-2 pb-4">
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <div className={`text-2xl font-bold ${getRiskColor(insights.churn_analysis.risk_score)}`}>
+                  <AnimatedNumber value={insights.churn_analysis.risk_score} suffix="/100" />
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  <AnimatedNumber value={insights.churn_analysis.risk_percentage} decimals={1} suffix="%" /> at risk
+                </p>
+              </div>
+              <div className="w-16 h-16">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={churnRiskData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={20}
+                      outerRadius={30}
+                      dataKey="value"
+                      strokeWidth={0}
+                      animationDuration={1500}
+                      animationBegin={0}
+                    >
+                      {churnRiskData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* At-Risk Customers */}
+        <Card className="card-matte">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 pt-4">
+            <CardTitle className="text-sm font-medium">At-Risk Customers</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent className="py-2 pb-4">
+            <div className="text-2xl font-bold text-orange-500">
+              <AnimatedNumber value={insights.churn_analysis.at_risk_customers} />
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              {insights.churn_analysis.risk_percentage}% showing intent to leave
+              Including <AnimatedNumber value={insights.churn_analysis.high_value_churners || 0} /> long-term
             </p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">At-Risk Customers</CardTitle>
-            <Users className="h-4 w-4 text-orange-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-orange-500">{insights.churn_analysis.at_risk_customers}</div>
-            <p className="text-xs text-muted-foreground mt-1">
-              Including {insights.churn_analysis.high_value_churners} long-term customers
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        {/* Average Rating */}
+        <Card className="card-matte">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 pt-4">
             <CardTitle className="text-sm font-medium">Average Rating</CardTitle>
-            <TrendingDown className="h-4 w-4 text-red-500" />
+            <TrendingDown className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">{insights.sentiment_analysis.average_rating}/5</div>
+          <CardContent className="py-2 pb-4">
+            <div className="text-2xl font-bold">
+              <AnimatedNumber value={insights.sentiment_analysis.average_rating} decimals={1} suffix="/5" />
+            </div>
             <p className="text-xs text-muted-foreground mt-1">
-              {insights.sentiment_analysis.negative_percentage}% negative reviews
+              <AnimatedNumber value={insights.sentiment_analysis.negative_percentage} decimals={1} suffix="%" /> negative
             </p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        {/* Critical Issues */}
+        <Card className="card-matte">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1 pt-4">
             <CardTitle className="text-sm font-medium">Critical Issues</CardTitle>
-            <BarChart3 className="h-4 w-4 text-yellow-500" />
+            <BarChart3 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">{Object.keys(insights.issue_analysis.top_issues).length}</div>
-            <p className="text-xs text-muted-foreground mt-1">Identified complaint categories</p>
+          <CardContent className="py-2 pb-4">
+            <div className="text-2xl font-bold">
+              <AnimatedNumber value={Object.keys(insights.issue_analysis.top_issues).length} />
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">Complaint categories</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Actionable Insights */}
-      <Card>
-        <CardHeader>
-          <CardTitle>🚨 Actionable Insights</CardTitle>
-          <CardDescription>Prioritized actions to improve customer satisfaction</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {insights.actionable_insights.map((insight, idx) => (
-              <Alert key={idx} className="border-l-4" style={{ borderLeftColor: insight.severity === 'critical' ? '#ef4444' : insight.severity === 'high' ? '#f97316' : '#eab308' }}>
-                <div className="flex items-start gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <AlertTitle className="mb-0">{insight.title}</AlertTitle>
-                      <Badge variant={insight.severity === 'critical' ? 'destructive' : 'default'} className={getSeverityColor(insight.severity)}>
-                        {insight.severity.toUpperCase()}
-                      </Badge>
-                    </div>
-                    <AlertDescription className="mt-2">
-                      <div className="space-y-1">
-                        <p><strong>Impact:</strong> {insight.metric} • {insight.description}</p>
-                        <p className="text-primary"><strong>Recommended Action:</strong> {insight.action}</p>
-                      </div>
-                    </AlertDescription>
-                  </div>
-                </div>
-              </Alert>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Charts Row */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Top Issues */}
-        <Card>
+      {/* Main Content Grid */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {/* Actionable Insights - Half Width, Compact & Scrollable */}
+        <Card className="card-matte">
           <CardHeader>
-            <CardTitle>Top Customer Issues</CardTitle>
-            <CardDescription>Most frequently mentioned complaints</CardDescription>
+            <CardTitle className="text-lg">🚨 Priority Actions</CardTitle>
+            <CardDescription className="text-xs">Critical actions needed</CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={issuesChartData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} fontSize={12} />
-                <YAxis />
-                <Tooltip content={({ active, payload }) => {
-                  if (active && payload && payload.length) {
-                    return (
-                      <div className="bg-background border rounded-lg p-2 shadow-lg">
-                        <p className="font-semibold">{payload[0].payload.name}</p>
-                        <p className="text-sm">Count: {payload[0].value}</p>
-                        <p className="text-sm">Percentage: {payload[0].payload.percentage}%</p>
-                      </div>
-                    );
-                  }
-                  return null;
-                }} />
-                <Bar dataKey="count" fill="#ef4444" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-
-        {/* Sentiment Distribution */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Rating Distribution</CardTitle>
-            <CardDescription>Breakdown of customer ratings</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={sentimentChartData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                  outerRadius={80}
-                  dataKey="value"
+            <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
+              {insights.actionable_insights.slice(0, 5).map((insight, idx) => (
+                <div
+                  key={idx}
+                  className="border-l-4 p-3 rounded bg-secondary/50"
+                  style={{
+                    borderLeftColor:
+                      insight.severity === 'critical'
+                        ? '#ef4444'
+                        : insight.severity === 'high'
+                        ? '#f97316'
+                        : '#eab308',
+                  }}
                 >
-                  {sentimentChartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-
-        {/* Churn Signals */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Churn Warning Signals</CardTitle>
-            <CardDescription>Indicators of customer intent to leave</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={churnSignalsData} layout="vertical">
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis type="number" />
-                <YAxis dataKey="name" type="category" width={100} />
-                <Tooltip />
-                <Bar dataKey="count" fill="#f97316" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-
-        {/* Top Keywords */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Most Common Complaints</CardTitle>
-            <CardDescription>Frequently mentioned keywords</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {Object.entries(insights.issue_analysis.top_issues).slice(0, 10).map(([keyword, count], idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium">{keyword}</span>
-                      <span className="text-sm text-muted-foreground">{count}</span>
-                    </div>
-                    <div className="w-full bg-secondary h-2 rounded-full mt-1">
-                      <div
-                        className="bg-red-500 h-2 rounded-full"
-                        style={{ width: `${(count / Math.max(...Object.values(insights.issue_analysis.top_issues))) * 100}%` }}
-                      ></div>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="text-sm font-semibold truncate">{insight.title}</h4>
+                        <Badge
+                          variant={insight.severity === 'critical' ? 'destructive' : 'default'}
+                          className={`${getSeverityColor(insight.severity)} text-xs px-1 py-0 h-5`}
+                        >
+                          {insight.severity.toUpperCase()}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground line-clamp-2">{insight.description}</p>
+                      <p className="text-xs text-primary mt-1 line-clamp-1">→ {insight.action}</p>
                     </div>
                   </div>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Most Common Complaints - Progress Bars */}
+        <Card className="card-matte">
+          <CardHeader>
+            <CardTitle className="text-lg">Most Common Complaints</CardTitle>
+            <CardDescription className="text-xs">Frequently mentioned keywords</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
+              {Object.entries(insights.issue_analysis.top_issues)
+                .slice(0, 8)
+                .map(([keyword, count], idx) => {
+                  const maxCount = Math.max(...Object.values(insights.issue_analysis.top_issues));
+                  const percentage = (count / maxCount) * 100;
+                  return (
+                    <div key={idx} className="flex items-center gap-2">
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium">{keyword}</span>
+                          <span className="text-sm text-muted-foreground">{count}</span>
+                        </div>
+                        <div className="w-full bg-secondary h-2 rounded-full overflow-hidden">
+                          <div
+                            className="h-2 rounded-full transition-all ease-out"
+                            style={{
+                              width: animateBars ? `${percentage}%` : '0%',
+                              background: 'linear-gradient(to right, #ef4444, #f97316)',
+                              transitionDuration: `${800 + idx * 100}ms`,
+                              transitionDelay: `${idx * 50}ms`,
+                            }}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </CardContent>
         </Card>

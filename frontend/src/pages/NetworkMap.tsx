@@ -218,53 +218,6 @@ export function NetworkMap() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-4 mb-6">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Overall Status</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold capitalize">
-              {outageData.overall_status.replace('_', ' ')}
-            </div>
-            <p className="text-xs text-green-600">System monitoring active</p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Total Reports</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{outageData.total_reports}</div>
-            <p className="text-xs text-blue-600">
-              {outageData.user_reports.length} user + {outageData.social_media_mentions.length} social
-            </p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Hot Spots</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{outageData.most_reported_locations.length}</div>
-            <p className="text-xs text-orange-600">High activity areas</p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Top Issue</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {Math.max(...Object.values(outageData.problem_breakdown))}%
-            </div>
-            <p className="text-xs text-purple-600">5G Home Internet</p>
-          </CardContent>
-        </Card>
-      </div>
 
       <Card className="h-[600px]">
         <CardHeader>
@@ -341,80 +294,9 @@ export function NetworkMap() {
         </CardContent>
       </Card>
 
-      {/* Problem Breakdown Card */}
-      <Card className="mt-4">
-        <CardHeader>
-          <CardTitle>Issue Breakdown</CardTitle>
-          <CardDescription>
-            Current distribution of reported problems
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-3">
-            {Object.entries(outageData.problem_breakdown).map(([type, percentage]) => (
-              <div key={type} className="flex items-center justify-between p-3 rounded-lg bg-secondary">
-                <div className="flex items-center gap-2">
-                  {getIssueTypeIcon(type)}
-                  <span className="font-medium capitalize">
-                    {type.replace('_', ' ').replace('5g', '5G')}
-                  </span>
-                </div>
-                <div className="text-2xl font-bold text-primary">
-                  {percentage}%
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      
 
-      {/* Map Legend */}
-      <Card className="mt-4">
-        <CardHeader>
-          <CardTitle>Map Legend</CardTitle>
-          <CardDescription>
-            Understanding the outage markers
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <h4 className="font-medium mb-2">By Source</h4>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-red-500"></div>
-                  <span className="text-sm">High Activity Areas</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-orange-500"></div>
-                  <span className="text-sm">User Reports</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
-                  <span className="text-sm">Social Media</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-medium mb-2">By Issue Type</h4>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <Wifi className="h-4 w-4 text-purple-500" />
-                  <span className="text-sm">5G Home Internet</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Signal className="h-4 w-4 text-red-500" />
-                  <span className="text-sm">Mobile Phone</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-orange-500" />
-                  <span className="text-sm">No Signal</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      
     </div>
   )
 }
