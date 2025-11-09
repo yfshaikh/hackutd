@@ -15,25 +15,25 @@
     --tmobile-white: #FFFFFF;
     --tmobile-black: #000000;
 
-    /* Core Theme Colors - Dark T-Mobile Theme */
-    --background: #0F0F0F;
-    --foreground: #FAFAFA;
-    --card: #1A1A1A;
-    --card-foreground: #FAFAFA;
-    --popover: #1A1A1A;
-    --popover-foreground: #FAFAFA;
+    /* Core Theme Colors - Matte Black T-Mobile Theme */
+    --background: #0A0A0A;
+    --foreground: #F5F5F5;
+    --card: #161616;
+    --card-foreground: #F5F5F5;
+    --popover: #161616;
+    --popover-foreground: #F5F5F5;
     --primary: var(--tmobile-magenta);
     --primary-foreground: var(--tmobile-white);
-    --secondary: #262626;
-    --secondary-foreground: #FAFAFA;
-    --muted: #262626;
-    --muted-foreground: #A1A1AA;
+    --secondary: #1F1F1F;
+    --secondary-foreground: #F5F5F5;
+    --muted: #1F1F1F;
+    --muted-foreground: #B0B0B0;
     --accent: var(--tmobile-magenta-light);
     --accent-foreground: var(--tmobile-white);
-    --destructive: #EF4444;
+    --destructive: #DC2626;
     --destructive-foreground: var(--tmobile-white);
-    --border: #404040;
-    --input: #262626;
+    --border: #2A2A2A;
+    --input: #1F1F1F;
     --ring: var(--tmobile-magenta);
 
     /* Semantic Colors */
@@ -44,7 +44,7 @@
     --info: #3B82F6;
     --info-foreground: var(--tmobile-white);
 
-    /* Chart Colors - T-Mobile Palette */
+    /* Chart Colors - Matte T-Mobile Palette */
     --chart-1: var(--tmobile-magenta);
     --chart-2: #22C55E;
     --chart-3: #F59E0B;
@@ -54,14 +54,21 @@
     --chart-7: #F97316;
     --chart-8: #84CC16;
 
-    /* Sidebar Colors */
-    --sidebar: #1A1A1A;
-    --sidebar-foreground: var(--tmobile-white);
+    /* Sentiment Chart Specific Colors */
+    --sentiment-positive: #22C55E;
+    --sentiment-negative: #EF4444;
+    --sentiment-neutral: #94A3B8;
+    --chart-grid: #404040;
+    --chart-text: #D1D5DB;
+
+    /* Sidebar Colors - Matte Black */
+    --sidebar: #161616;
+    --sidebar-foreground: #F5F5F5;
     --sidebar-primary: var(--tmobile-magenta);
     --sidebar-primary-foreground: var(--tmobile-white);
-    --sidebar-accent: #262626;
-    --sidebar-accent-foreground: var(--tmobile-white);
-    --sidebar-border: #404040;
+    --sidebar-accent: #1F1F1F;
+    --sidebar-accent-foreground: #F5F5F5;
+    --sidebar-border: #2A2A2A;
     --sidebar-ring: var(--tmobile-magenta);
   }
 
@@ -102,10 +109,21 @@
     color: var(--tmobile-white);
   }
 
-  /* Focus ring improvements */
+  /* Focus ring improvements - Matte */
   *:focus-visible {
     outline: 2px solid var(--tmobile-magenta);
     outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(226, 0, 116, 0.1);
+  }
+
+  /* Enhanced matte button states */
+  button:hover {
+    box-shadow: 0 0 0 2px rgba(226, 0, 116, 0.3);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  button:active {
+    box-shadow: 0 0 0 2px rgba(226, 0, 116, 0.5);
   }
 
   /* Link styling */
@@ -137,18 +155,43 @@
     cursor: not-allowed;
   }
 
-  /* Card enhancements */
+  /* Card enhancements - Matte */
   .card-shadow {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
-  /* T-Mobile specific utility classes */
+  .card-matte {
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: border-color 0.2s ease-in-out;
+  }
+
+  /* T-Mobile specific utility classes - Matte */
   .tmobile-gradient {
     background: linear-gradient(135deg, var(--tmobile-magenta) 0%, var(--tmobile-magenta-dark) 100%);
   }
 
+  .tmobile-gradient-matte {
+    background: linear-gradient(135deg, rgba(226, 0, 116, 0.8) 0%, rgba(184, 0, 90, 0.9) 100%);
+  }
+
   .tmobile-glow {
     box-shadow: 0 0 20px rgba(226, 0, 116, 0.3);
+  }
+
+  .tmobile-glow-matte {
+    box-shadow: 0 0 15px rgba(226, 0, 116, 0.2);
+  }
+
+  /* Matte surface utilities */
+  .surface-matte {
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .surface-elevated-matte {
+    background: var(--secondary);
+    border: 1px solid var(--border);
   }
 
   /* Animation improvements */
@@ -172,6 +215,19 @@
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  /* Enhanced matte card hover effects */
+  .card-matte:hover {
+    border-color: rgba(226, 0, 116, 0.4);
+  }
+
+  /* Matte glass effect for elevated surfaces */
+  .glass-matte {
+    background: rgba(22, 22, 22, 0.8);
+    border: 1px solid rgba(42, 42, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 }
 

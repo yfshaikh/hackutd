@@ -18,8 +18,11 @@ interface SentimentChartProps {
 export function SentimentChart({ data, height = 280 }: SentimentChartProps) {
   if (!data || data.length === 0) {
     return (
-      <div className="h-full flex items-center justify-center text-muted-foreground">
-        No sentiment data available
+      <div className="h-full flex items-center justify-center text-muted-foreground surface-matte rounded-lg">
+        <div className="text-center p-6">
+          <div className="text-lg font-medium mb-2">No sentiment data available</div>
+          <div className="text-sm opacity-70">Data will appear here once sentiment analysis is complete</div>
+        </div>
       </div>
     )
   }
@@ -37,7 +40,7 @@ export function SentimentChart({ data, height = 280 }: SentimentChartProps) {
   }))
 
   return (
-    <div className="w-full" style={{ height }}>
+    <div className="w-full surface-matte rounded-lg p-4" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={chartData}
@@ -48,22 +51,32 @@ export function SentimentChart({ data, height = 280 }: SentimentChartProps) {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
+          <CartesianGrid 
+            strokeDasharray="3 3" 
+            stroke="#404040"
+            opacity={0.6}
+          />
           <XAxis 
             dataKey="month" 
             fontSize={12}
-            tick={{ fill: 'hsl(var(--muted-foreground))' }}
+            tick={{ fill: '#D1D5DB' }}
+            axisLine={{ stroke: '#2A2A2A' }}
+            tickLine={{ stroke: '#2A2A2A' }}
           />
           <YAxis 
             fontSize={12}
-            tick={{ fill: 'hsl(var(--muted-foreground))' }}
+            tick={{ fill: '#D1D5DB' }}
+            axisLine={{ stroke: '#2A2A2A' }}
+            tickLine={{ stroke: '#2A2A2A' }}
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: 'hsl(var(--background))',
-              border: '1px solid hsl(var(--border))',
-              borderRadius: '6px',
-              color: 'hsl(var(--foreground))'
+              backgroundColor: '#161616',
+              border: '1px solid #2A2A2A',
+              borderRadius: '8px',
+              color: '#F5F5F5',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
+              backdropFilter: 'blur(8px)'
             }}
             formatter={(value: number, name: string) => [
               value,
@@ -74,27 +87,30 @@ export function SentimentChart({ data, height = 280 }: SentimentChartProps) {
           <Legend
             wrapperStyle={{
               paddingTop: '20px',
-              fontSize: '14px'
+              fontSize: '14px',
+              color: '#D1D5DB'
             }}
             formatter={(value) => 
-              value === 'positive' ? 'Positive Posts' : 'Negative Posts'
+              <span style={{ color: '#D1D5DB' }}>
+                {value === 'positive' ? 'Positive Posts' : 'Negative Posts'}
+              </span>
             }
           />
           <Line
             type="monotone"
             dataKey="positive"
-            stroke="#16a34a"
+            stroke="#22C55E"
             strokeWidth={3}
-            dot={{ fill: '#16a34a', strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: '#16a34a', strokeWidth: 2 }}
+            dot={{ fill: '#22C55E', strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: '#22C55E', strokeWidth: 2, fill: '#22C55E' }}
           />
           <Line
             type="monotone"
             dataKey="negative"
-            stroke="#dc2626"
+            stroke="#EF4444"
             strokeWidth={3}
-            dot={{ fill: '#dc2626', strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: '#dc2626', strokeWidth: 2 }}
+            dot={{ fill: '#EF4444', strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: '#EF4444', strokeWidth: 2, fill: '#EF4444' }}
           />
         </LineChart>
       </ResponsiveContainer>

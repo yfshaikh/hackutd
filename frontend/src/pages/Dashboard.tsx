@@ -9,9 +9,9 @@ export function Dashboard() {
 
   // Determine sentiment color and icon
   const getSentimentDisplay = (score: number) => {
-    if (score > 0.2) return { color: 'text-green-600', icon: TrendingUp, label: 'Positive' }
-    if (score < -0.2) return { color: 'text-red-600', icon: TrendingDown, label: 'Negative' }
-    return { color: 'text-yellow-600', icon: Activity, label: 'Neutral' }
+    if (score > 0.2) return { color: 'text-[hsl(var(--sentiment-positive))]', icon: TrendingUp, label: 'Positive' }
+    if (score < -0.2) return { color: 'text-[hsl(var(--sentiment-negative))]', icon: TrendingDown, label: 'Negative' }
+    return { color: 'text-[hsl(var(--sentiment-neutral))]', icon: Activity, label: 'Neutral' }
   }
 
   const sentimentDisplay = getSentimentDisplay(dashboardSummary.overallSentiment?.score || 0)
@@ -24,7 +24,7 @@ export function Dashboard() {
         <button
           onClick={refetchAll}
           disabled={isFetching}
-          className="flex items-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/80 disabled:opacity-50"
+          className="flex items-center gap-2 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/80 disabled:opacity-50 tmobile-glow-matte transition-all duration-200"
         >
           <RefreshCw className={`h-4 w-4 ${isFetching ? 'animate-spin' : ''}`} />
           Refresh
@@ -32,13 +32,15 @@ export function Dashboard() {
       </div>
       
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="card-matte">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Network Status</CardTitle>
           </CardHeader>
           <CardContent>
             <div className={`text-2xl font-bold ${
-              quickStats.networkStatus === 'Operational' ? 'text-green-600' : 'text-red-600'
+              quickStats.networkStatus === 'Operational' 
+                ? 'text-[hsl(var(--success))]' 
+                : 'text-[hsl(var(--destructive))]'
             }`}>
               {quickStats.isLoading ? 'Loading...' : quickStats.networkStatus}
             </div>
@@ -51,7 +53,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="card-matte">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Customer Sentiment</CardTitle>
             <SentimentIcon className="h-4 w-4 text-muted-foreground" />
@@ -66,12 +68,12 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="card-matte">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Posts</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold text-[hsl(var(--primary))]">
               {isLoading ? 'Loading...' : quickStats.totalPosts.toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
@@ -80,12 +82,12 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="card-matte">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Sentiment Ratio</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold text-[hsl(var(--accent))]">
               {isLoading ? 'Loading...' : `${Math.round((dashboardSummary.overallSentiment?.ratio || 0) * 100)}%`}
             </div>
             <p className="text-xs text-muted-foreground">
@@ -96,7 +98,7 @@ export function Dashboard() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+        <Card className="col-span-4 card-matte">
           <CardHeader>
             <CardTitle>Positive vs Negative Social Media Posts</CardTitle>
           </CardHeader>
@@ -128,7 +130,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
         
-        <Card className="col-span-3">
+        <Card className="col-span-3 card-matte">
           <CardHeader>
             <CardTitle>Quick Stats</CardTitle>
           </CardHeader>
@@ -136,13 +138,13 @@ export function Dashboard() {
             <div className="space-y-4">
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">Positive Posts</span>
-                <span className="text-sm font-medium text-green-600">
+                <span className="text-sm font-medium text-[hsl(var(--sentiment-positive))]">
                   {isLoading ? '--' : quickStats.positivePosts}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">Negative Posts</span>
-                <span className="text-sm font-medium text-red-600">
+                <span className="text-sm font-medium text-[hsl(var(--sentiment-negative))]">
                   {isLoading ? '--' : quickStats.negativePosts}
                 </span>
               </div>
